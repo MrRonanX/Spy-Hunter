@@ -3,27 +3,49 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6E1B6166256AC19FB08A44B2 /* Pods_Spy_Hunter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D67D33280F9CA6B7224D7959 /* Pods_Spy_Hunter.framework */; };
+		F90186C62465516E001EB03A /* GameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90186C52465516E001EB03A /* GameSettings.swift */; };
+		F90186CC24657211001EB03A /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90186CB24657211001EB03A /* LocationModel.swift */; };
+		F90186CE2465919C001EB03A /* PlayerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90186CD2465919C001EB03A /* PlayerCell.swift */; };
 		F90E2F4C245440C50095961C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90E2F4B245440C50095961C /* AppDelegate.swift */; };
 		F90E2F4E245440C50095961C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90E2F4D245440C50095961C /* SceneDelegate.swift */; };
-		F90E2F50245440C50095961C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90E2F4F245440C50095961C /* ViewController.swift */; };
 		F90E2F53245440C50095961C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F90E2F51245440C50095961C /* Main.storyboard */; };
 		F90E2F55245440C70095961C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F90E2F54245440C70095961C /* Assets.xcassets */; };
 		F90E2F58245440C70095961C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F90E2F56245440C70095961C /* LaunchScreen.storyboard */; };
+		F90E2F6224544D0E0095961C /* LaunchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90E2F6124544D0E0095961C /* LaunchScreen.swift */; };
+		F90E2F6424544D2B0095961C /* PlayersScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90E2F6324544D2B0095961C /* PlayersScreen.swift */; };
+		F90E2F6624544EC80095961C /* AddNewPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90E2F6524544EC80095961C /* AddNewPlayer.swift */; };
+		F90E2F6824544EDF0095961C /* PlayerLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90E2F6724544EDF0095961C /* PlayerLibrary.swift */; };
+		F90E2F6A24544F0A0095961C /* Rules.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90E2F6924544F0A0095961C /* Rules.swift */; };
+		F90E2F6E2456F24C0095961C /* PlayerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90E2F6D2456F24C0095961C /* PlayerModel.swift */; };
+		F90E2F732457FA560095961C /* PlayerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F90E2F712457FA560095961C /* PlayerCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7CA221986255747E73E4A317 /* Pods-Spy Hunter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spy Hunter.release.xcconfig"; path = "Target Support Files/Pods-Spy Hunter/Pods-Spy Hunter.release.xcconfig"; sourceTree = "<group>"; };
+		D486832FCF56C2C74CA2FEED /* Pods-Spy Hunter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spy Hunter.debug.xcconfig"; path = "Target Support Files/Pods-Spy Hunter/Pods-Spy Hunter.debug.xcconfig"; sourceTree = "<group>"; };
+		D67D33280F9CA6B7224D7959 /* Pods_Spy_Hunter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Spy_Hunter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F90186C52465516E001EB03A /* GameSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSettings.swift; sourceTree = "<group>"; };
+		F90186CB24657211001EB03A /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
+		F90186CD2465919C001EB03A /* PlayerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCell.swift; sourceTree = "<group>"; };
 		F90E2F48245440C50095961C /* Spy Hunter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Spy Hunter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F90E2F4B245440C50095961C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F90E2F4D245440C50095961C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		F90E2F4F245440C50095961C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F90E2F52245440C50095961C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F90E2F54245440C70095961C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F90E2F57245440C70095961C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F90E2F59245440C70095961C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F90E2F6124544D0E0095961C /* LaunchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreen.swift; sourceTree = "<group>"; };
+		F90E2F6324544D2B0095961C /* PlayersScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersScreen.swift; sourceTree = "<group>"; };
+		F90E2F6524544EC80095961C /* AddNewPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewPlayer.swift; sourceTree = "<group>"; };
+		F90E2F6724544EDF0095961C /* PlayerLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerLibrary.swift; sourceTree = "<group>"; };
+		F90E2F6924544F0A0095961C /* Rules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rules.swift; sourceTree = "<group>"; };
+		F90E2F6D2456F24C0095961C /* PlayerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerModel.swift; sourceTree = "<group>"; };
+		F90E2F712457FA560095961C /* PlayerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = PlayerCell.xib; path = "Spy Hunter/View/PlayerCell.xib"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +53,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E1B6166256AC19FB08A44B2 /* Pods_Spy_Hunter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		81D01EE65E866BA9FBB2C0F0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D67D33280F9CA6B7224D7959 /* Pods_Spy_Hunter.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C811AAF609C2FF2CDCF37935 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D486832FCF56C2C74CA2FEED /* Pods-Spy Hunter.debug.xcconfig */,
+				7CA221986255747E73E4A317 /* Pods-Spy Hunter.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		F90E2F3F245440C40095961C = {
 			isa = PBXGroup;
 			children = (
 				F90E2F4A245440C50095961C /* Spy Hunter */,
 				F90E2F49245440C50095961C /* Products */,
+				C811AAF609C2FF2CDCF37935 /* Pods */,
+				81D01EE65E866BA9FBB2C0F0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,13 +100,46 @@
 			children = (
 				F90E2F4B245440C50095961C /* AppDelegate.swift */,
 				F90E2F4D245440C50095961C /* SceneDelegate.swift */,
-				F90E2F4F245440C50095961C /* ViewController.swift */,
-				F90E2F51245440C50095961C /* Main.storyboard */,
+				F90E2F6F2456F2500095961C /* Model */,
+				F90E2F6B24544F550095961C /* View */,
+				F90E2F6C24544F6A0095961C /* Controllers */,
 				F90E2F54245440C70095961C /* Assets.xcassets */,
 				F90E2F56245440C70095961C /* LaunchScreen.storyboard */,
 				F90E2F59245440C70095961C /* Info.plist */,
 			);
 			path = "Spy Hunter";
+			sourceTree = "<group>";
+		};
+		F90E2F6B24544F550095961C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F90E2F712457FA560095961C /* PlayerCell.xib */,
+				F90E2F51245440C50095961C /* Main.storyboard */,
+				F90186CD2465919C001EB03A /* PlayerCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F90E2F6C24544F6A0095961C /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F90E2F6924544F0A0095961C /* Rules.swift */,
+				F90E2F6724544EDF0095961C /* PlayerLibrary.swift */,
+				F90E2F6524544EC80095961C /* AddNewPlayer.swift */,
+				F90E2F6124544D0E0095961C /* LaunchScreen.swift */,
+				F90E2F6324544D2B0095961C /* PlayersScreen.swift */,
+				F90186C52465516E001EB03A /* GameSettings.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		F90E2F6F2456F2500095961C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F90E2F6D2456F24C0095961C /* PlayerModel.swift */,
+				F90186CB24657211001EB03A /* LocationModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +149,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F90E2F5C245440C70095961C /* Build configuration list for PBXNativeTarget "Spy Hunter" */;
 			buildPhases = (
+				9D8ECDF6F21D7E178DC0D45C /* [CP] Check Pods Manifest.lock */,
 				F90E2F44245440C50095961C /* Sources */,
 				F90E2F45245440C50095961C /* Frameworks */,
 				F90E2F46245440C50095961C /* Resources */,
+				F54C990522781B8C1DAF8B5B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -125,6 +202,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F90E2F732457FA560095961C /* PlayerCell.xib in Resources */,
 				F90E2F58245440C70095961C /* LaunchScreen.storyboard in Resources */,
 				F90E2F55245440C70095961C /* Assets.xcassets in Resources */,
 				F90E2F53245440C50095961C /* Main.storyboard in Resources */,
@@ -133,14 +211,64 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		9D8ECDF6F21D7E178DC0D45C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Spy Hunter-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F54C990522781B8C1DAF8B5B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Spy Hunter/Pods-Spy Hunter-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Spy Hunter/Pods-Spy Hunter-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Spy Hunter/Pods-Spy Hunter-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		F90E2F44245440C50095961C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F90E2F50245440C50095961C /* ViewController.swift in Sources */,
+				F90E2F6824544EDF0095961C /* PlayerLibrary.swift in Sources */,
 				F90E2F4C245440C50095961C /* AppDelegate.swift in Sources */,
+				F90186C62465516E001EB03A /* GameSettings.swift in Sources */,
+				F90186CC24657211001EB03A /* LocationModel.swift in Sources */,
+				F90E2F6E2456F24C0095961C /* PlayerModel.swift in Sources */,
+				F90186CE2465919C001EB03A /* PlayerCell.swift in Sources */,
 				F90E2F4E245440C50095961C /* SceneDelegate.swift in Sources */,
+				F90E2F6424544D2B0095961C /* PlayersScreen.swift in Sources */,
+				F90E2F6624544EC80095961C /* AddNewPlayer.swift in Sources */,
+				F90E2F6A24544F0A0095961C /* Rules.swift in Sources */,
+				F90E2F6224544D0E0095961C /* LaunchScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,6 +410,7 @@
 		};
 		F90E2F5D245440C70095961C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D486832FCF56C2C74CA2FEED /* Pods-Spy Hunter.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -300,6 +429,7 @@
 		};
 		F90E2F5E245440C70095961C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7CA221986255747E73E4A317 /* Pods-Spy Hunter.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

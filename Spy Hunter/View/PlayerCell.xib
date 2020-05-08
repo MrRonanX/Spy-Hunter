@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PlayerCell" rowHeight="72" id="KGk-i7-Jjw" customClass="PlayerCell" customModule="Spy_Hunter" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="318" height="72"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="318" height="72"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="EZN-dR-8XA">
+                        <rect key="frame" x="5" y="5" width="308" height="62"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Wxx-mv-cMg">
+                                <rect key="frame" x="0.0" y="0.0" width="62" height="62"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Wxx-mv-cMg" secondAttribute="height" multiplier="1:1" id="SbX-gj-751"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BJd-1d-eAG">
+                                <rect key="frame" x="70" y="0.0" width="238" height="62"/>
+                                <fontDescription key="fontDescription" name="NotoSansMyanmar-Regular" family="Noto Sans Myanmar" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="EZN-dR-8XA" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="ZGC-a8-TwT"/>
+                    <constraint firstItem="EZN-dR-8XA" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="ZiE-Lb-ab4"/>
+                    <constraint firstAttribute="trailing" secondItem="EZN-dR-8XA" secondAttribute="trailing" constant="5" id="jD1-LR-I9q"/>
+                    <constraint firstAttribute="bottom" secondItem="EZN-dR-8XA" secondAttribute="bottom" constant="5" id="qhu-Bs-xmU"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="tintColor" red="0.31372549020000001" green="0.84705882349999995" blue="0.56470588239999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="playerName" destination="BJd-1d-eAG" id="Kbo-aQ-hSL"/>
+                <outlet property="playerPicture" destination="Wxx-mv-cMg" id="Wgb-0U-yw8"/>
+            </connections>
+            <point key="canvasLocation" x="-20.289855072463769" y="115.17857142857142"/>
+        </tableViewCell>
+    </objects>
+</document>
