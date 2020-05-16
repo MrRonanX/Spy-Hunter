@@ -12,17 +12,17 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="LaunchScreen" customModule="Spy_Hunter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="200" translatesAutoresizingMaskIntoConstraints="NO" id="wJF-7Q-Z9F">
-                                <rect key="frame" x="20" y="60" width="374" height="748"/>
+                                <rect key="frame" x="20" y="148" width="374" height="714"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="XyW-tD-PBz">
-                                        <rect key="frame" x="83.5" y="0.0" width="207" height="274"/>
+                                        <rect key="frame" x="83.5" y="0.0" width="207" height="257"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Q7-vr-gTs">
-                                                <rect key="frame" x="41.5" y="0.0" width="124" height="46"/>
+                                                <rect key="frame" x="41.5" y="0.0" width="124" height="42"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                                 <state key="normal" title="ПОЧАТИ ГРУ">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -32,7 +32,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="umQ-EF-QbP">
-                                                <rect key="frame" x="0.0" y="76" width="207" height="46"/>
+                                                <rect key="frame" x="0.0" y="72" width="207" height="41.5"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                                 <state key="normal" title="БІБЛІОТЕКА ГРАВЦІВ">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -42,7 +42,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JqH-AJ-Lot">
-                                                <rect key="frame" x="55.5" y="152" width="96" height="46"/>
+                                                <rect key="frame" x="55.5" y="143.5" width="96" height="42"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                                 <state key="normal" title="ПРАВИЛА">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -52,7 +52,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q3Q-rM-zR9">
-                                                <rect key="frame" x="40.5" y="228" width="126" height="46"/>
+                                                <rect key="frame" x="40.5" y="215.5" width="126" height="41.5"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="21"/>
                                                 <state key="normal" title="ПРО ВЕРСІЯ">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -61,7 +61,7 @@
                                         </subviews>
                                     </stackView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="a8J-kH-ds5">
-                                        <rect key="frame" x="0.0" y="474" width="374" height="274"/>
+                                        <rect key="frame" x="0.0" y="457" width="374" height="257"/>
                                     </imageView>
                                 </subviews>
                             </stackView>
@@ -92,11 +92,11 @@
             <objects>
                 <viewController id="I5z-46-xHi" customClass="PlayersScreen" customModule="Spy_Hunter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LPe-xU-gWP">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="41" translatesAutoresizingMaskIntoConstraints="NO" id="v6T-VK-oog">
-                                <rect key="frame" x="46" y="175.5" width="322" height="491"/>
+                                <rect key="frame" x="46" y="202.5" width="322" height="491"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="8PU-Fc-Uor">
                                         <rect key="frame" x="0.0" y="0.0" width="80" height="491"/>
@@ -377,7 +377,7 @@
                                 </constraints>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Нажміть + щоб добавити нових гравців" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X2g-PG-zjd">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="60"/>
                                 <color key="backgroundColor" red="0.086274509799999996" green="0.50588235290000005" blue="0.47843137250000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="fr9-tB-aDv"/>
@@ -392,7 +392,7 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jLC-6e-Kgo">
-                                <rect key="frame" x="140" y="796.5" width="134" height="11.5"/>
+                                <rect key="frame" x="140" y="823.5" width="134" height="38.5"/>
                                 <state key="normal" title="ДАЛЬШЕ"/>
                                 <connections>
                                     <segue destination="wVS-Qm-d22" kind="show" id="vRN-99-B7D"/>
@@ -463,11 +463,11 @@
             <objects>
                 <viewController id="N9U-19-bOB" customClass="AddNewPlayer" customModule="Spy_Hunter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pST-ZP-fiv">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="NZa-0l-bo7">
-                                <rect key="frame" x="127" y="42" width="160" height="256"/>
+                                <rect key="frame" x="127" y="130" width="160" height="222"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="V92-bJ-ZSk">
                                         <rect key="frame" x="0.0" y="0.0" width="160" height="160"/>
@@ -477,7 +477,7 @@
                                         </constraints>
                                     </imageView>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ім'я гравця" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8aU-b1-UIF">
-                                        <rect key="frame" x="29" y="188" width="102" height="68"/>
+                                        <rect key="frame" x="29" y="188" width="102" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                                     </textField>
@@ -520,7 +520,7 @@
             <objects>
                 <viewController id="fyM-s1-DyG" customClass="Rules" customModule="Spy_Hunter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WbX-vH-BZ5">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6x1-E3-T2j"/>
@@ -536,7 +536,7 @@
             <objects>
                 <viewController id="pQG-oJ-uwb" customClass="PlayerLibrary" customModule="Spy_Hunter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UNp-Sh-has">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ky8-a1-Sf0">
@@ -564,7 +564,7 @@
             <objects>
                 <viewController id="wVS-Qm-d22" customClass="GameSettings" customModule="Spy_Hunter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="98G-0U-DqS">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="5xz-zV-pxt"/>
@@ -599,6 +599,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="Pn6-dB-GfR"/>
         <segue reference="Swa-9e-DO4"/>
-        <segue reference="YU4-Fz-jpd"/>
+        <segue reference="tTC-nq-ZBG"/>
     </inferredMetricsTieBreakers>
 </document>

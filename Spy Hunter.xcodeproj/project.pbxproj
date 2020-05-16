@@ -8,9 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6E1B6166256AC19FB08A44B2 /* Pods_Spy_Hunter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D67D33280F9CA6B7224D7959 /* Pods_Spy_Hunter.framework */; };
-		F90186C62465516E001EB03A /* GameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90186C52465516E001EB03A /* GameSettings.swift */; };
 		F90186CC24657211001EB03A /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90186CB24657211001EB03A /* LocationModel.swift */; };
-		F90186CE2465919C001EB03A /* PlayerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90186CD2465919C001EB03A /* PlayerCell.swift */; };
 		F90E2F4C245440C50095961C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90E2F4B245440C50095961C /* AppDelegate.swift */; };
 		F90E2F4E245440C50095961C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90E2F4D245440C50095961C /* SceneDelegate.swift */; };
 		F90E2F53245440C50095961C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F90E2F51245440C50095961C /* Main.storyboard */; };
@@ -22,16 +20,21 @@
 		F90E2F6824544EDF0095961C /* PlayerLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90E2F6724544EDF0095961C /* PlayerLibrary.swift */; };
 		F90E2F6A24544F0A0095961C /* Rules.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90E2F6924544F0A0095961C /* Rules.swift */; };
 		F90E2F6E2456F24C0095961C /* PlayerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90E2F6D2456F24C0095961C /* PlayerModel.swift */; };
-		F90E2F732457FA560095961C /* PlayerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F90E2F712457FA560095961C /* PlayerCell.xib */; };
+		F952AC9E246FA477001FC66B /* AHugeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F952AC9B246FA477001FC66B /* AHugeCell.xib */; };
+		F952AC9F246FA477001FC66B /* SectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F952AC9C246FA477001FC66B /* SectionModel.swift */; };
+		F952ACA0246FA477001FC66B /* AHugeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F952AC9D246FA477001FC66B /* AHugeCell.swift */; };
+		F952ACA3246FA4BA001FC66B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F952ACA1246FA4B9001FC66B /* Constants.swift */; };
+		F952ACA4246FA4BA001FC66B /* buttonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F952ACA2246FA4BA001FC66B /* buttonExtension.swift */; };
+		F952ACA7246FA636001FC66B /* PlayerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F952ACA5246FA635001FC66B /* PlayerCell.swift */; };
+		F952ACA8246FA636001FC66B /* PlayerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F952ACA6246FA636001FC66B /* PlayerCell.xib */; };
+		F952ACAA246FC94E001FC66B /* GameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F952ACA9246FC94E001FC66B /* GameSettings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		7CA221986255747E73E4A317 /* Pods-Spy Hunter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spy Hunter.release.xcconfig"; path = "Target Support Files/Pods-Spy Hunter/Pods-Spy Hunter.release.xcconfig"; sourceTree = "<group>"; };
 		D486832FCF56C2C74CA2FEED /* Pods-Spy Hunter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spy Hunter.debug.xcconfig"; path = "Target Support Files/Pods-Spy Hunter/Pods-Spy Hunter.debug.xcconfig"; sourceTree = "<group>"; };
 		D67D33280F9CA6B7224D7959 /* Pods_Spy_Hunter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Spy_Hunter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F90186C52465516E001EB03A /* GameSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSettings.swift; sourceTree = "<group>"; };
 		F90186CB24657211001EB03A /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
-		F90186CD2465919C001EB03A /* PlayerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCell.swift; sourceTree = "<group>"; };
 		F90E2F48245440C50095961C /* Spy Hunter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Spy Hunter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F90E2F4B245440C50095961C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F90E2F4D245440C50095961C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -45,7 +48,14 @@
 		F90E2F6724544EDF0095961C /* PlayerLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerLibrary.swift; sourceTree = "<group>"; };
 		F90E2F6924544F0A0095961C /* Rules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rules.swift; sourceTree = "<group>"; };
 		F90E2F6D2456F24C0095961C /* PlayerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerModel.swift; sourceTree = "<group>"; };
-		F90E2F712457FA560095961C /* PlayerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = PlayerCell.xib; path = "Spy Hunter/View/PlayerCell.xib"; sourceTree = SOURCE_ROOT; };
+		F952AC9B246FA477001FC66B /* AHugeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AHugeCell.xib; sourceTree = "<group>"; };
+		F952AC9C246FA477001FC66B /* SectionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionModel.swift; sourceTree = "<group>"; };
+		F952AC9D246FA477001FC66B /* AHugeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AHugeCell.swift; sourceTree = "<group>"; };
+		F952ACA1246FA4B9001FC66B /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		F952ACA2246FA4BA001FC66B /* buttonExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = buttonExtension.swift; sourceTree = "<group>"; };
+		F952ACA5246FA635001FC66B /* PlayerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerCell.swift; sourceTree = "<group>"; };
+		F952ACA6246FA636001FC66B /* PlayerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerCell.xib; sourceTree = "<group>"; };
+		F952ACA9246FC94E001FC66B /* GameSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GameSettings.swift; path = "/Users/romankavinskyi/Documents/Development/Spy Hunter/Spy Hunter/Controllers/GameSettings.swift"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +116,8 @@
 				F90E2F54245440C70095961C /* Assets.xcassets */,
 				F90E2F56245440C70095961C /* LaunchScreen.storyboard */,
 				F90E2F59245440C70095961C /* Info.plist */,
+				F952ACA2246FA4BA001FC66B /* buttonExtension.swift */,
+				F952ACA1246FA4B9001FC66B /* Constants.swift */,
 			);
 			path = "Spy Hunter";
 			sourceTree = "<group>";
@@ -113,9 +125,11 @@
 		F90E2F6B24544F550095961C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				F90E2F712457FA560095961C /* PlayerCell.xib */,
 				F90E2F51245440C50095961C /* Main.storyboard */,
-				F90186CD2465919C001EB03A /* PlayerCell.swift */,
+				F952AC9B246FA477001FC66B /* AHugeCell.xib */,
+				F952AC9D246FA477001FC66B /* AHugeCell.swift */,
+				F952ACA5246FA635001FC66B /* PlayerCell.swift */,
+				F952ACA6246FA636001FC66B /* PlayerCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -128,7 +142,7 @@
 				F90E2F6524544EC80095961C /* AddNewPlayer.swift */,
 				F90E2F6124544D0E0095961C /* LaunchScreen.swift */,
 				F90E2F6324544D2B0095961C /* PlayersScreen.swift */,
-				F90186C52465516E001EB03A /* GameSettings.swift */,
+				F952ACA9246FC94E001FC66B /* GameSettings.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -138,6 +152,7 @@
 			children = (
 				F90E2F6D2456F24C0095961C /* PlayerModel.swift */,
 				F90186CB24657211001EB03A /* LocationModel.swift */,
+				F952AC9C246FA477001FC66B /* SectionModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -202,9 +217,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F90E2F732457FA560095961C /* PlayerCell.xib in Resources */,
 				F90E2F58245440C70095961C /* LaunchScreen.storyboard in Resources */,
 				F90E2F55245440C70095961C /* Assets.xcassets in Resources */,
+				F952AC9E246FA477001FC66B /* AHugeCell.xib in Resources */,
+				F952ACA8246FA636001FC66B /* PlayerCell.xib in Resources */,
 				F90E2F53245440C50095961C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -259,16 +275,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				F90E2F6824544EDF0095961C /* PlayerLibrary.swift in Sources */,
+				F952ACA4246FA4BA001FC66B /* buttonExtension.swift in Sources */,
+				F952ACAA246FC94E001FC66B /* GameSettings.swift in Sources */,
+				F952ACA0246FA477001FC66B /* AHugeCell.swift in Sources */,
 				F90E2F4C245440C50095961C /* AppDelegate.swift in Sources */,
-				F90186C62465516E001EB03A /* GameSettings.swift in Sources */,
 				F90186CC24657211001EB03A /* LocationModel.swift in Sources */,
 				F90E2F6E2456F24C0095961C /* PlayerModel.swift in Sources */,
-				F90186CE2465919C001EB03A /* PlayerCell.swift in Sources */,
 				F90E2F4E245440C50095961C /* SceneDelegate.swift in Sources */,
+				F952ACA3246FA4BA001FC66B /* Constants.swift in Sources */,
 				F90E2F6424544D2B0095961C /* PlayersScreen.swift in Sources */,
 				F90E2F6624544EC80095961C /* AddNewPlayer.swift in Sources */,
 				F90E2F6A24544F0A0095961C /* Rules.swift in Sources */,
 				F90E2F6224544D0E0095961C /* LaunchScreen.swift in Sources */,
+				F952ACA7246FA636001FC66B /* PlayerCell.swift in Sources */,
+				F952AC9F246FA477001FC66B /* SectionModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
