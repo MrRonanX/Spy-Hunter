@@ -27,7 +27,7 @@
 		F952ACA4246FA4BA001FC66B /* buttonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F952ACA2246FA4BA001FC66B /* buttonExtension.swift */; };
 		F952ACA7246FA636001FC66B /* PlayerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F952ACA5246FA635001FC66B /* PlayerCell.swift */; };
 		F952ACA8246FA636001FC66B /* PlayerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F952ACA6246FA636001FC66B /* PlayerCell.xib */; };
-		F952ACAA246FC94E001FC66B /* GameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F952ACA9246FC94E001FC66B /* GameSettings.swift */; };
+		F952ACAC246FC9A5001FC66B /* GameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F952ACAB246FC9A5001FC66B /* GameSettings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,7 +55,7 @@
 		F952ACA2246FA4BA001FC66B /* buttonExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = buttonExtension.swift; sourceTree = "<group>"; };
 		F952ACA5246FA635001FC66B /* PlayerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerCell.swift; sourceTree = "<group>"; };
 		F952ACA6246FA636001FC66B /* PlayerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerCell.xib; sourceTree = "<group>"; };
-		F952ACA9246FC94E001FC66B /* GameSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GameSettings.swift; path = "/Users/romankavinskyi/Documents/Development/Spy Hunter/Spy Hunter/Controllers/GameSettings.swift"; sourceTree = "<absolute>"; };
+		F952ACAB246FC9A5001FC66B /* GameSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSettings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,7 +142,7 @@
 				F90E2F6524544EC80095961C /* AddNewPlayer.swift */,
 				F90E2F6124544D0E0095961C /* LaunchScreen.swift */,
 				F90E2F6324544D2B0095961C /* PlayersScreen.swift */,
-				F952ACA9246FC94E001FC66B /* GameSettings.swift */,
+				F952ACAB246FC9A5001FC66B /* GameSettings.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -276,7 +276,7 @@
 			files = (
 				F90E2F6824544EDF0095961C /* PlayerLibrary.swift in Sources */,
 				F952ACA4246FA4BA001FC66B /* buttonExtension.swift in Sources */,
-				F952ACAA246FC94E001FC66B /* GameSettings.swift in Sources */,
+				F952ACAC246FC9A5001FC66B /* GameSettings.swift in Sources */,
 				F952ACA0246FA477001FC66B /* AHugeCell.swift in Sources */,
 				F90E2F4C245440C50095961C /* AppDelegate.swift in Sources */,
 				F90186CC24657211001EB03A /* LocationModel.swift in Sources */,
