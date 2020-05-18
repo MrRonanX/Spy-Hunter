@@ -18,17 +18,20 @@ class PlayerLibrary: UIViewController {
     var oldPlayers = Int()
     override func viewDidLoad() {
         super.viewDidLoad()
+        initialSetup()
+        loadPlayers()
+        
+        
+        // customized back button
+        customizedButton()
+    }
+    private func initialSetup() {
         playersView.backgroundColor = UIColor.white
         playersView.rowHeight = 72
         playersView.separatorStyle = .none
         playersView.delegate = self
         playersView.dataSource = self
         playersView.register(UINib(nibName: "PlayerCell", bundle: nil), forCellReuseIdentifier: "PlayerCell")
-        loadPlayers()
-        
-        
-        // customized back button
-        customizedButton()
     }
     
     private func customizedButton() {

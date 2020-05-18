@@ -21,6 +21,11 @@ class AddNewPlayer: UIViewController, UIImagePickerControllerDelegate, UINavigat
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        initialSetup()
+        
+    }
+    
+    private func initialSetup() {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
         imagePicker.sourceType = .camera
         imagePicker.delegate = self
@@ -29,8 +34,10 @@ class AddNewPlayer: UIViewController, UIImagePickerControllerDelegate, UINavigat
         playerTookPic.isUserInteractionEnabled = true
         playerTookPic.image = #imageLiteral(resourceName: "camera").circleMask
         playerTookPic.addGestureRecognizer(tapGestureRecognizer)
-        
     }
+    
+    
+    
     //MARK: - Image Picker Controller
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {

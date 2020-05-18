@@ -69,10 +69,10 @@ class GameSettings: UIViewController, UITableViewDelegate, UITableViewDataSource
             tableView.dataSource = self
             tableView.delegate = self
             view.backgroundColor = UIColor.init(red: 248/255, green: 248/255, blue: 248/255, alpha: 1)
-            
+            setUpBottomView()
             setupTableView()
             setUpTopView()
-            setUpBottomView()
+            
             
         }
         //Set up top view
@@ -145,17 +145,34 @@ class GameSettings: UIViewController, UITableViewDelegate, UITableViewDataSource
             let feedbackGenerator = UIImpactFeedbackGenerator(style: .heavy)
             feedbackGenerator.impactOccurred()
             sender.pulseAnimation()
+            performSegue(withIdentifier: "gameSettingsToFinalGameSettings", sender: self)
+            
+        }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "gameSettingsToFinalGameSettings" {
+            let destinationVC = segue.destination as! FinalGameSettings
+            // Map goes through the sections
+            // CompactMap takes only chosen locations
+            // FlatMap sets them into one array
+            destinationVC.chosenLocations = sections.map {$0.data.compactMap {$0.isChosen ? $0.locationName : nil}}.flatMap {$0}
+                
+ 
+            }
+            
+            
         }
         
+    
         fileprivate func setupTableView() {
-            view.addSubview(tableView)
+            view.insertSubview(tableView, aboveSubview: bottomView)
             tableView.backgroundColor = UIColor.init(red: 248/255, green: 248/255, blue: 248/255, alpha: 1)
             tableView.register(UINib(nibName: "AHugeCell", bundle: nil), forCellReuseIdentifier: cellID)
             tableView.allowsSelection = false
             tableView.separatorStyle = .none
             tableView.translatesAutoresizingMaskIntoConstraints = false
             tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
+            tableView.bottomAnchor.constraint(equalTo: bottomView.topAnchor, constant: 0).isActive = true
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
             

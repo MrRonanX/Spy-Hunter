@@ -48,12 +48,8 @@ class PlayersScreen: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // this will allow me to tap on picture
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
-        addButtonPressed.addGestureRecognizer(tapGestureRecognizer)
-        addButtonPressed.image = #imageLiteral(resourceName: "plus").circleMask
         
-        
+        addButtonSetup()
         //pop to root functionality
         customizedButton()
         //change nextButton style
@@ -73,7 +69,6 @@ class PlayersScreen: UIViewController {
             }
         }
         
-        
         //put new players
         populateViewsWithPlayers()
     }
@@ -86,7 +81,12 @@ class PlayersScreen: UIViewController {
     //MARK: - Add Players on the screen
     
     
-
+    private func addButtonSetup() {
+        addButtonPressed.isUserInteractionEnabled = true
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
+        addButtonPressed.addGestureRecognizer(tapGestureRecognizer)
+        addButtonPressed.image = #imageLiteral(resourceName: "plus").circleMask
+    }
     
      private func loadPlayers() {
         players = realm.objects(PlayerModel.self).filter("isPlaying == true")
@@ -106,9 +106,6 @@ class PlayersScreen: UIViewController {
         
     }
     //MARK: - Data Managment: Load and Delete
-    
-    
-
     
     private func loadImageFromDocumentDirectory(path: String) -> UIImage? {
         do {
