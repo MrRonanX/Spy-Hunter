@@ -19,17 +19,17 @@ class AHugeCell: UITableViewCell {
     
     var cellData: [CellData]! {
         didSet {
-            // i - index of the button, location - button
+            // , location - button
             for (i, location) in locationsCollection.enumerated() {
                 if i < cellData.count {
                     location.setTitle(cellData[i].locationName, for: .normal)
+                    location.backgroundColor = UIColor(displayP3Red: 244/255, green: 238/255, blue: 235/255, alpha: 1)
                     location.isHidden = false
                     location.setTitleColor(.black, for: .normal)
                     location.titleLabel?.font = .systemFont(ofSize: 16, weight: .medium)
                     location.titleLabel?.textAlignment = .center
                     location.titleLabel?.numberOfLines = 0
                     location.contentEdgeInsets = UIEdgeInsets(top: 15, left: 10, bottom: 15, right: 10)
-                    location.backgroundColor = .white
                     location.layer.cornerRadius = 5
                     location.layer.borderWidth = 1.5
                     if !cellData[i].isChosen {
@@ -43,15 +43,13 @@ class AHugeCell: UITableViewCell {
                 }
             }
             
-            //set i vallue to be able to change UISwitch automaticaly
-            i = cellData.count
+           
         }
     }
     
     
     
-    // var i is a Index value to track Switch Controll. When i = sections[section].data.count than Switch is on.
-    var i = 0
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

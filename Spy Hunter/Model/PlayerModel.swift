@@ -12,4 +12,5 @@ class PlayerModel: Object {
     @objc dynamic var name : String = ""
     @objc dynamic var picture: String = ""
     @objc dynamic var isPlaying: Bool = true
+    @objc dynamic var isSpy: Bool = false
 }

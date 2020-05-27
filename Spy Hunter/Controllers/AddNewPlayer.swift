@@ -26,13 +26,18 @@ class AddNewPlayer: UIViewController, UIImagePickerControllerDelegate, UINavigat
     }
     
     private func initialSetup() {
+        view.backgroundColor = UIColor(displayP3Red: 254/255, green: 239/255, blue: 221/255, alpha: 1)
+        playerEnteredName.backgroundColor = UIColor(displayP3Red: 254/255, green: 239/255, blue: 221/255, alpha: 1)
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
         imagePicker.sourceType = .camera
         imagePicker.delegate = self
         imagePicker.allowsEditing = false
         imagePicker.cameraFlashMode = UIImagePickerController.CameraFlashMode.off
+        playerTookPic.backgroundColor = UIColor(displayP3Red: 254/255, green: 239/255, blue: 221/255, alpha: 1)
         playerTookPic.isUserInteractionEnabled = true
-        playerTookPic.image = #imageLiteral(resourceName: "camera").circleMask
+        print(playerTookPic.frame)
+       
+        playerTookPic.image = UIImage(named: "cameraIcon.png")?.circleMask
         playerTookPic.addGestureRecognizer(tapGestureRecognizer)
     }
     
@@ -120,24 +125,4 @@ class AddNewPlayer: UIViewController, UIImagePickerControllerDelegate, UINavigat
     
 }
 
-//MARK: - Regular Pictures become circles
 
-
-
-extension UIImage {
-    var circleMask: UIImage? {
-        let square = CGSize(width: min(size.width, size.height), height: min(size.width, size.height))
-        let imageView = UIImageView(frame: .init(origin: .init(x: 0, y: 0), size: square))
-        imageView.contentMode = .scaleAspectFill
-        imageView.image = self
-        imageView.layer.cornerRadius = square.width/2
-        imageView.layer.borderColor = UIColor.white.cgColor
-        imageView.layer.borderWidth = 0
-        imageView.layer.masksToBounds = true
-        UIGraphicsBeginImageContextWithOptions(imageView.bounds.size, false, scale)
-        defer { UIGraphicsEndImageContext() }
-        guard let context = UIGraphicsGetCurrentContext() else { return nil }
-        imageView.layer.render(in: context)
-        return UIGraphicsGetImageFromCurrentImageContext()
-    }
-}
