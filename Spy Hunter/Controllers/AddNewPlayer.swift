@@ -37,7 +37,7 @@ class AddNewPlayer: UIViewController, UIImagePickerControllerDelegate, UINavigat
         playerTookPic.isUserInteractionEnabled = true
         print(playerTookPic.frame)
        
-        playerTookPic.image = UIImage(named: "cameraIcon.png")?.circleMask
+        playerTookPic.image = UIImage(named: "cameraIcon.png")!.circleMask()
         playerTookPic.addGestureRecognizer(tapGestureRecognizer)
     }
     
@@ -52,7 +52,7 @@ class AddNewPlayer: UIViewController, UIImagePickerControllerDelegate, UINavigat
             self.filePath = saveImageDocumentDirectory(image: userTookPicture, fileName: imageName)
             
         }
-        playerTookPic.image = playerPhoto.circleMask
+        playerTookPic.image = playerPhoto.circleMask(borderWidth: 0)
         dismiss(animated: true, completion: nil)
     }
     

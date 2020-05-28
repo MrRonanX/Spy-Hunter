@@ -33,10 +33,10 @@
 		F952ACB62473CE40001FC66B /* UINavigationBarGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F952ACB52473CE40001FC66B /* UINavigationBarGradientView.swift */; };
 		F952ACB824768750001FC66B /* RoleRevealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F952ACB724768750001FC66B /* RoleRevealViewController.swift */; };
 		F952ACBA2477D209001FC66B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F952ACB92477D209001FC66B /* Extensions.swift */; };
-		F99E4C43247BB212004A42CF /* StylishSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99E4C42247BB212004A42CF /* StylishSpy.swift */; };
-		F99E4C45247BD011004A42CF /* SpyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99E4C44247BD011004A42CF /* SpyView.swift */; };
-		F99E4C49247BE0BB004A42CF /* TestPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99E4C48247BE0BB004A42CF /* TestPaths.swift */; };
 		F99E4C6B247E434E004A42CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F99E4C6A247E434E004A42CF /* Assets.xcassets */; };
+		F99E4C6D247E6E03004A42CF /* ShowSpies.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99E4C6C247E6E03004A42CF /* ShowSpies.swift */; };
+		F99E4C6F247E86E6004A42CF /* SpyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99E4C6E247E86E6004A42CF /* SpyCell.swift */; };
+		F99E4C7224800DE7004A42CF /* appstore.png in Resources */ = {isa = PBXBuildFile; fileRef = F99E4C7024800DE5004A42CF /* appstore.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,10 +70,10 @@
 		F952ACB52473CE40001FC66B /* UINavigationBarGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationBarGradientView.swift; sourceTree = "<group>"; };
 		F952ACB724768750001FC66B /* RoleRevealViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleRevealViewController.swift; sourceTree = "<group>"; };
 		F952ACB92477D209001FC66B /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		F99E4C42247BB212004A42CF /* StylishSpy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StylishSpy.swift; sourceTree = "<group>"; };
-		F99E4C44247BD011004A42CF /* SpyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpyView.swift; sourceTree = "<group>"; };
-		F99E4C48247BE0BB004A42CF /* TestPaths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestPaths.swift; sourceTree = "<group>"; };
 		F99E4C6A247E434E004A42CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F99E4C6C247E6E03004A42CF /* ShowSpies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowSpies.swift; sourceTree = "<group>"; };
+		F99E4C6E247E86E6004A42CF /* SpyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpyCell.swift; sourceTree = "<group>"; };
+		F99E4C7024800DE5004A42CF /* appstore.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appstore.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,7 +126,6 @@
 		F90E2F4A245440C50095961C /* Spy Hunter */ = {
 			isa = PBXGroup;
 			children = (
-				F99E4C42247BB212004A42CF /* StylishSpy.swift */,
 				F90E2F4B245440C50095961C /* AppDelegate.swift */,
 				F90E2F4D245440C50095961C /* SceneDelegate.swift */,
 				F90E2F6F2456F2500095961C /* Model */,
@@ -134,6 +133,7 @@
 				F90E2F6C24544F6A0095961C /* Controllers */,
 				F90E2F56245440C70095961C /* LaunchScreen.storyboard */,
 				F99E4C6A247E434E004A42CF /* Assets.xcassets */,
+				F99E4C7024800DE5004A42CF /* appstore.png */,
 				F90E2F59245440C70095961C /* Info.plist */,
 				F952ACA2246FA4BA001FC66B /* buttonExtension.swift */,
 				F952ACA1246FA4B9001FC66B /* Constants.swift */,
@@ -151,6 +151,7 @@
 				F952ACA6246FA636001FC66B /* PlayerCell.xib */,
 				F952ACAF24721B06001FC66B /* SectionCell.swift */,
 				F952ACB12472BDA3001FC66B /* FinalCell.swift */,
+				F99E4C6E247E86E6004A42CF /* SpyCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -168,8 +169,7 @@
 				F952ACB52473CE40001FC66B /* UINavigationBarGradientView.swift */,
 				F952ACB724768750001FC66B /* RoleRevealViewController.swift */,
 				F952ACB92477D209001FC66B /* Extensions.swift */,
-				F99E4C44247BD011004A42CF /* SpyView.swift */,
-				F99E4C48247BE0BB004A42CF /* TestPaths.swift */,
+				F99E4C6C247E6E03004A42CF /* ShowSpies.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -245,6 +245,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F90E2F58245440C70095961C /* LaunchScreen.storyboard in Resources */,
+				F99E4C7224800DE7004A42CF /* appstore.png in Resources */,
 				F952AC9E246FA477001FC66B /* AHugeCell.xib in Resources */,
 				F952ACA8246FA636001FC66B /* PlayerCell.xib in Resources */,
 				F90E2F53245440C50095961C /* Main.storyboard in Resources */,
@@ -307,17 +308,15 @@
 				F952ACAC246FC9A5001FC66B /* GameSettings.swift in Sources */,
 				F952ACA0246FA477001FC66B /* AHugeCell.swift in Sources */,
 				F90E2F4C245440C50095961C /* AppDelegate.swift in Sources */,
+				F99E4C6F247E86E6004A42CF /* SpyCell.swift in Sources */,
 				F90186CC24657211001EB03A /* LocationModel.swift in Sources */,
 				F90E2F6E2456F24C0095961C /* PlayerModel.swift in Sources */,
 				F952ACB22472BDA3001FC66B /* FinalCell.swift in Sources */,
 				F952ACAE246FDA20001FC66B /* FinalGameSettings.swift in Sources */,
-				F99E4C49247BE0BB004A42CF /* TestPaths.swift in Sources */,
 				F90E2F4E245440C50095961C /* SceneDelegate.swift in Sources */,
-				F99E4C43247BB212004A42CF /* StylishSpy.swift in Sources */,
 				F952ACA3246FA4BA001FC66B /* Constants.swift in Sources */,
 				F952ACB62473CE40001FC66B /* UINavigationBarGradientView.swift in Sources */,
 				F952ACBA2477D209001FC66B /* Extensions.swift in Sources */,
-				F99E4C45247BD011004A42CF /* SpyView.swift in Sources */,
 				F90E2F6424544D2B0095961C /* PlayersScreen.swift in Sources */,
 				F90E2F6624544EC80095961C /* AddNewPlayer.swift in Sources */,
 				F90E2F6A24544F0A0095961C /* Rules.swift in Sources */,
@@ -325,6 +324,7 @@
 				F952ACB824768750001FC66B /* RoleRevealViewController.swift in Sources */,
 				F952ACA7246FA636001FC66B /* PlayerCell.swift in Sources */,
 				F952AC9F246FA477001FC66B /* SectionModel.swift in Sources */,
+				F99E4C6D247E6E03004A42CF /* ShowSpies.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

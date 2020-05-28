@@ -71,6 +71,20 @@ class RoleRevealViewController: UIViewController {
         return label
     }()
     
+    private let showSpiesButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.titleLabel?.numberOfLines = 0
+        button.setTitleColor(UIColor(displayP3Red: 228/255, green: 87/255, blue: 46/255, alpha: 1), for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 30, weight: .medium)
+        button.backgroundColor = .clear
+        button.layer.borderColor = UIColor(displayP3Red: 228/255, green: 87/255, blue: 46/255, alpha: 1).cgColor
+        button.layer.borderWidth = 1
+        button.layer.cornerRadius = 5
+        button.addTarget(self, action: #selector(showSpiesButtonPressed(_:)), for: .touchUpInside)
+        button.alpha = 0
+        return button
+    }()
+    
     private let labelFont = UIFont.systemFont(ofSize: 20)
     var numberOfSpies = Int()
     var locations = [String]()
@@ -124,13 +138,13 @@ class RoleRevealViewController: UIViewController {
             self.userSeeThisView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
             
             //imageView Constraints
-            self.pictureToShow.heightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.27),
+            self.pictureToShow.heightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.25),
             self.pictureToShow.widthAnchor.constraint(equalTo: self.pictureToShow.heightAnchor),
             self.pictureToShow.centerXAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerXAnchor),
-            self.pictureToShow.topAnchor.constraint(equalTo: userSeeThisView.topAnchor, constant: 80),
+            self.pictureToShow.topAnchor.constraint(equalTo: userSeeThisView.topAnchor, constant: 50),
             
             //playerNameLabel Constraints
-            self.playerNameLabel.widthAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.5),
+            self.playerNameLabel.widthAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.8),
             self.playerNameLabel.centerXAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerXAnchor),
             self.playerNameLabel.topAnchor.constraint(equalTo: pictureToShow.bottomAnchor, constant: 20),
             
@@ -153,13 +167,13 @@ class RoleRevealViewController: UIViewController {
         
         //unwrap optional players
         if let firstPlayer = players?.first {
-        let hostName = firstPlayer.name
+            let hostName = firstPlayer.name
             //get userName and userPicture
             if let hostImage = loadImageFromDocumentDirectory(path: firstPlayer.picture) {
                 
                 //method to put 2 pictures into 1
                 let topImage = UIImage(named: "crown.png")?.resizeImage(155, opaque: false, contentMode: .scaleAspectFit)
-                let bottomImage = hostImage.resizeImage(220, opaque: false, contentMode: .scaleAspectFit).rotate(radians: .pi/2)?.circleMask
+                let bottomImage = hostImage.resizeImage(220, opaque: false, contentMode: .scaleAspectFit).rotate(radians: .pi/2)?.circleMask()
                 let size = CGSize(width: bottomImage!.size.width, height: topImage!.size.height + bottomImage!.size.height)
                 UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
                 
@@ -197,39 +211,39 @@ class RoleRevealViewController: UIViewController {
         // check if player number is not equal to player's count (out of bounds)
         if playerNumber != players?.count {
             if buttonSwitcher == true {
-                   if let players = players {
-                       
-                       // load image from docs, make it smaller, rotate it and make a circle
-                       let playerPicture = loadImageFromDocumentDirectory(path: players[playerNumber].picture)?.circleMask?.resizeImage(160, opaque: false).rotate(radians: .pi/2)
-                       pictureToShow.image = playerPicture
-                       pictureToShow.isOpaque = true
-                       updateLabel(playerName: players[playerNumber].name)
-                       
-                       pictureToShow.isUserInteractionEnabled = true
-                    let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
-                       pictureToShow.addGestureRecognizer(tapGestureRecognizer)
+                if let players = players {
                     
-                       
-                   }
-                   //Button is pressed. User picture is revealed. In order for user to press on picture i need to hide the button
-                   nextButton.alpha = 0
-                   
-                   //animation on Player Picture
-                   addAnimation()
-                   
-               } else {
-                   // make picture transparent to activate animation
-                   pictureToShow.alpha = 0
-                   timer.invalidate()
-                   timePassed = 0
-                   nextButton.setTitle("OK", for: .normal)
-                  if players![playerNumber].isSpy == true {
-                                 setSpyAnimation()
-                             } else {
-                                 setNonSpyAnimation()
-                             }
-            
-               }
+                    // load image from docs, make it smaller, rotate it and make a circle
+                    let playerPicture = loadImageFromDocumentDirectory(path: players[playerNumber].picture)!.resizeImage(200, opaque: false).rotate(radians: .pi/2)!.circleMask()
+                    pictureToShow.image = playerPicture
+                    pictureToShow.isOpaque = true
+                    updateLabel(playerName: players[playerNumber].name)
+                    
+                    pictureToShow.isUserInteractionEnabled = true
+                    let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
+                    pictureToShow.addGestureRecognizer(tapGestureRecognizer)
+                    
+                    
+                }
+                //Button is pressed. User picture is revealed. In order for user to press on picture i need to hide the button
+                nextButton.alpha = 0
+                
+                //animation on Player Picture
+                addAnimation()
+                
+            } else {
+                // make picture transparent to activate animation
+                pictureToShow.alpha = 0
+                timer.invalidate()
+                timePassed = 0
+                nextButton.setTitle("OK", for: .normal)
+                if players![playerNumber].isSpy == true {
+                    setSpyAnimation()
+                } else {
+                    setNonSpyAnimation()
+                }
+                
+            }
             // the player number is equal player's count. The discussion should start
         } else {
             timer.invalidate()
@@ -242,7 +256,7 @@ class RoleRevealViewController: UIViewController {
         pictureToShow.layer.sublayers?.forEach { $0.removeFromSuperlayer() }
         
         //shows picture with red circle around it
-        pictureToShow.image = loadImageFromDocumentDirectory(path: players![playerNumber].picture)?.redCircleMask!.resizeImage(165, opaque: false).rotate(radians: .pi/2)
+        pictureToShow.image = loadImageFromDocumentDirectory(path: players![playerNumber].picture)!.resizeImage(200, opaque: false).rotate(radians: .pi/2)?.redCircleMask
         
         
         nextButton.alpha = 1
@@ -255,7 +269,7 @@ class RoleRevealViewController: UIViewController {
         
         //cannot tap again
         pictureToShow.removeGestureRecognizer(tapGestureRecognizer)
-       }
+    }
     
     private func updateLabel(playerName: String) {
         
@@ -272,7 +286,7 @@ class RoleRevealViewController: UIViewController {
     }
     
     private func addAnimation() {
-        let buttonPressedAnimation = UIImage(named: "buttonPressedAnimation.png")?.circleMask!.resizeImage(160, opaque: false).cgImage
+        let buttonPressedAnimation = UIImage(named: "buttonPressedAnimation.png")!.resizeImage(200, opaque: false).circleMask()?.cgImage
         let animationLayer = CALayer()
         animationLayer.isOpaque = true
         animationLayer.frame = pictureToShow.bounds
@@ -289,7 +303,8 @@ class RoleRevealViewController: UIViewController {
         timer = Timer.scheduledTimer(timeInterval: 0.01, target:self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
         
         playerNameLabel.text = "Твоя роль - Шпіон"
-        instructions.text = "Постарайся видати, що ти шпіон, та дізнатись локацію, щоб виграти"
+        instructions.text = "Постарайся не видати, що ти шпіон, та дізнатись локацію, щоб виграти"
+        instructions.textAlignment = .center
         
         //switch the switcher, so the correct button is displayed. If true - Player picture is displayed. False - his role
         buttonSwitcher = true
@@ -298,25 +313,26 @@ class RoleRevealViewController: UIViewController {
         playerNumber += 1
         
         
-  
+        
     }
     
     
     //Implementation of the FADE-IN animation
     @objc private func updateTimer() {
         if timePassed < totalTime {
-        timePassed += 1
+            timePassed += 1
             pictureToShow.alpha = CGFloat(timePassed) / CGFloat(totalTime)
-    }
+        }
     }
     
     private func setNonSpyAnimation() {
         pictureToShow.image = UIImage(named: "topSecretLogo.png")?.resizeImage(220, opaque: false)
-    
+        
         timer = Timer.scheduledTimer(timeInterval: 0.01, target:self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
         
         playerNameLabel.text = "Локація - \(locationToPlay)"
-        instructions.text = "Задавай питання про це місце та давай відповіді так, щоб не видати лоацію!"
+        instructions.text = "Задавай питання про це місце та давай відповіді так, щоб не видати локацію!"
+        instructions.textAlignment = .center
         
         //switch the switcher, so the correct button is displayed. If true - Player picture is displayed. False - his role
         buttonSwitcher = true
@@ -325,24 +341,31 @@ class RoleRevealViewController: UIViewController {
         playerNumber += 1
     }
     
+    //MARK: - Player get the role
+    
+    
     private func playerGetsTheRole() {
-            var counter = 0
-            repeat {
-                if players?.randomElement()?.isSpy == false {
-                    do {
-                        try realm.write {
-                            players?.randomElement()?.isSpy = true
-                        }
-                    } catch {
-                        print(error)
+        var counter = 0
+        var player = players?.randomElement()
+        while (counter < numberOfSpies) {
+            if player?.isSpy == false {
+                do {
+                    try realm.write {
+                        players?.randomElement()?.isSpy = true
                     }
-                    counter += 1
+                    
+                } catch {
+                    print(error)
                 }
+                counter += 1
+            } else {
+                player = players?.randomElement()
             }
-                while counter <= numberOfSpies
-            
-            //choose the location to play
-            locationToPlay = locations.randomElement()!
+        }
+        print(counter)
+        print(numberOfSpies)
+        //choose the location to play
+        locationToPlay = locations.randomElement()!
     }
     private func deleteSpies() {
         
@@ -360,22 +383,60 @@ class RoleRevealViewController: UIViewController {
             }
         }
     }
+    //MARK: - Discussion begins
+    
+    
     
     //DISCUSSION BEGINS
- 
-    fileprivate func prepareForCircleAnimation() {
-        userSeeThisView.alpha = 0
-          time = discussionTime * 60
+    
+    private func startDiscussion() {
+        // add animation layers
+        setupAnimationLayers()
+        //hide background
+        prepareForCircleAnimation()
         
-          timeLabel.alpha = 1
-          timeLabel.frame = CGRect(x: 0, y: 0, width: view.frame.width / 2, height: view.frame.height / 10)
-          timeLabel.center = view.center
-              setTimeLabel()
-        view.addSubview(timeLabel)
-        
-        
+        //turn on animation
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateLabelTimer), userInfo: nil, repeats: true)
+        animatePulsatingLayer(pulsatingLayer)
+        createCircleAnimation()
         
     }
+    
+    fileprivate func prepareForCircleAnimation() {
+        userSeeThisView.alpha = 0
+        time = discussionTime * 60
+        timeLabel.alpha = 1
+        timeLabel.frame = CGRect(x: 0, y: 0, width: view.frame.width / 2, height: view.frame.height / 10)
+        timeLabel.center = view.center
+        setTimeLabel()
+        view.addSubview(timeLabel)
+        
+    }
+    
+    @objc private func updateLabelTimer() {
+        time -= 1
+        setTimeLabel()
+        if time == 0 {
+            timer.invalidate()
+            timeLabel.removeFromSuperview()
+            let alert = UIAlertController(title: "Час вийшов", message: "Пора вирішувати хто шпіон", preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: .default) { (alert: UIAlertAction!) in
+                self.presentWhoIsTheSpyButton()
+            }
+            alert.addAction(action)
+            present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    private func setTimeLabel() {
+        let minutes = Int(time) / 60 % 60
+        let seconds = Int(time) % 60
+        
+        timeLabel.text = String(format:"%02i:%02i", minutes, seconds)
+    }
+    
+    //MARK: - Animations
+    
     
     private func setupAnimationLayers() {
         // add animation layers
@@ -395,19 +456,6 @@ class RoleRevealViewController: UIViewController {
         view.layer.addSublayer(shapeLayer)
     }
     
-    private func startDiscussion() {
-        // add animation layers
-        setupAnimationLayers()
-        //hide background
-        prepareForCircleAnimation()
-        
-        //turn on animation
-        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateLabelTimer), userInfo: nil, repeats: true)
-        animatePulsatingLayer(pulsatingLayer)
-        createCircleAnimation()
-        
-    }
-    
     private func createCircleShapeLayer(fillColor: UIColor, strokeColor: UIColor) -> CAShapeLayer {
         let layer = CAShapeLayer()
         let circularPath = UIBezierPath(arcCenter: .zero, radius: view.frame.width * 0.35, startAngle: 0, endAngle: 2 * .pi, clockwise: true)
@@ -423,7 +471,7 @@ class RoleRevealViewController: UIViewController {
     private func animatePulsatingLayer(_ pulsatingLayer: CAShapeLayer) {
         let pulsatingAnimation = CABasicAnimation(keyPath: "transform.scale")
         pulsatingAnimation.toValue = 1.2
-        pulsatingAnimation.duration = 0.8
+        pulsatingAnimation.duration = 0.7
         pulsatingAnimation.autoreverses = true
         pulsatingAnimation.repeatCount = .infinity
         pulsatingAnimation.timingFunction = CAMediaTimingFunction(name: .easeOut)
@@ -431,34 +479,42 @@ class RoleRevealViewController: UIViewController {
     }
     
     private func createCircleAnimation() {
-           let animation = CABasicAnimation(keyPath: "strokeEnd")
-           animation.toValue = 1
-           animation.duration = CFTimeInterval(time)
-           animation.fillMode = .forwards
-           animation.isRemovedOnCompletion = false
-           shapeLayer.add(animation, forKey: "circlularAnimation")
-       }
-   
+        let animation = CABasicAnimation(keyPath: "strokeEnd")
+        animation.toValue = 1
+        animation.duration = CFTimeInterval(time)
+        animation.fillMode = .forwards
+        animation.isRemovedOnCompletion = false
+        shapeLayer.add(animation, forKey: "circlularAnimation")
+    }
     
-    @objc private func updateLabelTimer() {
-        time -= 1
-        setTimeLabel()
-        if time == 0 {
-            timer.invalidate()
-            let alert = UIAlertController(title: "Час вийшов", message: "Пора вирішувати хто шпіон", preferredStyle: .alert)
-            let action = UIAlertAction(title: "OK", style: .default, handler: nil)
-            alert.addAction(action)
-            present(alert, animated: true, completion: nil)
+    
+    //MARK: - Show Spies Button Appears
+    
+    
+    
+    private func presentWhoIsTheSpyButton() {
+        let relativeFontConstant:CGFloat = 0.025
+        showSpiesButton.alpha = 1
+        showSpiesButton.frame = CGRect(x: 0, y: 0, width: view.frame.width / 2, height: view.frame.height / 12)
+        showSpiesButton.center = view.center
+        showSpiesButton.titleLabel?.font =  showSpiesButton.titleLabel?.font.withSize(view.bounds.height * relativeFontConstant)
+        showSpiesButton.titleLabel?.textAlignment = .center
+        showSpiesButton.setTitle("Дізнатись хто шпіон", for: .normal)
+        view.addSubview(showSpiesButton)
+    }
+    
+    @objc private func showSpiesButtonPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: "ShowSpiesViewController", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowSpiesViewController" {
+            let destinationVC = segue.destination as! ShowSpies
+            destinationVC.players = players?.filter("isSpy == true")
         }
     }
     
-    private func setTimeLabel() {
-           let minutes = Int(time) / 60 % 60
-           let seconds = Int(time) % 60
-           
-           timeLabel.text = String(format:"%02i:%02i", minutes, seconds)
-       }
-    
+    //MARK: - Calculation
     
     // Height for label (instructions)
     private func calculateLabelHeight(text: String, font: UIFont, width: CGFloat) -> CGFloat {

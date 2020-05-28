@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import SwipeCellKit
 
 class PlayerLibrary: UIViewController {
     
@@ -22,16 +23,26 @@ class PlayerLibrary: UIViewController {
         loadPlayers()
         
         
+        
         // customized back button
         customizedButton()
     }
     private func initialSetup() {
+        viewBackground.backgroundColor = UIColor(displayP3Red: 254/255, green: 239/255, blue: 221/255, alpha: 1)
         playersView.backgroundColor = UIColor(displayP3Red: 254/255, green: 239/255, blue: 221/255, alpha: 1)
         playersView.rowHeight = 72
         playersView.separatorStyle = .none
         playersView.delegate = self
         playersView.dataSource = self
         playersView.register(UINib(nibName: "PlayerCell", bundle: nil), forCellReuseIdentifier: "PlayerCell")
+        playersView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            playersView.topAnchor.constraint(equalTo: view.topAnchor),
+            playersView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            playersView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            playersView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        setupHeaderView()
     }
     
     private func customizedButton() {
@@ -84,11 +95,12 @@ extension PlayerLibrary: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PlayerCell", for: indexPath) as! PlayerCell
         cell.selectionStyle = .none
         cell.backgroundColor = UIColor(displayP3Red: 254/255, green: 239/255, blue: 221/255, alpha: 1)
+        cell.delegate = self
         if let player = players?[indexPath.row] {
             cell.playerName.text = player.name
             cell.accessoryType = player.isPlaying ? .checkmark : .none
             if let playerPhoto = loadImageFromDocumentDirectory(path: (player.picture)) {
-                cell.playerPicture.image = playerPhoto.circleMask?.rotate(radians: .pi/2)
+                cell.playerPicture.image = playerPhoto.rotate(radians: .pi/2)?.circleMask()
             }
         }
         
@@ -115,6 +127,38 @@ extension PlayerLibrary: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    private func setupHeaderView() {
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height/11))
+              let headerLabel = UILabel()
+              headerView.addSubview(headerLabel)
+              
+              headerLabel.textColor = .white
+              headerLabel.backgroundColor = .clear
+              headerLabel.text = "Щоб видалити гравця свайпни його вліво"
+              headerLabel.font = .systemFont(ofSize: 18)
+              headerLabel.textAlignment = .center
+              headerLabel.numberOfLines = 0
+              let height = (headerView.frame.height / 2) - 10
+              
+              headerLabel.translatesAutoresizingMaskIntoConstraints = false
+             
+              
+              NSLayoutConstraint.activate([
+                  headerLabel.topAnchor.constraint(equalTo: headerView.topAnchor, constant: height),
+                  headerLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor),
+                  headerLabel.trailingAnchor.constraint(equalTo: headerView.trailingAnchor)
+                 
+                  
+              ])
+              
+              let labelGradient = CAGradientLayer()
+                    labelGradient.frame = headerView.bounds
+                    labelGradient.colors = [UIColor(displayP3Red: 21/255, green: 101/255, blue: 192/255, alpha: 1), UIColor(displayP3Red: 111/255, green: 171/255, blue: 239/255, alpha: 1)].map {$0.cgColor}
+                    headerView.layer.insertSublayer(labelGradient, at: 0)
+        playersView.tableHeaderView = headerView
+    }
+    
+    
     private func loadImageFromDocumentDirectory(path: String) -> UIImage? {
         do {
             let imageData = try Data(contentsOf: URL(string: path)!)
@@ -124,4 +168,42 @@ extension PlayerLibrary: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+extension PlayerLibrary: SwipeTableViewCellDelegate {
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+         guard orientation == .right else { return nil }
+               
+               let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
+                   // handle action by updating model with deletion
+                   
+                self.deleteCell(at: indexPath)
+                   
+               }
+               
+               // customize the action appearance
+               deleteAction.image = UIImage(named: "delete-Icon")
+               
+               return [deleteAction]
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeOptions {
+        var options = SwipeOptions()
+        options.expansionStyle = .destructive
+        
+        return options
+    }
+    
+    func deleteCell(at indexPath: IndexPath) {
+        // will be executed by other View Controllers
+        if let itemToDelete = players?[indexPath.row] {
+            do {
+                try realm.write {
+                    realm.delete(itemToDelete)
+                }
+            } catch {
+                print("Deletion Error Occured: \(error)")
+            }
+        }
+    }
 
+    
+}

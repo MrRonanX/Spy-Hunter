@@ -10,6 +10,9 @@ import UIKit
 
 class LaunchScreen: UIViewController {
     @IBOutlet var buttons: [UIButton]!
+    @IBOutlet weak var spyPic: UIImageView!
+    
+    var timer = Timer()
     
     override func viewWillAppear(_ animated: Bool) {
            super.viewWillAppear(animated)
@@ -30,17 +33,36 @@ class LaunchScreen: UIViewController {
         gradientLayer.colors = [UIColor(displayP3Red: 185/255, green: 43/255, blue: 39/255, alpha: 1), UIColor(displayP3Red: 21/255, green: 101/255, blue: 192/255, alpha: 1)].map {$0.cgColor}
         self.view.layer.insertSublayer(gradientLayer, at: 0)
         setButtonsStyle()
+        setSpyAnimation()
         // Do any additional setup after loading the view.
     }
     
-    func setButtonsStyle() {
-        let awesomeColor = UIColor(red: 250/255, green: 116/255, blue: 79/255, alpha: 1)
+    private func setButtonsStyle() {
+        let relativeFontConstant:CGFloat = 0.025
+        
         for button in buttons {
             button.setTitle("  \(button.currentTitle!)  ", for: .normal)
-            button.backgroundColor = UIColor(red: 247/255, green: 144/255, blue: 113/255, alpha: 1)
-            button.layer.cornerRadius = 10
-            button.layer.borderWidth = 2
-            button.layer.borderColor = awesomeColor.cgColor
+            button.titleLabel?.font =  button.titleLabel?.font.withSize(view.bounds.height * relativeFontConstant)
+            button.backgroundColor = .clear
+            button.layer.cornerRadius = 5
+            button.layer.borderWidth = 1
+            button.layer.borderColor = UIColor.white.cgColor
         }
+    }
+    
+    private func setSpyAnimation() {
+        timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(turnOnAnimation), userInfo: nil, repeats: true)
+    }
+    
+    @objc func turnOnAnimation() {
+        spyPic.alpha += 0.007
+        if spyPic.alpha == 1 {
+            timer.invalidate()
+        }
+    }
+    
+    
+    @IBAction func startGamePressed(_ sender: UIButton) {
+        performSegue(withIdentifier: "goToPlayerScreen", sender: self)
     }
 }

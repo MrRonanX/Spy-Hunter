@@ -20,13 +20,14 @@ class AHugeCell: UITableViewCell {
     var cellData: [CellData]! {
         didSet {
             // , location - button
+            let relativeFontConstant:CGFloat = 0.018
             for (i, location) in locationsCollection.enumerated() {
                 if i < cellData.count {
                     location.setTitle(cellData[i].locationName, for: .normal)
                     location.backgroundColor = UIColor(displayP3Red: 244/255, green: 238/255, blue: 235/255, alpha: 1)
                     location.isHidden = false
                     location.setTitleColor(.black, for: .normal)
-                    location.titleLabel?.font = .systemFont(ofSize: 16, weight: .medium)
+                    location.titleLabel?.font = location.titleLabel?.font.withSize(UIScreen.main.bounds.height * relativeFontConstant)
                     location.titleLabel?.textAlignment = .center
                     location.titleLabel?.numberOfLines = 0
                     location.contentEdgeInsets = UIEdgeInsets(top: 15, left: 10, bottom: 15, right: 10)

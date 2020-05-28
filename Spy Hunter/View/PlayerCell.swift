@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import SwipeCellKit
 
-class PlayerCell: UITableViewCell {
+class PlayerCell: SwipeTableViewCell {
 
     @IBOutlet weak var playerName: UILabel!
     @IBOutlet weak var playerPicture: UIImageView!

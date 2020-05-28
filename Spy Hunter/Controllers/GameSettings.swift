@@ -43,9 +43,12 @@ class GameSettings: UIViewController, UITableViewDelegate, UITableViewDataSource
                 CellData(locationName: K.policeOffice, isChosen: true),
                 CellData(locationName: K.school, isChosen: true),
                 CellData(locationName: K.bakery, isChosen: true),
-                CellData(locationName: K.market, isChosen: true)
+                CellData(locationName: K.market, isChosen: true),
+                CellData(locationName: K.appleStore, isChosen: true),
+                CellData(locationName: K.mainSquare, isChosen: true)
+                
         ]),
-        SectionModel(name: "Платні локації",
+        SectionModel(name: "Незвичні локації",
                      open: false,
                      data: [
                         CellData(locationName: KAdv.archirectureBureau, isChosen: true),
@@ -55,7 +58,23 @@ class GameSettings: UIViewController, UITableViewDelegate, UITableViewDataSource
                         CellData(locationName: KAdv.port, isChosen: true),
                         CellData(locationName: KAdv.prison, isChosen: true),
                         CellData(locationName: KAdv.spaceStation, isChosen: true),
-                        CellData(locationName: KAdv.spaSalon, isChosen: true)
+                        CellData(locationName: KAdv.spaSalon, isChosen: true),
+                        CellData(locationName: KAdv.orphanage, isChosen: true),
+                        CellData(locationName: KAdv.parliament, isChosen: true),
+                        CellData(locationName: KAdv.metro, isChosen: true),
+                        CellData(locationName: KAdv.skyScrapper, isChosen: true),
+                        CellData(locationName: KAdv.polarStation, isChosen: true),
+                        CellData(locationName: KAdv.gameCenter, isChosen: true),
+                        CellData(locationName: KAdv.university, isChosen: true),
+                        CellData(locationName: KAdv.plane, isChosen: true),
+                        CellData(locationName: KAdv.mine, isChosen: true),
+                        CellData(locationName: KAdv.island, isChosen: true),
+                        CellData(locationName: KAdv.zoo, isChosen: true),
+                        CellData(locationName: KAdv.submarine, isChosen: true),
+                        CellData(locationName: KAdv.observationDeck, isChosen: true),
+                        CellData(locationName: KAdv.cave, isChosen: true),
+                        CellData(locationName: KAdv.beach, isChosen: true),
+                        CellData(locationName: KAdv.festival, isChosen: true)
         ])]
     var players: Results<PlayerModel>?
     
@@ -110,6 +129,10 @@ class GameSettings: UIViewController, UITableViewDelegate, UITableViewDataSource
     @objc func topViewTapper(_ sender: UITapGestureRecognizer) {
         let feedbackGenerator = UIImpactFeedbackGenerator(style: .heavy)
         feedbackGenerator.impactOccurred()
+        let alert = UIAlertController(title: "Нажаль, поки що не доступно.", message: nil, preferredStyle: .alert)
+        let action = UIAlertAction(title: "ОК", style: .default, handler: nil)
+        alert.addAction(action)
+        present(alert, animated: true)
         
     }
     
@@ -136,8 +159,6 @@ class GameSettings: UIViewController, UITableViewDelegate, UITableViewDataSource
         
         bottomView.center = CGPoint(x: view.frame.width / 2,
                                 y: view.frame.height - bottomButton.frame.height / 2 - margin)
-        
-        
     }
     
     @objc func bottomButtonPressed(_ sender: UIButton) {
@@ -154,8 +175,19 @@ class GameSettings: UIViewController, UITableViewDelegate, UITableViewDataSource
             // Map goes through the sections
             // CompactMap takes only chosen locations
             // FlatMap sets them into one array
-            destinationVC.chosenLocations = sections.map {$0.data.compactMap {$0.isChosen ? $0.locationName : nil}}.flatMap {$0}
-            destinationVC.players = players
+            let chosenLocations = sections.map {$0.data.compactMap {$0.isChosen ? $0.locationName : nil}}.flatMap {$0}
+            
+                //check if at least one location is chosen
+            if  chosenLocations != [] {
+                destinationVC.chosenLocations = chosenLocations
+                destinationVC.players = players
+            } else {
+                let alert = UIAlertController(title: "Помилка", message: "Вибери хоча б одну локацію", preferredStyle: .alert)
+                let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+                alert.addAction(action)
+                present(alert, animated: true, completion: nil)
+            }
+           
             
         }
     }

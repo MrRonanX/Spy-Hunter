@@ -20,7 +20,7 @@ struct Constants {
             let shop = "Магазин"
             let flowersMarker = "Ринок квітів"
             let bikeFixer = "Ремонт байків"
-            let gym = "Качалка"
+            let gym = "Спортивний зал"
             let bar = "Бар"
             let park = "Парк"
             let garden = "Сад"
@@ -32,16 +32,38 @@ struct Constants {
             let school = "Школа"
             let bakery = "Пекарня"
             let market = "Ринок"
+            let appleStore = "Apple Store"
+            let mainSquare = "Майдан"
+            
+            
         }
         struct AdvancedLocations {
-            let marineBase = "Воєнно морська база"
+            let marineBase = "Воєнна база"
             let port = "Порт"
             let spaceStation = "Комсічна станція"
-            let prison = "Тюрьма"
-            let artStudio = "Художня студія"
+            let prison = "В'язниця"
+            let artStudio = "Картинна галерея"
             let museum = "Музей"
             let archirectureBureau = "Архітектурне бюро"
             let spaSalon = "СПА салон"
+            let orphanage = "Дитячий будинок"
+            let parliament = "Парламент"
+            let metro = "Метро"
+            let skyScrapper = "Хмарочос"
+            let polarStation = "Полярна станція"
+            let gameCenter = "Гейм центр"
+            let university = "Університет"
+            let plane = "Літак"
+            let mine = "Шахта"
+            let island = "Безлюдний острів"
+            let zoo = "Зоопарк"
+            let submarine = "Підводна лодка"
+            let observationDeck = "Оглядова башня"
+            let cave = "Печера"
+            let beach = "Пляж"
+            let festival = "Фестиваль"
+            
+            
         }
     }
     

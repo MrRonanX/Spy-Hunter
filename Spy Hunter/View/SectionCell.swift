@@ -37,9 +37,9 @@ class SectionCell: UITableViewHeaderFooterView {
         picrure.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         
         //button settings
-        
+        let relativeFontConstant:CGFloat = 0.02
         button.setTitleColor(.black, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 19)
+        button.titleLabel?.font = button.titleLabel?.font.withSize(UIScreen.main.bounds.height * relativeFontConstant)
         button.titleLabel?.textAlignment = .left
         button.translatesAutoresizingMaskIntoConstraints = false
         button.leadingAnchor.constraint(equalTo: picrure.trailingAnchor, constant: 25).isActive = true

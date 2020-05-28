@@ -20,14 +20,14 @@ class FinalGameSettings: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        view.backgroundColor = UIColor(displayP3Red: 254/255, green: 239/255, blue: 221/255, alpha: 1)
+        setUoStartButton()
         viewSetup()
         navigationItem.title = "Налаштування"
         
     }
     
     private func viewSetup() {
-        setUoStartButton()
         let tableView = UITableView()
         tableView.delegate = self
         tableView.dataSource = self
@@ -80,6 +80,7 @@ class FinalGameSettings: UIViewController {
             let destinationVC = segue.destination as! RoleRevealViewController
             destinationVC.players = players
             destinationVC.locations = chosenLocations
+            destinationVC.numberOfSpies = numberOfSpies
             destinationVC.discussionTime = discusionTime
         }
     }
@@ -149,6 +150,9 @@ extension FinalGameSettings: FinalCellDelegate {
             label.text = String(discusionTime)
         case 1:
             numberOfSpies += 1
+            if numberOfSpies > players!.count {
+                numberOfSpies = players!.count
+            }
             label.text = String(numberOfSpies)
         default:
             fatalError()
@@ -159,10 +163,16 @@ extension FinalGameSettings: FinalCellDelegate {
         switch sender.tag {
         case 0:
             discusionTime -= 1
+            if discusionTime < 1 {
+                discusionTime = 1
+            }
             label.text = String(discusionTime)
             print(discusionTime)
         case 1:
             numberOfSpies -= 1
+            if numberOfSpies < 1 {
+                numberOfSpies = 1
+            }
              label.text = String(numberOfSpies)
             print(numberOfSpies)
         default:

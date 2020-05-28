@@ -36,10 +36,25 @@ class PlayersScreen: UIViewController {
     @IBOutlet weak var player11Name: UILabel!
     @IBOutlet weak var player12Picture: UIImageView!
     @IBOutlet weak var player12Name: UILabel!
-    @IBOutlet weak var addButtonPressed: UIImageView!
     @IBOutlet weak var nextButtonPressed: UIButton!
     @IBOutlet weak var labelAndGradient: UIView!
+    private let pageLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Нажми + щоб добавити нового гравця"
+        label.textColor = .white
+        label.textAlignment = .center
+        label.layer.borderWidth = 0
+        label.layer.borderColor = .none
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
     
+    private let addButton: UIButton = {
+        let button = UIButton()
+        button.addTarget(self, action: #selector(addButtonPressed(_:)), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
     var numberOfPlayersBefore = Int()
     var numberOfPlayersNow = Int()
     
@@ -58,7 +73,7 @@ class PlayersScreen: UIViewController {
         //pop to root functionality
         customizedButton()
         //change nextButton style
-        setButtonsStyle()
+        setUpBottomView()
         
     }
     
@@ -85,29 +100,44 @@ class PlayersScreen: UIViewController {
     
     //MARK: - Label and Gradient
     
+    
+    private func getDeviceHeight() -> CGFloat{
+           //statusBar height for iPhone 10 +
+           var statusBarHeight: CGFloat {
+               if #available(iOS 13.0, *) {
+                   var heightToReturn: CGFloat = 0.0
+                   for window in UIApplication.shared.windows {
+                       if let height = window.windowScene?.statusBarManager?.statusBarFrame.height, height > heightToReturn {
+                           heightToReturn = height
+                       }
+                   }
+                   return heightToReturn
+               } else {
+                   return UIApplication.shared.statusBarFrame.height
+               }}
+           //NavBar height + statusBar
+           let height = (navigationController?.navigationBar.frame.size.height)! + statusBarHeight
+           return height
+       }
+    
     private func setUpLabelViewAndGradient() {
         view.backgroundColor = UIColor(displayP3Red: 254/255, green: 239/255, blue: 221/255, alpha: 1)
-        //statusBar height for iPhone 10 +
-        var statusBarHeight: CGFloat {
-            if #available(iOS 13.0, *) {
-                var heightToReturn: CGFloat = 0.0
-                for window in UIApplication.shared.windows {
-                    if let height = window.windowScene?.statusBarManager?.statusBarFrame.height, height > heightToReturn {
-                        heightToReturn = height
-                    }
-                }
-                return heightToReturn
-            } else {
-                return UIApplication.shared.statusBarFrame.height
-            }}
+       
         //NavBar height + statusBar
-        let height = (navigationController?.navigationBar.frame.size.height)! + statusBarHeight
+        let height = getDeviceHeight()
+        
+        //Label and Gradient View
+        labelAndGradient.frame = CGRect(x: 0, y: height, width: self.view.frame.width, height: self.view.frame.height/11)
         view.insertSubview(labelAndGradient, at: 0)
+        
         labelAndGradient.translatesAutoresizingMaskIntoConstraints = false
-        labelAndGradient.topAnchor.constraint(equalTo: view.topAnchor, constant: height).isActive = true
-        labelAndGradient.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
-        labelAndGradient.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
-        labelAndGradient.heightAnchor.constraint(equalToConstant: view.frame.height/11).isActive = true
+        
+        NSLayoutConstraint.activate([
+            labelAndGradient.topAnchor.constraint(equalTo: view.topAnchor, constant: height),
+            labelAndGradient.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+            labelAndGradient.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+            labelAndGradient.heightAnchor.constraint(equalToConstant: view.frame.height/11)
+        ])
         
         //Gradient Settings
         let pageLabelGradient = CAGradientLayer()
@@ -116,34 +146,62 @@ class PlayersScreen: UIViewController {
         labelAndGradient.layer.insertSublayer(pageLabelGradient, at: 0)
         
         //Label settings
-        let pageLabel = UILabel()
-        pageLabel.text = "Нажми + щоб добавити нового гравця"
-        pageLabel.textColor = .white
-        pageLabel.font = .systemFont(ofSize: 18)
+        let relativeFontConstant:CGFloat = 0.0215
         pageLabel.bounds = labelAndGradient.bounds
-        pageLabel.textAlignment = .center
-        pageLabel.layer.borderWidth = 0
-        pageLabel.layer.borderColor = .none
+        pageLabel.font = pageLabel.font.withSize(view.bounds.height * relativeFontConstant)
         labelAndGradient.addSubview(pageLabel)
-        pageLabel.translatesAutoresizingMaskIntoConstraints = false
-        pageLabel.topAnchor.constraint(equalTo: labelAndGradient.topAnchor, constant: 0).isActive = true
-        pageLabel.bottomAnchor.constraint(equalTo: labelAndGradient.bottomAnchor, constant: 0).isActive = true
-        pageLabel.trailingAnchor.constraint(equalTo: labelAndGradient.trailingAnchor, constant: 0).isActive = true
-        pageLabel.leadingAnchor.constraint(equalTo: labelAndGradient.leadingAnchor, constant: 0).isActive = true
-        pageLabel.centerXAnchor.constraint(equalTo: labelAndGradient.centerXAnchor, constant: 0).isActive = true
-        pageLabel.centerYAnchor.constraint(equalTo: labelAndGradient.centerYAnchor, constant: 0).isActive = true
-        labelAndGradient.layer.borderWidth = 0
-        labelAndGradient.layer.borderColor = .none
+        
+        NSLayoutConstraint.activate([
+        pageLabel.topAnchor.constraint(equalTo: labelAndGradient.topAnchor, constant: 0),
+               pageLabel.bottomAnchor.constraint(equalTo: labelAndGradient.bottomAnchor, constant: 0),
+               pageLabel.trailingAnchor.constraint(equalTo: labelAndGradient.trailingAnchor, constant: 0),
+               pageLabel.leadingAnchor.constraint(equalTo: labelAndGradient.leadingAnchor, constant: 0),
+               pageLabel.centerXAnchor.constraint(equalTo: labelAndGradient.centerXAnchor, constant: 0),
+               pageLabel.centerYAnchor.constraint(equalTo: labelAndGradient.centerYAnchor, constant: 0)
+        ])
+       
+        
+        //AddButton setup
+        let size = self.view.frame.width / 8
+        
+        labelAndGradient.insertSubview(addButton, at: 1)
+        addButton.heightAnchor.constraint(equalToConstant: size).isActive = true
+        addButton.widthAnchor.constraint(equalToConstant: size).isActive = true
+        addButton.centerYAnchor.constraint(equalTo: labelAndGradient.bottomAnchor).isActive = true
+        addButton.trailingAnchor.constraint(equalTo: labelAndGradient.trailingAnchor, constant: -40).isActive = true
     }
     
+    fileprivate func setUpBottomView() {
+        let bottomView = UIView(frame: CGRect(x: 0, y: view.frame.height/1.2, width: view.frame.width, height: view.frame.height/9))
+        bottomView.backgroundColor = UIColor(displayP3Red: 254/255, green: 239/255, blue: 221/255, alpha: 1)
+        let bottomButton = UIButton()
+        bottomView.addSubview(bottomButton)
+        bottomButton.setTitle("Дальше", for: .normal)
+        bottomButton.setTitleColor(.black, for: .normal)
+        bottomButton.titleLabel?.font = .systemFont(ofSize: 20)
+        bottomButton.backgroundColor = UIColor.init(displayP3Red: 227/255, green: 66/255, blue: 52/255, alpha: 1)
+        bottomButton.layer.cornerRadius = 5
+        bottomButton.addTarget(self, action: #selector(bottomButtonPressed(_:)), for: .touchDown)
+        
+        let margin = CGFloat(50)
+        bottomButton.translatesAutoresizingMaskIntoConstraints = false
+        bottomButton.topAnchor.constraint(equalTo: bottomView.topAnchor, constant: 5).isActive = true
+        bottomButton.bottomAnchor.constraint(equalTo: bottomView.bottomAnchor, constant: -30).isActive = true
+        bottomButton.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor, constant: 5).isActive = true
+        bottomButton.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor, constant: -5).isActive = true
+        view.addSubview(bottomView)
+        
+        bottomView.center = CGPoint(x: view.frame.width / 2,
+                                    y: view.frame.height - bottomButton.frame.height / 2 - margin)
+        
+        
+    }
     //MARK: - Add Players on the screen
     
     
     private func addButtonSetup() {
-        addButtonPressed.isUserInteractionEnabled = true
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
-        addButtonPressed.addGestureRecognizer(tapGestureRecognizer)
-        addButtonPressed.image = #imageLiteral(resourceName: "plus").circleMask
+        let buttonImage = UIImage(named: "addPlayerButton.png")?.circleMask(borderWidth: 10)
+        addButton.setImage(buttonImage, for: .normal)
     }
     
     private func loadPlayers() {
@@ -156,7 +214,7 @@ class PlayersScreen: UIViewController {
         if let unwrappedPlayers = players {
             for (i, player) in unwrappedPlayers.enumerated() {
                 if let picture = loadImageFromDocumentDirectory(path: player.picture) {
-                    picturesArray[i].image = picture.circleMask?.rotate(radians: .pi/2)
+                    picturesArray[i].image = picture.rotate(radians: .pi/2)?.circleMask()
                     namesArray[i].minimumScaleFactor = 9
                     namesArray[i].font = UIFont.systemFont(ofSize: 14)
                     namesArray[i].numberOfLines = 0
@@ -197,10 +255,10 @@ class PlayersScreen: UIViewController {
         performSegue(withIdentifier: "PlayerScreenToLibrary", sender: self)
     }
     
-    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
-        
+    @objc private func addButtonPressed(_ sender: UIButton) {
         performSegue(withIdentifier: "PlayerScreenToNewPlayer", sender: self)
     }
+    
     private func customizedButton() {
         navigationController!.setNavigationBarHidden(false, animated: true)
         let myBackButton:UIButton = UIButton(type: UIButton.ButtonType.custom) as UIButton
@@ -227,15 +285,15 @@ class PlayersScreen: UIViewController {
     //MARK: - Button Settings
     
     
-    @IBAction func nextButtonIsPressed(_ sender: UIButton) {
+    @objc private func bottomButtonPressed(_ sender: UIButton) {
         if players?.count != 0 {
             performSegue(withIdentifier: "PlayerScreenToGameSettings", sender: self)
             
         } else {
             let alert = UIAlertController(title: "Помилка", message: "Добавте хоча б одного гравця, щоб продовжити!", preferredStyle: .alert)
             let action = UIAlertAction(title: "OK", style: .default, handler: nil)
-                alert.addAction(action)
-                present(alert, animated: true, completion: nil)
+            alert.addAction(action)
+            present(alert, animated: true, completion: nil)
         }
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -246,16 +304,6 @@ class PlayersScreen: UIViewController {
     }
     
     
-    func setButtonsStyle() {
-        let awesomeColor = UIColor(red: 250/255, green: 116/255, blue: 79/255, alpha: 1)
-        
-        nextButtonPressed.setTitle("  \(nextButtonPressed.currentTitle!)  ", for: .normal)
-        nextButtonPressed.backgroundColor = UIColor(red: 247/255, green: 144/255, blue: 113/255, alpha: 1)
-        nextButtonPressed.setTitleColor(UIColor.white, for: .normal)
-        nextButtonPressed.layer.cornerRadius = 10
-        nextButtonPressed.layer.borderWidth = 2
-        nextButtonPressed.layer.borderColor = awesomeColor.cgColor
-    }
 }
 
 

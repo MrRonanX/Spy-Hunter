@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -19,25 +19,25 @@
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="hnI-7y-E4e">
                         <rect key="frame" x="20" y="20" width="297" height="474"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="HPh-Ob-kLa">
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="HPh-Ob-kLa">
                                 <rect key="frame" x="0.0" y="0.0" width="297" height="48"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qXH-PX-wbm">
-                                        <rect key="frame" x="0.0" y="0.0" width="92.5" height="48"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="93.5" height="48"/>
                                         <state key="normal" title="Button"/>
                                         <connections>
                                             <action selector="locaitonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="2fD-RR-6dk"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J0m-df-h2J">
-                                        <rect key="frame" x="102.5" y="0.0" width="92" height="48"/>
+                                        <rect key="frame" x="101.5" y="0.0" width="94" height="48"/>
                                         <state key="normal" title="Button"/>
                                         <connections>
                                             <action selector="locaitonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Z2Z-uh-uDH"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2tV-r6-GII">
-                                        <rect key="frame" x="204.5" y="0.0" width="92.5" height="48"/>
+                                        <rect key="frame" x="203.5" y="0.0" width="93.5" height="48"/>
                                         <state key="normal" title="Button"/>
                                         <connections>
                                             <action selector="locaitonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="ECG-kB-uBo"/>
@@ -45,25 +45,25 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ge5-LR-jbd">
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ge5-LR-jbd">
                                 <rect key="frame" x="0.0" y="61" width="297" height="48"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YCb-uk-PTH">
-                                        <rect key="frame" x="0.0" y="0.0" width="92.5" height="48"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="93.5" height="48"/>
                                         <state key="normal" title="Button"/>
                                         <connections>
                                             <action selector="locaitonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Nhl-ur-c3N"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lTn-qL-9bj">
-                                        <rect key="frame" x="102.5" y="0.0" width="92" height="48"/>
+                                        <rect key="frame" x="101.5" y="0.0" width="94" height="48"/>
                                         <state key="normal" title="Button"/>
                                         <connections>
                                             <action selector="locaitonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="4pL-aK-FqQ"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AO9-ni-Ys3">
-                                        <rect key="frame" x="204.5" y="0.0" width="92.5" height="48"/>
+                                        <rect key="frame" x="203.5" y="0.0" width="93.5" height="48"/>
                                         <state key="normal" title="Button"/>
                                         <connections>
                                             <action selector="locaitonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="KcM-dM-r1c"/>
@@ -71,25 +71,25 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="rYt-Hf-2F9">
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="rYt-Hf-2F9">
                                 <rect key="frame" x="0.0" y="122" width="297" height="47.5"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1WO-u3-VOY">
-                                        <rect key="frame" x="0.0" y="0.0" width="92.5" height="47.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="93.5" height="47.5"/>
                                         <state key="normal" title="Button"/>
                                         <connections>
                                             <action selector="locaitonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="9NP-2g-MeP"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fuA-ir-2AI">
-                                        <rect key="frame" x="102.5" y="0.0" width="92" height="47.5"/>
+                                        <rect key="frame" x="101.5" y="0.0" width="94" height="47.5"/>
                                         <state key="normal" title="Button"/>
                                         <connections>
                                             <action selector="locaitonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="TAK-VT-SuF"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sEI-jd-gKw">
-                                        <rect key="frame" x="204.5" y="0.0" width="92.5" height="47.5"/>
+                                        <rect key="frame" x="203.5" y="0.0" width="93.5" height="47.5"/>
                                         <state key="normal" title="Button"/>
                                         <connections>
                                             <action selector="locaitonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="MAE-4M-CVi"/>
@@ -97,25 +97,25 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="IUS-Xl-4Wy">
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="IUS-Xl-4Wy">
                                 <rect key="frame" x="0.0" y="182.5" width="297" height="48"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c1R-sn-Wg9">
-                                        <rect key="frame" x="0.0" y="0.0" width="92.5" height="48"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="93.5" height="48"/>
                                         <state key="normal" title="Button"/>
                                         <connections>
                                             <action selector="locaitonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="6YK-0L-1bV"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p07-FP-Hdi">
-                                        <rect key="frame" x="102.5" y="0.0" width="92" height="48"/>
+                                        <rect key="frame" x="101.5" y="0.0" width="94" height="48"/>
                                         <state key="normal" title="Button"/>
                                         <connections>
                                             <action selector="locaitonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="LlH-Gj-6KT"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qgu-3Q-dMA">
-                                        <rect key="frame" x="204.5" y="0.0" width="92.5" height="48"/>
+                                        <rect key="frame" x="203.5" y="0.0" width="93.5" height="48"/>
                                         <state key="normal" title="Button"/>
                                         <connections>
                                             <action selector="locaitonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="kPC-VA-Mjs"/>
@@ -123,25 +123,25 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="7Ms-SB-4N0">
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="7Ms-SB-4N0">
                                 <rect key="frame" x="0.0" y="243.5" width="297" height="48"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PjW-6i-rGg">
-                                        <rect key="frame" x="0.0" y="0.0" width="92.5" height="48"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="93.5" height="48"/>
                                         <state key="normal" title="Button"/>
                                         <connections>
                                             <action selector="locaitonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="UiT-KD-qro"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HbL-pk-KvE">
-                                        <rect key="frame" x="102.5" y="0.0" width="92" height="48"/>
+                                        <rect key="frame" x="101.5" y="0.0" width="94" height="48"/>
                                         <state key="normal" title="Button"/>
                                         <connections>
                                             <action selector="locaitonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="ZG3-rQ-cmN"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iiu-9N-uWI">
-                                        <rect key="frame" x="204.5" y="0.0" width="92.5" height="48"/>
+                                        <rect key="frame" x="203.5" y="0.0" width="93.5" height="48"/>
                                         <state key="normal" title="Button"/>
                                         <connections>
                                             <action selector="locaitonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="2sG-ap-8bn"/>
@@ -149,25 +149,25 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="6vu-aL-je6">
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="6vu-aL-je6">
                                 <rect key="frame" x="0.0" y="304.5" width="297" height="48"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eQI-fY-jSa">
-                                        <rect key="frame" x="0.0" y="0.0" width="92.5" height="48"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="93.5" height="48"/>
                                         <state key="normal" title="Button"/>
                                         <connections>
                                             <action selector="locaitonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="THP-Ga-yCj"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eFk-eJ-9e2">
-                                        <rect key="frame" x="102.5" y="0.0" width="92" height="48"/>
+                                        <rect key="frame" x="101.5" y="0.0" width="94" height="48"/>
                                         <state key="normal" title="Button"/>
                                         <connections>
                                             <action selector="locaitonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Vsx-e5-Tqr"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g38-N4-9rr">
-                                        <rect key="frame" x="204.5" y="0.0" width="92.5" height="48"/>
+                                        <rect key="frame" x="203.5" y="0.0" width="93.5" height="48"/>
                                         <state key="normal" title="Button"/>
                                         <connections>
                                             <action selector="locaitonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Hoj-Wh-YWZ"/>
@@ -175,25 +175,25 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="xMY-C2-mLM">
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="xMY-C2-mLM">
                                 <rect key="frame" x="0.0" y="365.5" width="297" height="47.5"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zbp-UX-fy8">
-                                        <rect key="frame" x="0.0" y="0.0" width="92.5" height="47.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="93.5" height="47.5"/>
                                         <state key="normal" title="Button"/>
                                         <connections>
                                             <action selector="locaitonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="9fx-O3-FPG"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g9b-zD-V9i">
-                                        <rect key="frame" x="102.5" y="0.0" width="92" height="47.5"/>
+                                        <rect key="frame" x="101.5" y="0.0" width="94" height="47.5"/>
                                         <state key="normal" title="Button"/>
                                         <connections>
                                             <action selector="locaitonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="TDR-Od-4Pr"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Fg-Kx-4I3">
-                                        <rect key="frame" x="204.5" y="0.0" width="92.5" height="47.5"/>
+                                        <rect key="frame" x="203.5" y="0.0" width="93.5" height="47.5"/>
                                         <state key="normal" title="Button"/>
                                         <connections>
                                             <action selector="locaitonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="cp2-k8-CJ3"/>
@@ -201,25 +201,25 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="MPm-zi-65h">
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="MPm-zi-65h">
                                 <rect key="frame" x="0.0" y="426" width="297" height="48"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kfO-cl-Y46">
-                                        <rect key="frame" x="0.0" y="0.0" width="92.5" height="48"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="93.5" height="48"/>
                                         <state key="normal" title="Button"/>
                                         <connections>
                                             <action selector="locaitonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="6vQ-MV-Iky"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tHY-7x-9CF">
-                                        <rect key="frame" x="102.5" y="0.0" width="92" height="48"/>
+                                        <rect key="frame" x="101.5" y="0.0" width="94" height="48"/>
                                         <state key="normal" title="Button"/>
                                         <connections>
                                             <action selector="locaitonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="YTM-sy-h4M"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tkF-PH-HB9">
-                                        <rect key="frame" x="204.5" y="0.0" width="92.5" height="48"/>
+                                        <rect key="frame" x="203.5" y="0.0" width="93.5" height="48"/>
                                         <state key="normal" title="Button"/>
                                         <connections>
                                             <action selector="locaitonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="RBT-DY-V7E"/>
