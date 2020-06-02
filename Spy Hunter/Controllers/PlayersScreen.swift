@@ -288,7 +288,6 @@ class PlayersScreen: UIViewController {
     @objc private func bottomButtonPressed(_ sender: UIButton) {
         if players?.count != 0 {
             performSegue(withIdentifier: "PlayerScreenToGameSettings", sender: self)
-            
         } else {
             let alert = UIAlertController(title: "Помилка", message: "Добавте хоча б одного гравця, щоб продовжити!", preferredStyle: .alert)
             let action = UIAlertAction(title: "OK", style: .default, handler: nil)
