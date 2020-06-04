@@ -10,7 +10,7 @@
         <!--Launch Screen-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LaunchScreen" customModule="Spy_Hunter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="LaunchScreen" customModule="Detect_a_Spy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -78,10 +78,10 @@
                     <navigationItem key="navigationItem" id="T7i-68-mST"/>
                     <connections>
                         <outlet property="spyPic" destination="a8J-kH-ds5" id="kjo-aI-zA2"/>
-                        <outletCollection property="buttons" destination="5Q7-vr-gTs" collectionClass="NSMutableArray" id="yY7-3e-LBY"/>
-                        <outletCollection property="buttons" destination="umQ-EF-QbP" collectionClass="NSMutableArray" id="pGh-s5-dVv"/>
-                        <outletCollection property="buttons" destination="JqH-AJ-Lot" collectionClass="NSMutableArray" id="JG1-0p-i6d"/>
-                        <outletCollection property="buttons" destination="q3Q-rM-zR9" collectionClass="NSMutableArray" id="Aeg-2T-IPC"/>
+                        <outletCollection property="buttons" destination="5Q7-vr-gTs" collectionClass="NSMutableArray" id="n4u-ZG-pAc"/>
+                        <outletCollection property="buttons" destination="JqH-AJ-Lot" collectionClass="NSMutableArray" id="464-O3-kid"/>
+                        <outletCollection property="buttons" destination="umQ-EF-QbP" collectionClass="NSMutableArray" id="yGs-aa-28c"/>
+                        <outletCollection property="buttons" destination="q3Q-rM-zR9" collectionClass="NSMutableArray" id="n7d-yf-JEr"/>
                         <segue destination="I5z-46-xHi" kind="show" identifier="goToPlayerScreen" id="Ef6-do-hyd"/>
                     </connections>
                 </viewController>
@@ -92,7 +92,7 @@
         <!--Players Screen-->
         <scene sceneID="8kM-yh-vjN">
             <objects>
-                <viewController id="I5z-46-xHi" customClass="PlayersScreen" customModule="Spy_Hunter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="I5z-46-xHi" customClass="PlayersScreen" customModule="Detect_a_Spy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LPe-xU-gWP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -425,6 +425,7 @@
                         <outlet property="player8Picture" destination="aaS-N1-nH9" id="KlL-VZ-26b"/>
                         <outlet property="player9Name" destination="pCv-A0-TW7" id="q1T-1M-zqA"/>
                         <outlet property="player9Picture" destination="uVZ-fN-dWs" id="x4B-SX-Tvt"/>
+                        <outlet property="playersBarButton" destination="1Rv-jH-FEu" id="4bd-mU-JpL"/>
                         <outlet property="viewBackground" destination="LPe-xU-gWP" id="9eP-BL-Nhn"/>
                         <segue destination="pQG-oJ-uwb" kind="show" identifier="PlayerScreenToLibrary" id="Pn6-dB-GfR"/>
                         <segue destination="N9U-19-bOB" kind="show" identifier="PlayerScreenToNewPlayer" id="S6O-DV-4lH"/>
@@ -439,7 +440,7 @@
         <!--Add New Player-->
         <scene sceneID="uRc-WT-aOS">
             <objects>
-                <viewController id="N9U-19-bOB" customClass="AddNewPlayer" customModule="Spy_Hunter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="N9U-19-bOB" customClass="AddNewPlayer" customModule="Detect_a_Spy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pST-ZP-fiv">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -486,6 +487,7 @@
                     <connections>
                         <outlet property="playerEnteredName" destination="8aU-b1-UIF" id="YMW-UZ-wrz"/>
                         <outlet property="playerTookPic" destination="V92-bJ-ZSk" id="qHo-1G-zzy"/>
+                        <outlet property="saveBarButton" destination="6ZI-mH-9b3" id="c6P-zu-fWp"/>
                         <segue destination="I5z-46-xHi" kind="show" identifier="NewPlayerAdded" id="yD0-Lo-iWC"/>
                     </connections>
                 </viewController>
@@ -496,7 +498,7 @@
         <!--Rules-->
         <scene sceneID="Bq1-jp-a6M">
             <objects>
-                <viewController id="fyM-s1-DyG" customClass="Rules" customModule="Spy_Hunter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="fyM-s1-DyG" customClass="Rules" customModule="Detect_a_Spy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WbX-vH-BZ5">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -515,7 +517,7 @@
         <!--Player Library-->
         <scene sceneID="GeI-Nd-SzL">
             <objects>
-                <viewController id="pQG-oJ-uwb" customClass="PlayerLibrary" customModule="Spy_Hunter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="pQG-oJ-uwb" customClass="PlayerLibrary" customModule="Detect_a_Spy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UNp-Sh-has">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -543,7 +545,7 @@
         <!--Game Settings-->
         <scene sceneID="EiE-2D-yND">
             <objects>
-                <viewController id="wVS-Qm-d22" customClass="GameSettings" customModule="Spy_Hunter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="wVS-Qm-d22" customClass="GameSettings" customModule="Detect_a_Spy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="98G-0U-DqS">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -562,7 +564,7 @@
         <!--Final Game Settings-->
         <scene sceneID="dWj-Pr-Fsx">
             <objects>
-                <viewController id="FOB-fk-hw3" customClass="FinalGameSettings" customModule="Spy_Hunter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="FOB-fk-hw3" customClass="FinalGameSettings" customModule="Detect_a_Spy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cPU-ar-zfR">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -581,7 +583,7 @@
         <!--Role Reveal View Controller-->
         <scene sceneID="Fya-l1-yPR">
             <objects>
-                <viewController id="bCt-lK-w29" customClass="RoleRevealViewController" customModule="Spy_Hunter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="bCt-lK-w29" customClass="RoleRevealViewController" customModule="Detect_a_Spy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lil-mo-Tas">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -600,7 +602,7 @@
         <!--Show Spies-->
         <scene sceneID="SEo-wd-dEt">
             <objects>
-                <viewController id="5bM-Ru-Vfk" customClass="ShowSpies" customModule="Spy_Hunter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="5bM-Ru-Vfk" customClass="ShowSpies" customModule="Detect_a_Spy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bcg-Sx-QYb">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -639,7 +641,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="a97-Hi-EeA"/>
-        <segue reference="Zs8-AI-O7S"/>
+        <segue reference="yD0-Lo-iWC"/>
         <segue reference="YU4-Fz-jpd"/>
     </inferredMetricsTieBreakers>
     <resources>

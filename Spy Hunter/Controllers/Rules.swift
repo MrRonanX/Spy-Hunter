@@ -9,10 +9,10 @@
 import UIKit
 
 class Rules: UIViewController {
+    private let names = StringFiles()
     
     private let topLabel: UILabel = {
         let label = UILabel()
-        label.text = "Правила:"
         label.textAlignment = .center
         label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -21,7 +21,6 @@ class Rules: UIViewController {
     
     private let generalLabel: UILabel = {
         let label = UILabel()
-        label.text = "Для потрібно як мінімум 3 гравця. Кожен гравець або знатиме локацію, або ж буде шпіоном. Задача гравців своїми запитання та відповідями не видати локацію, а задача шпіона не видати, що він шпіон. Після кола обговореня гравці голосують, хто, як вони вважають, шпіон. Якщо шпіон відгадує локацію - виграє він."
         label.numberOfLines = 0
         label.textAlignment = .left
         label.textColor = UIColor(displayP3Red: 2/255, green: 31/255, blue: 59/255, alpha: 1)
@@ -31,7 +30,6 @@ class Rules: UIViewController {
     
     private let discussionLabel: UILabel = {
         let label = UILabel()
-        label.text = "Коло обговорення починає ведучий, задаючи питання про локацію наступному гравцю по годинниковій, або ж проти годинникової стрілки. Гравець який відповів на запитання продовжує питати в тому ж напрямку. Коли всі гравці в кругу відповіли і черга задавати питання вернулась до ведучого, він може задати питання будь якому гравцю. Після цього гравець, який відповів, задає питання гравцю на свій вибір. Не можна запитувати одного і того ж гравця підряд."
         label.numberOfLines = 0
         label.textAlignment = .left
         label.textColor = UIColor(displayP3Red: 2/255, green: 31/255, blue: 59/255, alpha: 1)
@@ -41,7 +39,6 @@ class Rules: UIViewController {
     
     private let discussionLabelTitle: UILabel = {
         let label = UILabel()
-        label.text = "Коло обговорення:"
         label.textAlignment = .left
         label.textColor = UIColor(displayP3Red: 2/255, green: 31/255, blue: 59/255, alpha: 1)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -50,7 +47,6 @@ class Rules: UIViewController {
     
     private let voteLabel: UILabel = {
         let label = UILabel()
-        label.text = "Голосування:"
         label.textAlignment = .left
         label.textColor = UIColor(displayP3Red: 2/255, green: 31/255, blue: 59/255, alpha: 1)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -59,7 +55,6 @@ class Rules: UIViewController {
     
     private let vote: UILabel = {
         let label = UILabel()
-        label.text = "Після кола обговорень гравці радяться, та вирішують хто шпіон. Рішення приймається більшістю. За цей час шпіон має шанс назвати локацію та виграти. Якщо шпіон називає локацію, проте помиляється - він програє."
         label.numberOfLines = 0
         label.textAlignment = .left
         label.textColor = UIColor(displayP3Red: 2/255, green: 31/255, blue: 59/255, alpha: 1)
@@ -145,7 +140,7 @@ class Rules: UIViewController {
     }
     
     private func rulesLabelSettings() {
-        
+        topLabel.text = names.rules.uppercased()
         //Label settings
         
         let relativeFontConstant:CGFloat = 0.03  // dynamic font
@@ -166,6 +161,7 @@ class Rules: UIViewController {
     
     private func setupGeneralLabel() {
         let relativeFontConstant:CGFloat = 0.019  // dynamic font
+        generalLabel.text = names.generalLabelText
         generalLabel.font = generalLabel.font.withSize(view.bounds.height * relativeFontConstant)
         view.addSubview(generalLabel)
         
@@ -183,6 +179,7 @@ class Rules: UIViewController {
     
     private func setupDiscussionLabelTitle() {
         let relativeFontConstant:CGFloat = 0.021  // dynamic font
+        discussionLabelTitle.text = names.discussionTitle
         discussionLabelTitle.font = discussionLabelTitle.font.withSize(view.bounds.height * relativeFontConstant)
         view.addSubview(discussionLabelTitle)
         
@@ -199,6 +196,7 @@ class Rules: UIViewController {
     
     private func setupDiscussionLabel() {
         let relativeFontConstant:CGFloat = 0.019  // dynamic font
+        discussionLabel.text = names.discussion
         discussionLabel.font = discussionLabel.font.withSize(view.bounds.height * relativeFontConstant)
         view.addSubview(discussionLabel)
         
@@ -215,6 +213,7 @@ class Rules: UIViewController {
     
     private func setupVoteLabel() {
         let relativeFontConstant:CGFloat = 0.021  // dynamic font
+        voteLabel.text = names.votingTitle
         voteLabel.font = voteLabel.font.withSize(view.bounds.height * relativeFontConstant)
         view.addSubview(voteLabel)
         
@@ -231,6 +230,7 @@ class Rules: UIViewController {
     
     private func setupVote() {
         let relativeFontConstant:CGFloat = 0.019  // dynamic font
+        vote.text = names.votingText
         vote.font = vote.font.withSize(view.bounds.height * relativeFontConstant)
         view.addSubview(vote)
         
@@ -247,7 +247,7 @@ class Rules: UIViewController {
     
     private func setupPlayButton() {
         let relativeFontConstant:CGFloat = 0.025  // dynamic font
-        playButton.setTitle("ПОЧАТИ", for: .normal)
+        playButton.setTitle(names.start.uppercased(), for: .normal)
         playButton.titleLabel!.font =  playButton.titleLabel!.font.withSize(view.bounds.height * relativeFontConstant)
         playButton.contentEdgeInsets = UIEdgeInsets(top: 10, left: 30, bottom: 10, right: 30)
         view.addSubview(playButton)

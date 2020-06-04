@@ -10,78 +10,76 @@ import UIKit
 import RealmSwift
 
 class GameSettings: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
+    private let names = StringFiles()
     private var topView: UIView!
     private var bottomView: UIView!
     private var tableView = UITableView()
     fileprivate let cellID = "Cell_ID"
-    fileprivate var K = Constants.Ukr.StandartLocations()
-    fileprivate var KAdv = Constants.Ukr.AdvancedLocations()
     lazy var sections: [SectionModel] = [
         SectionModel(
-            name: "Стандартні локації",
+            name: names.standardLocations,
             open: false,
             data: [
-                CellData(locationName: K.hospital , isChosen: true),
-                CellData(locationName: K.church, isChosen: true),
-                CellData(locationName: K.embassy, isChosen: true),
-                CellData(locationName: K.restaurant, isChosen: true),
-                CellData(locationName: K.house, isChosen: true),
-                CellData(locationName: K.cafe, isChosen: true),
-                CellData(locationName: K.factory, isChosen: true),
-                CellData(locationName: K.shop, isChosen: true),
-                CellData(locationName: K.flowersMarker, isChosen: true),
-                CellData(locationName: K.bikeFixer, isChosen: true),
-                CellData(locationName: K.gym, isChosen: true),
-                CellData(locationName: K.bar, isChosen: true),
-                CellData(locationName: K.park, isChosen: true),
-                CellData(locationName: K.garden, isChosen: true),
-                CellData(locationName: K.nightClub, isChosen: true),
-                CellData(locationName: K.castle, isChosen: true),
-                CellData(locationName: K.basement, isChosen: true),
-                CellData(locationName: K.bank, isChosen: true),
-                CellData(locationName: K.policeOffice, isChosen: true),
-                CellData(locationName: K.school, isChosen: true),
-                CellData(locationName: K.bakery, isChosen: true),
-                CellData(locationName: K.market, isChosen: true),
-                CellData(locationName: K.appleStore, isChosen: true),
-                CellData(locationName: K.mainSquare, isChosen: true)
+                CellData(locationName: names.hospital , isChosen: true),
+                CellData(locationName: names.church, isChosen: true),
+                CellData(locationName: names.embassy, isChosen: true),
+                CellData(locationName: names.restaurant, isChosen: true),
+                CellData(locationName: names.house, isChosen: true),
+                CellData(locationName: names.cafe, isChosen: true),
+                CellData(locationName: names.factory, isChosen: true),
+                CellData(locationName: names.shop, isChosen: true),
+                CellData(locationName: names.flowersMarker, isChosen: true),
+                CellData(locationName: names.bikeFixer, isChosen: true),
+                CellData(locationName: names.gym, isChosen: true),
+                CellData(locationName: names.bar, isChosen: true),
+                CellData(locationName: names.park, isChosen: true),
+                CellData(locationName: names.garden, isChosen: true),
+                CellData(locationName: names.nightClub, isChosen: true),
+                CellData(locationName: names.castle, isChosen: true),
+                CellData(locationName: names.basement, isChosen: true),
+                CellData(locationName: names.bank, isChosen: true),
+                CellData(locationName: names.policeOffice, isChosen: true),
+                CellData(locationName: names.school, isChosen: true),
+                CellData(locationName: names.bakery, isChosen: true),
+                CellData(locationName: names.market, isChosen: true),
+                CellData(locationName: names.appleStore, isChosen: true),
+                CellData(locationName: names.mainSquare, isChosen: true)
                 
         ]),
-        SectionModel(name: "Незвичні локації",
+        SectionModel(name: names.unusualLocations,
                      open: false,
                      data: [
-                        CellData(locationName: KAdv.archirectureBureau, isChosen: true),
-                        CellData(locationName: KAdv.artStudio, isChosen: true),
-                        CellData(locationName: KAdv.marineBase, isChosen: true),
-                        CellData(locationName: KAdv.museum, isChosen: true),
-                        CellData(locationName: KAdv.port, isChosen: true),
-                        CellData(locationName: KAdv.prison, isChosen: true),
-                        CellData(locationName: KAdv.spaceStation, isChosen: true),
-                        CellData(locationName: KAdv.spaSalon, isChosen: true),
-                        CellData(locationName: KAdv.orphanage, isChosen: true),
-                        CellData(locationName: KAdv.parliament, isChosen: true),
-                        CellData(locationName: KAdv.metro, isChosen: true),
-                        CellData(locationName: KAdv.skyScrapper, isChosen: true),
-                        CellData(locationName: KAdv.polarStation, isChosen: true),
-                        CellData(locationName: KAdv.gameCenter, isChosen: true),
-                        CellData(locationName: KAdv.university, isChosen: true),
-                        CellData(locationName: KAdv.plane, isChosen: true),
-                        CellData(locationName: KAdv.mine, isChosen: true),
-                        CellData(locationName: KAdv.island, isChosen: true),
-                        CellData(locationName: KAdv.zoo, isChosen: true),
-                        CellData(locationName: KAdv.submarine, isChosen: true),
-                        CellData(locationName: KAdv.observationDeck, isChosen: true),
-                        CellData(locationName: KAdv.cave, isChosen: true),
-                        CellData(locationName: KAdv.beach, isChosen: true),
-                        CellData(locationName: KAdv.festival, isChosen: true)
+                        CellData(locationName: names.architectureBureau, isChosen: true),
+                        CellData(locationName: names.artStudio, isChosen: true),
+                        CellData(locationName: names.marineBase, isChosen: true),
+                        CellData(locationName: names.museum, isChosen: true),
+                        CellData(locationName: names.port, isChosen: true),
+                        CellData(locationName: names.prison, isChosen: true),
+                        CellData(locationName: names.spaceStation, isChosen: true),
+                        CellData(locationName: names.spaSalon, isChosen: true),
+                        CellData(locationName: names.orphanage, isChosen: true),
+                        CellData(locationName: names.parliament, isChosen: true),
+                        CellData(locationName: names.metro, isChosen: true),
+                        CellData(locationName: names.skyScrapper, isChosen: true),
+                        CellData(locationName: names.polarStation, isChosen: true),
+                        CellData(locationName: names.gameCenter, isChosen: true),
+                        CellData(locationName: names.university, isChosen: true),
+                        CellData(locationName: names.plane, isChosen: true),
+                        CellData(locationName: names.mine, isChosen: true),
+                        CellData(locationName: names.island, isChosen: true),
+                        CellData(locationName: names.zoo, isChosen: true),
+                        CellData(locationName: names.submarine, isChosen: true),
+                        CellData(locationName: names.observationDeck, isChosen: true),
+                        CellData(locationName: names.cave, isChosen: true),
+                        CellData(locationName: names.beach, isChosen: true),
+                        CellData(locationName: names.festival, isChosen: true)
         ])]
     var players: Results<PlayerModel>?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Локації"
+        navigationItem.title = names.locations
        
         view.backgroundColor = UIColor(displayP3Red: 254/255, green: 239/255, blue: 221/255, alpha: 1)
         setUpBottomView()
@@ -94,16 +92,19 @@ class GameSettings: UIViewController, UITableViewDelegate, UITableViewDataSource
     fileprivate func setUpTopView() {
         topView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height/11))
         topView.backgroundColor = .clear
+        
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.topViewTapper(_:)))
         topView.addGestureRecognizer(tapGestureRecognizer)
+        
         let headerImage = UIImageView()
         let headerLabel = UILabel()
         topView.addSubview(headerImage)
         topView.addSubview(headerLabel)
+        
         //set up Gradient header
         let headerGradient = CAGradientLayer()
-               headerGradient.frame = topView.bounds
-               headerGradient.colors = [UIColor(displayP3Red: 21/255, green: 101/255, blue: 192/255, alpha: 1), UIColor(displayP3Red: 111/255, green: 171/255, blue: 239/255, alpha: 1)].map {$0.cgColor}
+        headerGradient.frame = topView.bounds
+        headerGradient.colors = [UIColor(displayP3Red: 21/255, green: 101/255, blue: 192/255, alpha: 1), UIColor(displayP3Red: 111/255, green: 171/255, blue: 239/255, alpha: 1)].map {$0.cgColor}
         topView.layer.insertSublayer(headerGradient, at: 0)
         setUpTopViewLabelandImageConstraints(headerLabel: headerLabel, headerImage: headerImage)
         tableView.tableHeaderView = topView
@@ -111,25 +112,29 @@ class GameSettings: UIViewController, UITableViewDelegate, UITableViewDataSource
     }
     private func setUpTopViewLabelandImageConstraints(headerLabel: UILabel, headerImage: UIImageView) {
         headerImage.image = UIImage(systemName: "bolt")
-        headerImage.translatesAutoresizingMaskIntoConstraints = false
-        headerImage.leadingAnchor.constraint(equalTo: topView.leadingAnchor, constant: 30).isActive = true
-        headerImage.centerYAnchor.constraint(equalTo: topView.centerYAnchor).isActive = true
-        
+ 
         headerLabel.numberOfLines = 2
-        headerLabel.text = "Стань PRO гравцем та відкрий всі локації"
+        headerLabel.text = names.becomePro
         headerLabel.textColor = .white
         headerLabel.textAlignment = .natural
         headerLabel.font = .boldSystemFont(ofSize: 20)
+        
+        headerImage.translatesAutoresizingMaskIntoConstraints = false
         headerLabel.translatesAutoresizingMaskIntoConstraints = false
-        headerLabel.leadingAnchor.constraint(equalTo: headerImage.trailingAnchor, constant: topView.frame.width/15).isActive = true
-        headerLabel.trailingAnchor.constraint(equalTo: topView.leadingAnchor, constant: topView.frame.width - 20).isActive = true
-        headerLabel.centerYAnchor.constraint(equalTo: topView.centerYAnchor).isActive = true
+        
+        NSLayoutConstraint.activate([
+        headerImage.leadingAnchor.constraint(equalTo: topView.leadingAnchor, constant: 30),
+        headerImage.centerYAnchor.constraint(equalTo: topView.centerYAnchor),
+        headerLabel.leadingAnchor.constraint(equalTo: headerImage.trailingAnchor, constant: topView.frame.width/15),
+        headerLabel.trailingAnchor.constraint(equalTo: topView.leadingAnchor, constant: topView.frame.width - 20),
+        headerLabel.centerYAnchor.constraint(equalTo: topView.centerYAnchor)
+        ])
     }
     
     @objc func topViewTapper(_ sender: UITapGestureRecognizer) {
         let feedbackGenerator = UIImpactFeedbackGenerator(style: .heavy)
         feedbackGenerator.impactOccurred()
-        let alert = UIAlertController(title: "Нажаль, поки що не доступно.", message: nil, preferredStyle: .alert)
+        let alert = UIAlertController(title: names.unavailable, message: nil, preferredStyle: .alert)
         let action = UIAlertAction(title: "ОК", style: .default, handler: nil)
         alert.addAction(action)
         present(alert, animated: true)
@@ -142,7 +147,7 @@ class GameSettings: UIViewController, UITableViewDelegate, UITableViewDataSource
         bottomView.backgroundColor = UIColor(displayP3Red: 254/255, green: 239/255, blue: 221/255, alpha: 1)
         let bottomButton = UIButton()
         bottomView.addSubview(bottomButton)
-        bottomButton.setTitle("Дальше", for: .normal)
+        bottomButton.setTitle(names.next, for: .normal)
         bottomButton.setTitleColor(.black, for: .normal)
         bottomButton.titleLabel?.font = .systemFont(ofSize: 20)
         bottomButton.backgroundColor = UIColor.init(displayP3Red: 227/255, green: 66/255, blue: 52/255, alpha: 1)
@@ -151,10 +156,13 @@ class GameSettings: UIViewController, UITableViewDelegate, UITableViewDataSource
         
         let margin = CGFloat(50)
         bottomButton.translatesAutoresizingMaskIntoConstraints = false
-        bottomButton.topAnchor.constraint(equalTo: bottomView.topAnchor, constant: 5).isActive = true
-        bottomButton.bottomAnchor.constraint(equalTo: bottomView.bottomAnchor, constant: -30).isActive = true
-        bottomButton.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor, constant: 5).isActive = true
-        bottomButton.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor, constant: -5).isActive = true
+        NSLayoutConstraint.activate([
+        bottomButton.topAnchor.constraint(equalTo: bottomView.topAnchor, constant: 5),
+        bottomButton.bottomAnchor.constraint(equalTo: bottomView.bottomAnchor, constant: -30),
+        bottomButton.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor, constant: 5),
+        bottomButton.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor, constant: -5),
+        ])
+        
         view.addSubview(bottomView)
         
         bottomView.center = CGPoint(x: view.frame.width / 2,
@@ -182,7 +190,7 @@ class GameSettings: UIViewController, UITableViewDelegate, UITableViewDataSource
                 destinationVC.chosenLocations = chosenLocations
                 destinationVC.players = players
             } else {
-                let alert = UIAlertController(title: "Помилка", message: "Вибери хоча б одну локацію", preferredStyle: .alert)
+                let alert = UIAlertController(title: names.error, message: names.chooseOneLocation, preferredStyle: .alert)
                 let action = UIAlertAction(title: "OK", style: .default, handler: nil)
                 alert.addAction(action)
                 present(alert, animated: true, completion: nil)
@@ -201,14 +209,14 @@ class GameSettings: UIViewController, UITableViewDelegate, UITableViewDataSource
         tableView.register(SectionCell.self, forHeaderFooterViewReuseIdentifier: "SectionCell")
         tableView.allowsSelection = false
         tableView.separatorStyle = .none
+        
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: bottomView.topAnchor, constant: 0).isActive = true
-        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        
-        
-        
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+            tableView.bottomAnchor.constraint(equalTo: bottomView.topAnchor, constant: 0),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor)
+        ])      
     }
     
     //CELL SET UP

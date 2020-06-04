@@ -36,11 +36,11 @@ class PlayersScreen: UIViewController {
     @IBOutlet weak var player11Name: UILabel!
     @IBOutlet weak var player12Picture: UIImageView!
     @IBOutlet weak var player12Name: UILabel!
-    @IBOutlet weak var nextButtonPressed: UIButton!
+    @IBOutlet weak var playersBarButton: UIBarButtonItem!
+    
     @IBOutlet weak var labelAndGradient: UIView!
     private let pageLabel: UILabel = {
         let label = UILabel()
-        label.text = "Нажми + щоб добавити нового гравця"
         label.textColor = .white
         label.textAlignment = .center
         label.layer.borderWidth = 0
@@ -64,9 +64,11 @@ class PlayersScreen: UIViewController {
     private let realm = try! Realm()
     private var players: Results<PlayerModel>?
     
+    private let names = StringFiles()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        playersBarButton.title = names.players
         //Adds label and Gradient
         setUpLabelViewAndGradient()
         addButtonSetup()
@@ -121,8 +123,29 @@ class PlayersScreen: UIViewController {
        }
     
     private func setUpLabelViewAndGradient() {
-        view.backgroundColor = UIColor(displayP3Red: 254/255, green: 239/255, blue: 221/255, alpha: 1)
-       
+           view.backgroundColor = UIColor(displayP3Red: 254/255, green: 239/255, blue: 221/255, alpha: 1)
+          
+           //Label and Gradient View
+           setupLabelAndGradientView()
+           
+           //Gradient Settings
+           setupGradient()
+           
+            //Label settings
+           setupPageLabel()
+          
+           setupAddButton()
+       }
+    
+    fileprivate func setupGradient() {
+        //Gradient Settings
+        let pageLabelGradient = CAGradientLayer()
+        pageLabelGradient.frame = labelAndGradient.bounds
+        pageLabelGradient.colors = [UIColor(displayP3Red: 21/255, green: 101/255, blue: 192/255, alpha: 1), UIColor(displayP3Red: 111/255, green: 171/255, blue: 239/255, alpha: 1)].map {$0.cgColor}
+        labelAndGradient.layer.insertSublayer(pageLabelGradient, at: 0)
+    }
+    
+    fileprivate func setupLabelAndGradientView() {
         //NavBar height + statusBar
         let height = getDeviceHeight()
         
@@ -138,29 +161,27 @@ class PlayersScreen: UIViewController {
             labelAndGradient.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
             labelAndGradient.heightAnchor.constraint(equalToConstant: view.frame.height/11)
         ])
-        
-        //Gradient Settings
-        let pageLabelGradient = CAGradientLayer()
-        pageLabelGradient.frame = labelAndGradient.bounds
-        pageLabelGradient.colors = [UIColor(displayP3Red: 21/255, green: 101/255, blue: 192/255, alpha: 1), UIColor(displayP3Red: 111/255, green: 171/255, blue: 239/255, alpha: 1)].map {$0.cgColor}
-        labelAndGradient.layer.insertSublayer(pageLabelGradient, at: 0)
-        
+    }
+    
+    fileprivate func setupPageLabel() {
         //Label settings
         let relativeFontConstant:CGFloat = 0.0215
+        pageLabel.text = names.pressPlus
         pageLabel.bounds = labelAndGradient.bounds
         pageLabel.font = pageLabel.font.withSize(view.bounds.height * relativeFontConstant)
         labelAndGradient.addSubview(pageLabel)
         
         NSLayoutConstraint.activate([
-        pageLabel.topAnchor.constraint(equalTo: labelAndGradient.topAnchor, constant: 0),
-               pageLabel.bottomAnchor.constraint(equalTo: labelAndGradient.bottomAnchor, constant: 0),
-               pageLabel.trailingAnchor.constraint(equalTo: labelAndGradient.trailingAnchor, constant: 0),
-               pageLabel.leadingAnchor.constraint(equalTo: labelAndGradient.leadingAnchor, constant: 0),
-               pageLabel.centerXAnchor.constraint(equalTo: labelAndGradient.centerXAnchor, constant: 0),
-               pageLabel.centerYAnchor.constraint(equalTo: labelAndGradient.centerYAnchor, constant: 0)
+            pageLabel.topAnchor.constraint(equalTo: labelAndGradient.topAnchor, constant: 0),
+            pageLabel.bottomAnchor.constraint(equalTo: labelAndGradient.bottomAnchor, constant: 0),
+            pageLabel.trailingAnchor.constraint(equalTo: labelAndGradient.trailingAnchor, constant: 0),
+            pageLabel.leadingAnchor.constraint(equalTo: labelAndGradient.leadingAnchor, constant: 0),
+            pageLabel.centerXAnchor.constraint(equalTo: labelAndGradient.centerXAnchor, constant: 0),
+            pageLabel.centerYAnchor.constraint(equalTo: labelAndGradient.centerYAnchor, constant: 0)
         ])
-       
-        
+    }
+    
+    fileprivate func setupAddButton() {
         //AddButton setup
         let size = self.view.frame.width / 8
         
@@ -171,12 +192,14 @@ class PlayersScreen: UIViewController {
         addButton.trailingAnchor.constraint(equalTo: labelAndGradient.trailingAnchor, constant: -40).isActive = true
     }
     
+   
+    
     fileprivate func setUpBottomView() {
         let bottomView = UIView(frame: CGRect(x: 0, y: view.frame.height/1.2, width: view.frame.width, height: view.frame.height/9))
         bottomView.backgroundColor = UIColor(displayP3Red: 254/255, green: 239/255, blue: 221/255, alpha: 1)
         let bottomButton = UIButton()
         bottomView.addSubview(bottomButton)
-        bottomButton.setTitle("Дальше", for: .normal)
+        bottomButton.setTitle(names.next, for: .normal)
         bottomButton.setTitleColor(.black, for: .normal)
         bottomButton.titleLabel?.font = .systemFont(ofSize: 20)
         bottomButton.backgroundColor = UIColor.init(displayP3Red: 227/255, green: 66/255, blue: 52/255, alpha: 1)
@@ -247,6 +270,8 @@ class PlayersScreen: UIViewController {
         }
     }
     
+    
+    
     //MARK: - Segues
     
     
@@ -263,7 +288,7 @@ class PlayersScreen: UIViewController {
         navigationController!.setNavigationBarHidden(false, animated: true)
         let myBackButton:UIButton = UIButton(type: UIButton.ButtonType.custom) as UIButton
         myBackButton.addTarget(self, action: #selector(popToRoot), for: UIControl.Event.touchUpInside)
-        myBackButton.setTitle("Назад", for: UIControl.State.normal)
+        myBackButton.setTitle(names.back, for: UIControl.State.normal)
         myBackButton.setTitleColor(UIColor.white, for: UIControl.State.normal)
         myBackButton.sizeToFit()
         let myCustomBackButtonItem:UIBarButtonItem = UIBarButtonItem(customView: myBackButton)
@@ -289,7 +314,7 @@ class PlayersScreen: UIViewController {
         if players?.count != 0 {
             performSegue(withIdentifier: "PlayerScreenToGameSettings", sender: self)
         } else {
-            let alert = UIAlertController(title: "Помилка", message: "Добавте хоча б одного гравця, щоб продовжити!", preferredStyle: .alert)
+            let alert = UIAlertController(title: names.error, message: names.addOnePlayer, preferredStyle: .alert)
             let action = UIAlertAction(title: "OK", style: .default, handler: nil)
             alert.addAction(action)
             present(alert, animated: true, completion: nil)

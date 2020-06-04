@@ -13,14 +13,20 @@ import RealmSwift
 class AddNewPlayer: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var playerTookPic: UIImageView!
     @IBOutlet weak var playerEnteredName: UITextField!
+    @IBOutlet weak var saveBarButton: UIBarButtonItem!
+    
     private var playerPhoto = UIImage()
     private let imagePicker = UIImagePickerController()
     private let realm = try! Realm()
     private var filePath: URL? = nil
     private var playerName: String? = nil
     
+    private let names = StringFiles()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        saveBarButton.title = names.save
+        playerEnteredName.placeholder = names.textPlaceholder
         initialSetup()
         
     }
@@ -90,7 +96,7 @@ class AddNewPlayer: UIViewController, UIImagePickerControllerDelegate, UINavigat
     @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
         playerName = playerEnteredName.text
         if playerName == "" {
-            let alert = UIAlertController(title: "Введи ім'я та зроби фото", message: nil, preferredStyle: .alert)
+            let alert = UIAlertController(title: names.addNewPlayer, message: nil, preferredStyle: .alert)
             let action = UIAlertAction(title: "OK", style: .default, handler: nil)
             alert.addAction(action)
             present(alert, animated: true, completion: nil)
@@ -106,13 +112,13 @@ class AddNewPlayer: UIViewController, UIImagePickerControllerDelegate, UINavigat
                     }
                 } catch {
                     print(error)
-                    let alert = UIAlertController(title: "Помилка", message: error.localizedDescription, preferredStyle: .alert)
+                    let alert = UIAlertController(title: names.error, message: error.localizedDescription, preferredStyle: .alert)
                     let action = UIAlertAction(title: "OK", style: .default, handler: nil)
                     alert.addAction(action)
                     present(alert, animated: true, completion: nil)
                 }
             } else {
-                let alert = UIAlertController(title: "Введи ім'я та зроби фото", message: nil, preferredStyle: .alert)
+                let alert = UIAlertController(title: names.addNewPlayer, message: nil, preferredStyle: .alert)
                 let action = UIAlertAction(title: "OK", style: .default, handler: nil)
                 alert.addAction(action)
                 present(alert, animated: true, completion: nil)

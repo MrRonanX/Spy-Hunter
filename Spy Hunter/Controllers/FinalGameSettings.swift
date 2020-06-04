@@ -13,9 +13,11 @@ class FinalGameSettings: UIViewController {
     
     var chosenLocations = [String]()
     var players: Results<PlayerModel>?
-   private var numberOfSpies: Int = 1
-   private var discusionTime: Int = 5
-   private var bottomView: UIView!
+    private var numberOfSpies: Int = 1
+    private var discusionTime: Int = 5
+    private var bottomView: UIView!
+    
+    private let names = StringFiles()
     
     
     override func viewDidLoad() {
@@ -23,7 +25,7 @@ class FinalGameSettings: UIViewController {
         view.backgroundColor = UIColor(displayP3Red: 254/255, green: 239/255, blue: 221/255, alpha: 1)
         setUoStartButton()
         viewSetup()
-        navigationItem.title = "Налаштування"
+        navigationItem.title = names.settings
         
     }
     
@@ -34,7 +36,7 @@ class FinalGameSettings: UIViewController {
         view.insertSubview(tableView, aboveSubview: bottomView)
         tableView.register(FinalCell.self, forCellReuseIdentifier: "FinalCell")
         
-
+        
         tableView.backgroundColor = UIColor(displayP3Red: 254/255, green: 239/255, blue: 221/255, alpha: 1)
         tableView.allowsSelection = false
         tableView.separatorStyle = .none
@@ -49,7 +51,7 @@ class FinalGameSettings: UIViewController {
         bottomView.backgroundColor = UIColor(displayP3Red: 254/255, green: 239/255, blue: 221/255, alpha: 1)
         let bottomButton = UIButton()
         bottomView.addSubview(bottomButton)
-        bottomButton.setTitle("Почати", for: .normal)
+        bottomButton.setTitle(names.start, for: .normal)
         bottomButton.setTitleColor(.black, for: .normal)
         bottomButton.titleLabel?.font = .systemFont(ofSize: 20)
         bottomButton.backgroundColor = UIColor.init(displayP3Red: 227/255, green: 66/255, blue: 52/255, alpha: 1)
@@ -59,11 +61,12 @@ class FinalGameSettings: UIViewController {
         
         let margin = CGFloat(50)
         bottomButton.translatesAutoresizingMaskIntoConstraints = false
-        bottomButton.topAnchor.constraint(equalTo: bottomView.topAnchor, constant: 5).isActive = true
-        bottomButton.bottomAnchor.constraint(equalTo: bottomView.bottomAnchor, constant: -30).isActive = true
-        bottomButton.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor, constant: 5).isActive = true
-        bottomButton.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor, constant: -5).isActive = true
-        
+        NSLayoutConstraint.activate([
+            bottomButton.topAnchor.constraint(equalTo: bottomView.topAnchor, constant: 5),
+            bottomButton.bottomAnchor.constraint(equalTo: bottomView.bottomAnchor, constant: -30),
+            bottomButton.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor, constant: 5),
+            bottomButton.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor, constant: -5)
+        ])
         
         bottomView.center = CGPoint(x: view.frame.width / 2,
                                     y: view.frame.height - bottomButton.frame.height / 2 - margin)
@@ -71,7 +74,7 @@ class FinalGameSettings: UIViewController {
     
     
     @objc func bottomButtonPressed(_ sender: UIButton) {
-      
+        
         performSegue(withIdentifier: "FinalGameSettingsToRoleReveal", sender: self)
     }
     
@@ -108,7 +111,7 @@ extension FinalGameSettings: UITableViewDelegate, UITableViewDataSource {
         cell.cellTag = indexPath.row
         cell.addButton.tag = indexPath.row
         cell.subtractButton.tag = indexPath.row
-       
+        
         return cell
     }
     
@@ -123,19 +126,23 @@ extension FinalGameSettings: UITableViewDelegate, UITableViewDataSource {
         header.addSubview(label)
         label.backgroundColor = .clear
         label.numberOfLines = 0
-        label.text = "Підказка: кожен четвертий гравець має бути шпіоном"
+        label.text = names.hint
         label.textColor = .white
         label.textAlignment = .center
         label.font = .boldSystemFont(ofSize: 20)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.leadingAnchor.constraint(equalTo: header.leadingAnchor, constant: 20).isActive = true
-        label.trailingAnchor.constraint(equalTo: header.trailingAnchor, constant: -20).isActive = true
-        label.centerYAnchor.constraint(equalTo: header.centerYAnchor).isActive = true
+        
+        NSLayoutConstraint.activate([
+            label.leadingAnchor.constraint(equalTo: header.leadingAnchor, constant: 20),
+            label.trailingAnchor.constraint(equalTo: header.trailingAnchor, constant: -20),
+            label.centerYAnchor.constraint(equalTo: header.centerYAnchor)
+        ])
+        
         //set up gradient
         let headerGradient = CAGradientLayer()
-                      headerGradient.frame = header.bounds
-                      headerGradient.colors = [UIColor(displayP3Red: 21/255, green: 101/255, blue: 192/255, alpha: 1), UIColor(displayP3Red: 111/255, green: 171/255, blue: 239/255, alpha: 1)].map {$0.cgColor}
-               header.layer.insertSublayer(headerGradient, at: 0)
+        headerGradient.frame = header.bounds
+        headerGradient.colors = [UIColor(displayP3Red: 21/255, green: 101/255, blue: 192/255, alpha: 1), UIColor(displayP3Red: 111/255, green: 171/255, blue: 239/255, alpha: 1)].map {$0.cgColor}
+        header.layer.insertSublayer(headerGradient, at: 0)
         return header
     }
     
@@ -156,7 +163,7 @@ extension FinalGameSettings: FinalCellDelegate {
             label.text = String(numberOfSpies)
         default:
             fatalError()
-    }
+        }
     }
     
     func subtactButtonPressed(sender: UIButton, label: UILabel) {
@@ -173,7 +180,7 @@ extension FinalGameSettings: FinalCellDelegate {
             if numberOfSpies < 1 {
                 numberOfSpies = 1
             }
-             label.text = String(numberOfSpies)
+            label.text = String(numberOfSpies)
             print(numberOfSpies)
         default:
             fatalError()
@@ -181,4 +188,4 @@ extension FinalGameSettings: FinalCellDelegate {
     }
 }
 
-   
+

@@ -1,0 +1,21 @@
+
+/* Class = "UIBarButtonItem"; title = "Гравці"; ObjectID = "1Rv-jH-FEu"; */
+"1Rv-jH-FEu.title" = "Гравці";
+
+/* Class = "UIButton"; normalTitle = "ПОЧАТИ ГРУ"; ObjectID = "5Q7-vr-gTs"; */
+"5Q7-vr-gTs.normalTitle" = "ПОЧАТИ ГРУ";
+
+/* Class = "UIBarButtonItem"; title = "Зберегти"; ObjectID = "6ZI-mH-9b3"; */
+"6ZI-mH-9b3.title" = "Зберегти";
+
+/* Class = "UITextField"; placeholder = "Ім'я гравця"; ObjectID = "8aU-b1-UIF"; */
+"8aU-b1-UIF.placeholder" = "Ім'я гравця";
+
+/* Class = "UIButton"; normalTitle = "ПРАВИЛА"; ObjectID = "JqH-AJ-Lot"; */
+"JqH-AJ-Lot.normalTitle" = "ПРАВИЛА";
+
+/* Class = "UIButton"; normalTitle = "ПРО ВЕРСІЯ"; ObjectID = "q3Q-rM-zR9"; */
+"q3Q-rM-zR9.normalTitle" = "ПРО ВЕРСІЯ";
+
+/* Class = "UIButton"; normalTitle = "БІБЛІОТЕКА ГРАВЦІВ"; ObjectID = "umQ-EF-QbP"; */
+"umQ-EF-QbP.normalTitle" = "БІБЛІОТЕКА ГРАВЦІВ";

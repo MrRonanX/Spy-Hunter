@@ -11,6 +11,7 @@ import RealmSwift
 
 class RoleRevealViewController: UIViewController {
     
+    private let names = StringFiles()
     private let realm = try! Realm()
     private let userSeeThisView: UIView = {
         let view = UIView()
@@ -21,7 +22,6 @@ class RoleRevealViewController: UIViewController {
     private let nextButton: UIButton = {
         let button = UIButton(type: .custom)
         button.titleLabel?.numberOfLines = 0
-        button.setTitle("Гаразд", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .medium)
         button.contentHorizontalAlignment = .center
@@ -35,7 +35,7 @@ class RoleRevealViewController: UIViewController {
     private let instructions: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.text = "test"
+        label.text = ""
         label.font = UIFont.systemFont(ofSize: 16)
         label.textAlignment = .left
         label.textColor = UIColor(displayP3Red: 18/255, green: 24/255, blue: 29/255, alpha: 1)
@@ -66,7 +66,7 @@ class RoleRevealViewController: UIViewController {
         label.numberOfLines = 0
         label.font = UIFont.systemFont(ofSize: 42, weight: .medium)
         label.textAlignment = .center
-        label.text = "test"
+        label.text = ""
         label.alpha = 0
         return label
     }()
@@ -90,7 +90,7 @@ class RoleRevealViewController: UIViewController {
     var locations = [String]()
     var locationToPlay = String()
     var players: Results<PlayerModel>?
-    private let hostText = "Всі гравці мають сиділи в в колі, обличчям один до одного. Починає гру ведучий. \n \nВін читатиме інструкції та передасть девайс наступному гравцю. Кожен гравець побачить або локацію, або ж дізнається що він шпіон. Під час кола обговорень не можна називати локацію"
+    lazy private var hostText = names.instructions
     private var buttonSwitcher = true
     private var playerNumber = 0
     
@@ -119,6 +119,7 @@ class RoleRevealViewController: UIViewController {
     private func activateConstraints() {
         view.addSubview(userSeeThisView)
         view.backgroundColor = UIColor(displayP3Red: 254/255, green: 239/255, blue: 221/255, alpha: 1)
+        nextButton.setTitle(names.understand, for: .normal)
         userSeeThisView.addSubview(nextButton)
         userSeeThisView.addSubview(instructions)
         userSeeThisView.addSubview(pictureToShow)
@@ -185,7 +186,7 @@ class RoleRevealViewController: UIViewController {
                 
                 // set picture and name
                 pictureToShow.image = newImage
-                playerNameLabel.text = "\(hostName) ведучий!"
+                playerNameLabel.text = "\(hostName) \(names.host)"
                 instructions.text = hostText
                 
                 playerGetsTheRole()
@@ -262,7 +263,7 @@ class RoleRevealViewController: UIViewController {
         nextButton.alpha = 1
         
         //set switcher to true, so the button can perform another action
-        nextButton.setTitle("Дізнатись локацію", for: .normal)
+        nextButton.setTitle(names.showLocation, for: .normal)
         nextButton.titleLabel?.textAlignment = .center
         
         buttonSwitcher = false
@@ -282,7 +283,7 @@ class RoleRevealViewController: UIViewController {
             }
         }
         
-        instructions.text = "Передайте девайс цьому гравцю. Нажми на фото, що дізнатись свою роль"
+        instructions.text = names.passPhone
     }
     
     private func addAnimation() {
@@ -302,8 +303,8 @@ class RoleRevealViewController: UIViewController {
         
         timer = Timer.scheduledTimer(timeInterval: 0.01, target:self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
         
-        playerNameLabel.text = "Твоя роль - Шпіон"
-        instructions.text = "Постарайся не видати, що ти шпіон, та дізнатись локацію, щоб виграти"
+        playerNameLabel.text = names.youSpy
+        instructions.text = names.spyHint
         instructions.textAlignment = .center
         
         //switch the switcher, so the correct button is displayed. If true - Player picture is displayed. False - his role
@@ -330,8 +331,8 @@ class RoleRevealViewController: UIViewController {
         
         timer = Timer.scheduledTimer(timeInterval: 0.01, target:self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
         
-        playerNameLabel.text = "Локація - \(locationToPlay)"
-        instructions.text = "Задавай питання про це місце та давай відповіді так, щоб не видати локацію!"
+        playerNameLabel.text = "\(names.locationIs) \(locationToPlay)"
+        instructions.text = names.notSpyHint
         instructions.textAlignment = .center
         
         //switch the switcher, so the correct button is displayed. If true - Player picture is displayed. False - his role
@@ -419,7 +420,7 @@ class RoleRevealViewController: UIViewController {
         if time == 0 {
             timer.invalidate()
             timeLabel.removeFromSuperview()
-            let alert = UIAlertController(title: "Час вийшов", message: "Пора вирішувати хто шпіон", preferredStyle: .alert)
+            let alert = UIAlertController(title: names.outOfTime, message: names.decideWhoSpy, preferredStyle: .alert)
             let action = UIAlertAction(title: "OK", style: .default) { (alert: UIAlertAction!) in
                 self.presentWhoIsTheSpyButton()
             }
@@ -499,7 +500,7 @@ class RoleRevealViewController: UIViewController {
         showSpiesButton.center = view.center
         showSpiesButton.titleLabel?.font =  showSpiesButton.titleLabel?.font.withSize(view.bounds.height * relativeFontConstant)
         showSpiesButton.titleLabel?.textAlignment = .center
-        showSpiesButton.setTitle("Дізнатись хто шпіон", for: .normal)
+        showSpiesButton.setTitle(names.showSpy, for: .normal)
         view.addSubview(showSpiesButton)
     }
     

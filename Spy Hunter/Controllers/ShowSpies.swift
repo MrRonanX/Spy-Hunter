@@ -11,11 +11,12 @@ import RealmSwift
 
 class ShowSpies: UIViewController {
     
+    private let names = StringFiles()
     private let tableView = UITableView()
     private var bottomView = UIView()
     private let bottomButton: UIButton = {
         let button = UIButton(type: .custom)
-        button.setTitle("Зіграти ще раз", for: .normal)
+        
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 20)
         button.backgroundColor = UIColor.init(displayP3Red: 227/255, green: 66/255, blue: 52/255, alpha: 1)
@@ -64,6 +65,7 @@ class ShowSpies: UIViewController {
             view.addSubview(bottomView)
             bottomView.addSubview(bottomButton)
             
+        bottomButton.setTitle(names.playAgain, for: .normal)
             let margin = CGFloat(50)
         
         NSLayoutConstraint.activate([
@@ -131,9 +133,9 @@ extension ShowSpies: UITableViewDelegate, UITableViewDataSource {
             headerLabel.trailingAnchor.constraint(equalTo: headerView.trailingAnchor)
         ])
         if players!.count > 1 {
-            headerLabel.text = "Шпіони:"
+            headerLabel.text = names.spiesAre
         } else {
-            headerLabel.text = "Шпіон:"
+            headerLabel.text = names.spyIs
         }
         return headerView
     }

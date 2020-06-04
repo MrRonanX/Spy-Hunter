@@ -17,6 +17,8 @@ class PlayerLibrary: UIViewController {
     private var players: Results<PlayerModel>?
     private let realm = try! Realm()
     var oldPlayers = Int()
+    
+    private let names = StringFiles()
     override func viewDidLoad() {
         super.viewDidLoad()
         initialSetup()
@@ -28,6 +30,7 @@ class PlayerLibrary: UIViewController {
         customizedButton()
     }
     private func initialSetup() {
+        //Table View setup
         viewBackground.backgroundColor = UIColor(displayP3Red: 254/255, green: 239/255, blue: 221/255, alpha: 1)
         playersView.backgroundColor = UIColor(displayP3Red: 254/255, green: 239/255, blue: 221/255, alpha: 1)
         playersView.rowHeight = 72
@@ -42,6 +45,7 @@ class PlayerLibrary: UIViewController {
             playersView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             playersView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+        
         setupHeaderView()
     }
     
@@ -49,7 +53,7 @@ class PlayerLibrary: UIViewController {
         navigationController!.setNavigationBarHidden(false, animated: true)
         let myBackButton:UIButton = UIButton(type: UIButton.ButtonType.custom) as UIButton
         myBackButton.addTarget(self, action: #selector(goBack), for: UIControl.Event.touchUpInside)
-        myBackButton.setTitle("Назад", for: UIControl.State.normal)
+        myBackButton.setTitle(names.back, for: UIControl.State.normal)
         myBackButton.setTitleColor(UIColor.white, for: UIControl.State.normal)
         myBackButton.sizeToFit()
         let myCustomBackButtonItem:UIBarButtonItem = UIBarButtonItem(customView: myBackButton)
@@ -118,7 +122,7 @@ extension PlayerLibrary: UITableViewDelegate, UITableViewDataSource {
                 }
             } catch {
                 print(error)
-                let alert = UIAlertController(title: "Помилка", message: error.localizedDescription, preferredStyle: .alert)
+                let alert = UIAlertController(title: names.error, message: error.localizedDescription, preferredStyle: .alert)
                 let action = UIAlertAction(title: "OK", style: .default, handler: nil)
                 alert.addAction(action)
                 tableView.deselectRow(at: indexPath, animated: false)
@@ -129,32 +133,30 @@ extension PlayerLibrary: UITableViewDelegate, UITableViewDataSource {
     
     private func setupHeaderView() {
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height/11))
-              let headerLabel = UILabel()
-              headerView.addSubview(headerLabel)
-              
-              headerLabel.textColor = .white
-              headerLabel.backgroundColor = .clear
-              headerLabel.text = "Щоб видалити гравця свайпни його вліво"
-              headerLabel.font = .systemFont(ofSize: 18)
-              headerLabel.textAlignment = .center
-              headerLabel.numberOfLines = 0
-              let height = (headerView.frame.height / 2) - 10
-              
-              headerLabel.translatesAutoresizingMaskIntoConstraints = false
-             
-              
-              NSLayoutConstraint.activate([
-                  headerLabel.topAnchor.constraint(equalTo: headerView.topAnchor, constant: height),
-                  headerLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor),
-                  headerLabel.trailingAnchor.constraint(equalTo: headerView.trailingAnchor)
-                 
-                  
-              ])
-              
-              let labelGradient = CAGradientLayer()
-                    labelGradient.frame = headerView.bounds
-                    labelGradient.colors = [UIColor(displayP3Red: 21/255, green: 101/255, blue: 192/255, alpha: 1), UIColor(displayP3Red: 111/255, green: 171/255, blue: 239/255, alpha: 1)].map {$0.cgColor}
-                    headerView.layer.insertSublayer(labelGradient, at: 0)
+        let headerLabel = UILabel()
+        headerView.addSubview(headerLabel)
+        
+        headerLabel.textColor = .white
+        headerLabel.backgroundColor = .clear
+        headerLabel.text = names.deletePlayer
+        headerLabel.font = .systemFont(ofSize: 18)
+        headerLabel.textAlignment = .center
+        headerLabel.numberOfLines = 0
+        let height = (headerView.frame.height / 2) - 10
+        
+        headerLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            headerLabel.topAnchor.constraint(equalTo: headerView.topAnchor, constant: height),
+            headerLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor),
+            headerLabel.trailingAnchor.constraint(equalTo: headerView.trailingAnchor)
+        ])
+        
+        let labelGradient = CAGradientLayer()
+        labelGradient.frame = headerView.bounds
+        labelGradient.colors = [UIColor(displayP3Red: 21/255, green: 101/255, blue: 192/255, alpha: 1), UIColor(displayP3Red: 111/255, green: 171/255, blue: 239/255, alpha: 1)].map {$0.cgColor}
+        headerView.layer.insertSublayer(labelGradient, at: 0)
+        
         playersView.tableHeaderView = headerView
     }
     
@@ -170,19 +172,19 @@ extension PlayerLibrary: UITableViewDelegate, UITableViewDataSource {
 
 extension PlayerLibrary: SwipeTableViewCellDelegate {
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
-         guard orientation == .right else { return nil }
-               
-               let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
-                   // handle action by updating model with deletion
-                   
-                self.deleteCell(at: indexPath)
-                   
-               }
-               
-               // customize the action appearance
-               deleteAction.image = UIImage(named: "delete-Icon")
-               
-               return [deleteAction]
+        guard orientation == .right else { return nil }
+        
+        let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
+            // handle action by updating model with deletion
+            
+            self.deleteCell(at: indexPath)
+            
+        }
+        
+        // customize the action appearance
+        deleteAction.image = UIImage(named: "delete-Icon")
+        
+        return [deleteAction]
     }
     
     func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeOptions {
@@ -204,6 +206,6 @@ extension PlayerLibrary: SwipeTableViewCellDelegate {
             }
         }
     }
-
+    
     
 }
