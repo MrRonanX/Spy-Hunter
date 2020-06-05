@@ -10,6 +10,7 @@ import UIKit
 import CoreGraphics
 import RealmSwift
 
+
 class PlayersScreen: UIViewController {
     @IBOutlet var viewBackground: UIView!
     @IBOutlet weak var player1Picture: UIImageView!

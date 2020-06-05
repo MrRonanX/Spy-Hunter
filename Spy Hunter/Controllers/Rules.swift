@@ -78,11 +78,25 @@ class Rules: UIViewController {
         return button
     }()
     
+    private var scrollView: UIScrollView = {
+        let view = UIScrollView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private var contentView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         view.backgroundColor = UIColor(displayP3Red: 254/255, green: 239/255, blue: 221/255, alpha: 1)
         setupRulesAndGradientView()
         rulesLabelSettings()
+        setupScrollView()
         setupGeneralLabel()
         setupDiscussionLabelTitle()
         setupDiscussionLabel()
@@ -159,20 +173,44 @@ class Rules: UIViewController {
         ])
     }
     
+    private func setupScrollView() {
+        view.addSubview(scrollView)
+        scrollView.alwaysBounceVertical = true
+        
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: rulesAndGradientView.bottomAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            
+            
+        ])
+        
+        scrollView.addSubview(contentView)
+        
+        NSLayoutConstraint.activate([
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            contentView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor)
+        ])
+    }
+    
     private func setupGeneralLabel() {
         let relativeFontConstant:CGFloat = 0.019  // dynamic font
         generalLabel.text = names.generalLabelText
         generalLabel.font = generalLabel.font.withSize(view.bounds.height * relativeFontConstant)
-        view.addSubview(generalLabel)
+        contentView.addSubview(generalLabel)
         
         let height = calculateLabelHeight(text: generalLabel.text!, font: generalLabel.font)
         
         NSLayoutConstraint.activate([
-            generalLabel.topAnchor.constraint(equalTo: rulesAndGradientView.bottomAnchor, constant: 10),
-            generalLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            generalLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            generalLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            generalLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            generalLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             generalLabel.bottomAnchor.constraint(equalTo: generalLabel.topAnchor, constant: height),
-            generalLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            generalLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
         ])
         
     }
@@ -181,16 +219,16 @@ class Rules: UIViewController {
         let relativeFontConstant:CGFloat = 0.021  // dynamic font
         discussionLabelTitle.text = names.discussionTitle
         discussionLabelTitle.font = discussionLabelTitle.font.withSize(view.bounds.height * relativeFontConstant)
-        view.addSubview(discussionLabelTitle)
+        contentView.addSubview(discussionLabelTitle)
         
         let height = calculateLabelHeight(text: discussionLabelTitle.text!, font: discussionLabelTitle.font)
         
         NSLayoutConstraint.activate([
             discussionLabelTitle.topAnchor.constraint(equalTo: generalLabel.bottomAnchor, constant: 10),
-            discussionLabelTitle.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            discussionLabelTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            discussionLabelTitle.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            discussionLabelTitle.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             discussionLabelTitle.bottomAnchor.constraint(equalTo: discussionLabelTitle.topAnchor, constant: height),
-            discussionLabelTitle.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            discussionLabelTitle.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
         ])
     }
     
@@ -198,16 +236,16 @@ class Rules: UIViewController {
         let relativeFontConstant:CGFloat = 0.019  // dynamic font
         discussionLabel.text = names.discussion
         discussionLabel.font = discussionLabel.font.withSize(view.bounds.height * relativeFontConstant)
-        view.addSubview(discussionLabel)
+        contentView.addSubview(discussionLabel)
         
         let height = calculateLabelHeight(text: discussionLabel.text!, font: discussionLabel.font)
         
         NSLayoutConstraint.activate([
             discussionLabel.topAnchor.constraint(equalTo: discussionLabelTitle.bottomAnchor, constant: 10),
-            discussionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            discussionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            discussionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            discussionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             discussionLabel.bottomAnchor.constraint(equalTo: discussionLabel.topAnchor, constant: height),
-            discussionLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            discussionLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
         ])
     }
     
@@ -215,16 +253,16 @@ class Rules: UIViewController {
         let relativeFontConstant:CGFloat = 0.021  // dynamic font
         voteLabel.text = names.votingTitle
         voteLabel.font = voteLabel.font.withSize(view.bounds.height * relativeFontConstant)
-        view.addSubview(voteLabel)
+        contentView.addSubview(voteLabel)
         
         let height = calculateLabelHeight(text: voteLabel.text!, font: voteLabel.font)
         
         NSLayoutConstraint.activate([
             voteLabel.topAnchor.constraint(equalTo: discussionLabel.bottomAnchor, constant: 10),
-            voteLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            voteLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            voteLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            voteLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             voteLabel.bottomAnchor.constraint(equalTo: voteLabel.topAnchor, constant: height),
-            voteLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            voteLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
         ])
     }
     
@@ -232,16 +270,16 @@ class Rules: UIViewController {
         let relativeFontConstant:CGFloat = 0.019  // dynamic font
         vote.text = names.votingText
         vote.font = vote.font.withSize(view.bounds.height * relativeFontConstant)
-        view.addSubview(vote)
+        contentView.addSubview(vote)
         
         let height = calculateLabelHeight(text: vote.text!, font: vote.font)
         
         NSLayoutConstraint.activate([
             vote.topAnchor.constraint(equalTo: voteLabel.bottomAnchor, constant: 10),
-            vote.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            vote.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            vote.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            vote.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             vote.bottomAnchor.constraint(equalTo: vote.topAnchor, constant: height),
-            vote.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            vote.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
         ])
     }
     
@@ -250,7 +288,7 @@ class Rules: UIViewController {
         playButton.setTitle(names.start.uppercased(), for: .normal)
         playButton.titleLabel!.font =  playButton.titleLabel!.font.withSize(view.bounds.height * relativeFontConstant)
         playButton.contentEdgeInsets = UIEdgeInsets(top: 10, left: 30, bottom: 10, right: 30)
-        view.addSubview(playButton)
+        contentView.addSubview(playButton)
         
         //set shadow
         playButton.layer.shadowColor = UIColor.black.cgColor
@@ -263,7 +301,8 @@ class Rules: UIViewController {
         
         NSLayoutConstraint.activate([
             playButton.topAnchor.constraint(equalTo: vote.bottomAnchor, constant: 20),
-            playButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            playButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20),
+            playButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
         ])
         
     }

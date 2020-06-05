@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import Localize_Swift
 
 class LaunchScreen: UIViewController {
     @IBOutlet var buttons: [UIButton]!
     @IBOutlet weak var spyPic: UIImageView!
     
+    private let availableLanguages = Localize.availableLanguages()
     private let names = StringFiles()
     private var timer = Timer()
     

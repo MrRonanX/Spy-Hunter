@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 struct StringFiles {
     let addNewPlayer = NSLocalizedString("Enter title", comment: "Enter title and take photo")
     let error = NSLocalizedString("Error", comment: "Error occurred")
@@ -94,7 +95,7 @@ struct StringFiles {
     let festival = NSLocalizedString("Festival", comment: "Festival")
     let instructions = NSLocalizedString("All players should be in a circle facing each other. The game starts by the host. \n \n The host reads instructions and passes the device to the next player. Each player will either see the location or receive a SPY role. It's forbidden to name the location during the game", comment: "self")
     let rules = NSLocalizedString("Rules", comment: "Game Rules")
-    let generalLabelText = NSLocalizedString("The minimum amount of players is 3. Each player will either know the location or be a spy. The players' task is find a spy by asking and answering questions. A spy must not disclose himself. After the discussion all players will vote, who they think, is a spy. If the spy guesses the location - he wins", comment: "self")
+    let generalLabelText = NSLocalizedString("In this game each player will play one of two possible roles i.e. SPY or civilian. The goal of the game depends on your role. The SPY will attempt to gather information to identify a location, and the civilians will be given a location and will try to find the SPY in the group. The minimum amount of players is 3. Each player either knows the location or is a spy. You need a minimum of three players to start the game and it ends when the discussions are over and the players try to guess who the SPY is by voting. If the SPY is identified, they win, however - if they are wrong, they lose. At any stage of the game the SPY can guess the secret location in an attempt to win the game, however the SPY is wrong, the civilians win.", comment: "self")
     let discussion = NSLocalizedString("The discussion starts with a host. He'll ask a question about the location to the next player clockwise or counterclockwise. The player which have answered the question continues to ask in the given direction. After all players've answered the question and it's host's turn to ask again he is free to ask whatever player he wants. The player answers the question and as well can ask whatever player he wants. The player cannot be asked twice in a row", comment: "self")
     let discussionTitle = NSLocalizedString("Discussion:", comment: "Discussion")
     let votingTitle = NSLocalizedString("Voting:", comment: "Voting")

@@ -50,13 +50,13 @@ class PlayerLibrary: UIViewController {
     }
     
     private func customizedButton() {
-        navigationController!.setNavigationBarHidden(false, animated: true)
+        
         let myBackButton:UIButton = UIButton(type: UIButton.ButtonType.custom) as UIButton
         myBackButton.addTarget(self, action: #selector(goBack), for: UIControl.Event.touchUpInside)
         myBackButton.setTitle(names.back, for: UIControl.State.normal)
         myBackButton.setTitleColor(UIColor.white, for: UIControl.State.normal)
         myBackButton.sizeToFit()
-        let myCustomBackButtonItem:UIBarButtonItem = UIBarButtonItem(customView: myBackButton)
+        let myCustomBackButtonItem: UIBarButtonItem = UIBarButtonItem(customView: myBackButton)
         self.navigationItem.leftBarButtonItem  = myCustomBackButtonItem
     }
     
