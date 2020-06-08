@@ -22,7 +22,7 @@ class Rules: UIViewController {
     private let generalLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.textAlignment = .left
+        label.textAlignment = .natural
         label.textColor = UIColor(displayP3Red: 2/255, green: 31/255, blue: 59/255, alpha: 1)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -31,7 +31,7 @@ class Rules: UIViewController {
     private let discussionLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.textAlignment = .left
+        label.textAlignment = .natural
         label.textColor = UIColor(displayP3Red: 2/255, green: 31/255, blue: 59/255, alpha: 1)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label

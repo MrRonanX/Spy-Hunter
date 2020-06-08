@@ -1,5 +1,5 @@
 PODS:
-  - Localize-Swift (3.1.0)
+  - LanguageManager-iOS (1.2.0)
   - Realm (5.0.0):
     - Realm/Headers (= 5.0.0)
   - Realm/Headers (5.0.0)
@@ -8,23 +8,23 @@ PODS:
   - SwipeCellKit (2.7.1)
 
 DEPENDENCIES:
-  - Localize-Swift
+  - LanguageManager-iOS
   - RealmSwift
   - SwipeCellKit
 
 SPEC REPOS:
   trunk:
-    - Localize-Swift
+    - LanguageManager-iOS
     - Realm
     - RealmSwift
     - SwipeCellKit
 
 SPEC CHECKSUMS:
-  Localize-Swift: 4bed4f0ccac8be2ec3517ee359da80ba2adb0fae
+  LanguageManager-iOS: 516c4f088435c83cbdbddfc5179f88e4e0d39eb4
   Realm: 76066d333de26f97e9caedaa85ee3ff4a62ca265
   RealmSwift: c1bdff09b422569dc6881410d9ccf712bcdb79b0
   SwipeCellKit: 3972254a826da74609926daf59b08d6c72e619ea
 
-PODFILE CHECKSUM: 7df0d5e76e69e70b76c692dd4c3cb763b10e1078
+PODFILE CHECKSUM: cd4f8c17b816bc696d18675e1c3aeb9ad376f47a
 
 COCOAPODS: 1.8.4

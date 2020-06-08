@@ -7,13 +7,13 @@
 //
 
 import UIKit
-import Localize_Swift
+
+
 
 class LaunchScreen: UIViewController {
     @IBOutlet var buttons: [UIButton]!
     @IBOutlet weak var spyPic: UIImageView!
     
-    private let availableLanguages = Localize.availableLanguages()
     private let names = StringFiles()
     private var timer = Timer()
     
@@ -29,30 +29,82 @@ class LaunchScreen: UIViewController {
     }()
     
     override func viewWillAppear(_ animated: Bool) {
-           super.viewWillAppear(animated)
-            setupNavBar()
-       }
-       override func viewWillDisappear(_ animated: Bool) {
-           super.viewWillDisappear(animated)
-           navigationController?.isNavigationBarHidden = false
-       }
-
-  
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.view.backgroundColor = .clear
+        super.viewWillAppear(animated)
+        setupNavBar()
         setupGradient()
         setupSettingButton()
         setButtonsStyle()
         setSpyAnimation()
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.isNavigationBarHidden = false
+        
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.view.backgroundColor = .clear
+        
         // Do any additional setup after loading the view.
     }
     
     @objc private func settingsButtonPressed(_ sender: UIButton) {
-        let url = URL(string: UIApplication.openSettingsURLString)!
-        UIApplication.shared.open(url)
-        print("pressed")
+        //        let url = URL(string: UIApplication.openSettingsURLString)!
+        //        UIApplication.shared.open(url)
+        //        print("pressed")
+        
+        let languages = Languages.languages
+       
+        let alert = UIAlertController(title: nil, message: "Switch Language", preferredStyle: .actionSheet)
+        for language in languages {
+            let languageAction = UIAlertAction(title: language.language, style: .default, handler: {
+                (alert: UIAlertAction!) -> Void in
+                print("\(language) is set")
+                self.setLanguage(didSelectLanguage: language)
+            })
+            alert.addAction(languageAction)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: {
+            (alert: UIAlertAction) -> Void in
+        })
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    private func setLanguage(didSelectLanguage language: Language) {
+
+    //  Set selected language to application language
+            RKLocalization.sharedInstance.setLanguage(language: language.languageCode)
+            
+    //  Reload application bundle as new selected language
+        changeLanguageAnimation()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.35, execute: {
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                appDelegate.initRootView()
+            })
+        }
+
+    
+    private func changeLanguageAnimation() {
+        //initilize current window and take it's Snapshot
+        let window = UIApplication.shared.windows.first
+        guard let snapshot = window?.snapshotView(afterScreenUpdates: false) else {
+          return
+        }
+        
+        view.addSubview(snapshot);
+        
+        //animation
+        UIView.animate(withDuration: 0.5, animations: {
+          snapshot.transform = CGAffineTransform(scaleX: 2, y: 2)
+          snapshot.alpha = 0
+        }) { _ in
+          snapshot.removeFromSuperview()
+            
+        }
+      
+       
     }
     
     private func setupSettingButton() {
@@ -92,9 +144,9 @@ class LaunchScreen: UIViewController {
         performSegue(withIdentifier: "goToPlayerScreen", sender: self)
     }
     
-   private func setupNavBar() {
+    private func setupNavBar() {
         navigationController?.navigationBar.setGradientBackground(colors: [UIColor(displayP3Red: 185/255, green: 43/255, blue: 39/255, alpha: 1), UIColor(displayP3Red: 21/255, green: 101/255, blue: 192/255, alpha: 1)], startPoint: .topLeft, endPoint: .bottomLeft)
-         navigationController?.navigationBar.shadowImage = UIColor(displayP3Red: 21/255, green: 101/255, blue: 192/255, alpha: 1).as1ptImage()
+        navigationController?.navigationBar.shadowImage = UIColor(displayP3Red: 21/255, green: 101/255, blue: 192/255, alpha: 1).as1ptImage()
         navigationController?.isNavigationBarHidden = true
     }
     
@@ -105,3 +157,6 @@ class LaunchScreen: UIViewController {
         self.view.layer.insertSublayer(gradientLayer, at: 0)
     }
 }
+
+
+
