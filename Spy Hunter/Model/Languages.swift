@@ -16,7 +16,8 @@ class Languages: NSObject {
         var languages: [Language] = []
         languages.append(Language(languageCode: "en", language: "English"))
         languages.append(Language(languageCode: "uk", language: "Українська"))
-  
+        languages.append(Language(languageCode: "ru", language: "Русский"))
+        languages.append(Language(languageCode: "vi", language: "Tiếng Việt"))
         return languages
     }()
 

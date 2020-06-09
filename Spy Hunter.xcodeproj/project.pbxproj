@@ -86,6 +86,12 @@
 		F9D5FA85248E064700E60A42 /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 		F9D5FA87248E068A00E60A42 /* Languages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Languages.swift; sourceTree = "<group>"; };
 		F9D5FA89248E06E700E60A42 /* RKLocalization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RKLocalization.swift; sourceTree = "<group>"; };
+		F9D5FA8B248E58E000E60A42 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
+		F9D5FA8C248E58E000E60A42 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		F9D5FA8D248E58E000E60A42 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		F9D5FA8E248E58EB00E60A42 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Main.strings; sourceTree = "<group>"; };
+		F9D5FA8F248E58EB00E60A42 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		F9D5FA90248E58EC00E60A42 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F9D80C662486463000C967E5 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Main.strings; sourceTree = "<group>"; };
 		F9D80C672486463100C967E5 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		F9D80C6B2486470600C967E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -254,6 +260,8 @@
 				en,
 				Base,
 				uk,
+				ru,
+				vi,
 			);
 			mainGroup = F90E2F3F245440C40095961C;
 			productRefGroup = F90E2F49245440C50095961C /* Products */;
@@ -368,6 +376,8 @@
 			children = (
 				F90E2F52245440C50095961C /* Base */,
 				F9D80C662486463000C967E5 /* uk */,
+				F9D5FA8B248E58E000E60A42 /* ru */,
+				F9D5FA8E248E58EB00E60A42 /* vi */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -377,6 +387,8 @@
 			children = (
 				F90E2F57245440C70095961C /* Base */,
 				F9D80C672486463100C967E5 /* uk */,
+				F9D5FA8C248E58E000E60A42 /* ru */,
+				F9D5FA8F248E58EB00E60A42 /* vi */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -386,6 +398,8 @@
 			children = (
 				F9D80C6B2486470600C967E5 /* en */,
 				F9D80C6D2486473900C967E5 /* uk */,
+				F9D5FA8D248E58E000E60A42 /* ru */,
+				F9D5FA90248E58EC00E60A42 /* vi */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
