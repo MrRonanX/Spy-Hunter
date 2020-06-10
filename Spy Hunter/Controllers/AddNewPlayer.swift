@@ -11,8 +11,16 @@ import Vision
 import RealmSwift
 
 class AddNewPlayer: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    @IBOutlet weak var playerTookPic: UIImageView!
-    @IBOutlet weak var playerEnteredName: UITextField!
+    private var playerTookPic: UIImageView = {
+        let view = UIImageView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    private var playerEnteredName: UITextField = {
+        let textField = UITextField()
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        return textField
+    }()
     @IBOutlet weak var saveBarButton: UIBarButtonItem!
     
     private var playerPhoto = UIImage()
@@ -26,9 +34,38 @@ class AddNewPlayer: UIViewController, UIImagePickerControllerDelegate, UINavigat
     override func viewDidLoad() {
         super.viewDidLoad()
         saveBarButton.title = names.save
-        playerEnteredName.placeholder = names.textPlaceholder
+        
+        viewSetup()
         initialSetup()
         
+        
+    }
+    private func viewSetup() {
+        let picSize = view.bounds.size.height * 0.2
+        let textHeight = view.bounds.size.height * 0.04
+        let textWidth = view.bounds.size.width * 0.3
+        
+        view.addSubview(playerTookPic)
+        view.addSubview(playerEnteredName)
+        playerEnteredName.autocorrectionType = .no
+        playerEnteredName.keyboardType = .default
+        playerEnteredName.returnKeyType = .continue
+        playerEnteredName.borderStyle = .roundedRect
+        playerEnteredName.placeholder = names.textPlaceholder
+        
+        NSLayoutConstraint.activate([
+            playerTookPic.heightAnchor.constraint(equalToConstant: picSize),
+            playerTookPic.widthAnchor.constraint(equalToConstant: picSize),
+            playerTookPic.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
+            playerTookPic.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            playerEnteredName.heightAnchor.constraint(equalToConstant: textHeight),
+            playerEnteredName.widthAnchor.constraint(equalToConstant: textWidth),
+            playerEnteredName.topAnchor.constraint(equalTo: playerTookPic.bottomAnchor, constant: 15),
+            playerEnteredName.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            
+            
+        ])
     }
     
     private func initialSetup() {
@@ -41,8 +78,6 @@ class AddNewPlayer: UIViewController, UIImagePickerControllerDelegate, UINavigat
         imagePicker.cameraFlashMode = UIImagePickerController.CameraFlashMode.off
         playerTookPic.backgroundColor = UIColor(displayP3Red: 254/255, green: 239/255, blue: 221/255, alpha: 1)
         playerTookPic.isUserInteractionEnabled = true
-        print(playerTookPic.frame)
-       
         playerTookPic.image = UIImage(named: "cameraIcon.png")!.circleMask()
         playerTookPic.addGestureRecognizer(tapGestureRecognizer)
     }
@@ -50,6 +85,8 @@ class AddNewPlayer: UIViewController, UIImagePickerControllerDelegate, UINavigat
     
     
     //MARK: - Image Picker Controller
+    
+    
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let userTookPicture = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {

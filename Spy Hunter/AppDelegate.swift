@@ -8,7 +8,7 @@
 
 import UIKit
 import RealmSwift
-import LanguageManager_iOS
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

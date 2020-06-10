@@ -21,10 +21,11 @@ class LaunchScreen: UIViewController {
     
     private let settingButton: UIButton = {
         let button = UIButton(type: .custom)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
         button.setImage(UIImage(systemName: "gear"), for: .normal)
         button.tintColor = UIColor.white
         button.addTarget(self, action: #selector(settingsButtonPressed(_:)), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
@@ -55,7 +56,7 @@ class LaunchScreen: UIViewController {
         //        print("pressed")
         
         let languages = Languages.languages
-       
+      
         let alert = UIAlertController(title: nil, message: "Switch Language", preferredStyle: .actionSheet)
         for language in languages {
             let languageAction = UIAlertAction(title: language.language, style: .default, handler: {
@@ -69,7 +70,17 @@ class LaunchScreen: UIViewController {
             (alert: UIAlertAction) -> Void in
         })
         alert.addAction(cancelAction)
+        
+        //lets open popover in iPad
+        if let popoverPresentationController = alert.popoverPresentationController {
+                  popoverPresentationController.sourceView = self.view
+            popoverPresentationController.sourceRect = CGRect(x: self.view.bounds.size.width * 0.925, y: self.view.bounds.size.height * 0.075, width: 1.0, height: 1.0)
+            
+           
+              }
+     
         self.present(alert, animated: true, completion: nil)
+        
     }
     
     private func setLanguage(didSelectLanguage language: Language) {
@@ -108,7 +119,7 @@ class LaunchScreen: UIViewController {
     }
     
     private func setupSettingButton() {
-        settingButton.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        settingButton.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
         view.addSubview(settingButton)
         settingButton.topAnchor.constraint(equalTo: view.topAnchor, constant: view.bounds.height/14).isActive = true
         settingButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -view.bounds.width/16).isActive = true

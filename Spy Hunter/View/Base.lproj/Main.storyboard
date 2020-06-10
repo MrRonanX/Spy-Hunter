@@ -12,17 +12,17 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="LaunchScreen" customModule="Detect_a_Spy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="wJF-7Q-Z9F">
-                                <rect key="frame" x="20" y="148" width="374" height="714"/>
+                                <rect key="frame" x="20" y="60" width="374" height="748"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="XyW-tD-PBz">
-                                        <rect key="frame" x="87" y="0.0" width="200" height="307"/>
+                                        <rect key="frame" x="87" y="0.0" width="200" height="324"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Q7-vr-gTs">
-                                                <rect key="frame" x="38" y="0.0" width="124" height="54.5"/>
+                                                <rect key="frame" x="38" y="0.0" width="124" height="58.5"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                                 <state key="normal" title="ПОЧАТИ ГРУ">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -32,7 +32,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JqH-AJ-Lot">
-                                                <rect key="frame" x="53" y="84.5" width="94" height="54"/>
+                                                <rect key="frame" x="53" y="88.5" width="94" height="58.5"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
                                                 <state key="normal" title="ПРАВИЛА">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -42,7 +42,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="umQ-EF-QbP">
-                                                <rect key="frame" x="0.0" y="168.5" width="200" height="54.5"/>
+                                                <rect key="frame" x="0.0" y="177" width="200" height="58.5"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
                                                 <state key="normal" title="БІБЛІОТЕКА ГРАВЦІВ">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -52,7 +52,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q3Q-rM-zR9">
-                                                <rect key="frame" x="42" y="253" width="116" height="54"/>
+                                                <rect key="frame" x="42" y="265.5" width="116" height="58.5"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
                                                 <state key="normal" title="ПРО ВЕРСІЯ">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -61,7 +61,7 @@
                                         </subviews>
                                     </stackView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SpyForMainScreen copy" translatesAutoresizingMaskIntoConstraints="NO" id="a8J-kH-ds5">
-                                        <rect key="frame" x="0.0" y="407" width="374" height="307"/>
+                                        <rect key="frame" x="0.0" y="424" width="374" height="324"/>
                                     </imageView>
                                 </subviews>
                             </stackView>
@@ -97,7 +97,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="41" translatesAutoresizingMaskIntoConstraints="NO" id="v6T-VK-oog">
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="fillEqually" spacing="41" translatesAutoresizingMaskIntoConstraints="NO" id="v6T-VK-oog">
                                 <rect key="frame" x="46" y="175.5" width="322" height="491"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="8PU-Fc-Uor">
@@ -374,19 +374,17 @@
                                     </stackView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="LMn-CP-e8a" firstAttribute="centerX" secondItem="v6T-VK-oog" secondAttribute="centerX" id="18K-qw-Gp5"/>
                                     <constraint firstAttribute="width" secondItem="v6T-VK-oog" secondAttribute="height" multiplier="322:491" id="opa-a6-Hr3"/>
                                 </constraints>
                             </stackView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SfS-kc-hqH">
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SfS-kc-hqH">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="83"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="v6T-VK-oog" firstAttribute="centerY" secondItem="LPe-xU-gWP" secondAttribute="centerY" id="91k-yQ-cKg"/>
+                            <constraint firstItem="v6T-VK-oog" firstAttribute="top" secondItem="SfS-kc-hqH" secondAttribute="bottom" constant="20" id="pCE-fo-gQK"/>
                             <constraint firstItem="v6T-VK-oog" firstAttribute="centerX" secondItem="LPe-xU-gWP" secondAttribute="centerX" id="qtX-Qt-5mk"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="OpO-ji-hQA"/>
@@ -426,6 +424,7 @@
                         <outlet property="player9Name" destination="pCv-A0-TW7" id="q1T-1M-zqA"/>
                         <outlet property="player9Picture" destination="uVZ-fN-dWs" id="x4B-SX-Tvt"/>
                         <outlet property="playersBarButton" destination="1Rv-jH-FEu" id="4bd-mU-JpL"/>
+                        <outlet property="stackView" destination="v6T-VK-oog" id="75z-KG-ASu"/>
                         <outlet property="viewBackground" destination="LPe-xU-gWP" id="9eP-BL-Nhn"/>
                         <segue destination="pQG-oJ-uwb" kind="show" identifier="PlayerScreenToLibrary" id="Pn6-dB-GfR"/>
                         <segue destination="N9U-19-bOB" kind="show" identifier="PlayerScreenToNewPlayer" id="S6O-DV-4lH"/>
@@ -444,36 +443,7 @@
                     <view key="view" contentMode="scaleToFill" id="pST-ZP-fiv">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="NZa-0l-bo7">
-                                <rect key="frame" x="127" y="42" width="160" height="256"/>
-                                <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="V92-bJ-ZSk">
-                                        <rect key="frame" x="0.0" y="0.0" width="160" height="160"/>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="V92-bJ-ZSk" secondAttribute="height" multiplier="1:1" id="R23-eJ-8wh"/>
-                                        </constraints>
-                                    </imageView>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ім'я гравця" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8aU-b1-UIF">
-                                        <rect key="frame" x="29" y="188" width="102" height="68"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
-                                    </textField>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="V92-bJ-ZSk" firstAttribute="leading" secondItem="NZa-0l-bo7" secondAttribute="leadingMargin" id="MHJ-8g-BmX"/>
-                                    <constraint firstItem="8aU-b1-UIF" firstAttribute="leading" secondItem="NZa-0l-bo7" secondAttribute="leading" constant="29" id="Ttv-Lv-e4B"/>
-                                </constraints>
-                            </stackView>
-                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="b6P-gB-6Ra" firstAttribute="bottom" secondItem="NZa-0l-bo7" secondAttribute="bottom" constant="510" id="NAN-O2-zzJ"/>
-                            <constraint firstItem="NZa-0l-bo7" firstAttribute="leading" secondItem="b6P-gB-6Ra" secondAttribute="leading" constant="127" id="cxB-MM-QM3"/>
-                            <constraint firstItem="NZa-0l-bo7" firstAttribute="centerX" secondItem="pST-ZP-fiv" secondAttribute="centerX" id="dzm-nq-Axk"/>
-                            <constraint firstItem="NZa-0l-bo7" firstAttribute="top" secondItem="b6P-gB-6Ra" secondAttribute="top" constant="42" id="hFg-ef-36A"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="b6P-gB-6Ra"/>
                     </view>
                     <navigationItem key="navigationItem" id="uaE-Yo-GsS">
@@ -485,8 +455,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="playerEnteredName" destination="8aU-b1-UIF" id="YMW-UZ-wrz"/>
-                        <outlet property="playerTookPic" destination="V92-bJ-ZSk" id="qHo-1G-zzy"/>
                         <outlet property="saveBarButton" destination="6ZI-mH-9b3" id="c6P-zu-fWp"/>
                         <segue destination="I5z-46-xHi" kind="show" identifier="NewPlayerAdded" id="yD0-Lo-iWC"/>
                     </connections>
@@ -500,7 +468,7 @@
             <objects>
                 <viewController id="fyM-s1-DyG" customClass="Rules" customModule="Detect_a_Spy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WbX-vH-BZ5">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6x1-E3-T2j"/>
@@ -519,7 +487,7 @@
             <objects>
                 <viewController id="pQG-oJ-uwb" customClass="PlayerLibrary" customModule="Detect_a_Spy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UNp-Sh-has">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ky8-a1-Sf0">
@@ -640,9 +608,10 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="a97-Hi-EeA"/>
+        <segue reference="S6O-DV-4lH"/>
+        <segue reference="Pn6-dB-GfR"/>
         <segue reference="yD0-Lo-iWC"/>
-        <segue reference="tTC-nq-ZBG"/>
+        <segue reference="YU4-Fz-jpd"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="SpyForMainScreen copy" width="870.5" height="1648"/>

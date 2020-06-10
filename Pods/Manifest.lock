@@ -1,5 +1,4 @@
 PODS:
-  - LanguageManager-iOS (1.2.0)
   - Realm (5.0.0):
     - Realm/Headers (= 5.0.0)
   - Realm/Headers (5.0.0)
@@ -8,23 +7,20 @@ PODS:
   - SwipeCellKit (2.7.1)
 
 DEPENDENCIES:
-  - LanguageManager-iOS
   - RealmSwift
   - SwipeCellKit
 
 SPEC REPOS:
   trunk:
-    - LanguageManager-iOS
     - Realm
     - RealmSwift
     - SwipeCellKit
 
 SPEC CHECKSUMS:
-  LanguageManager-iOS: 516c4f088435c83cbdbddfc5179f88e4e0d39eb4
   Realm: 76066d333de26f97e9caedaa85ee3ff4a62ca265
   RealmSwift: c1bdff09b422569dc6881410d9ccf712bcdb79b0
   SwipeCellKit: 3972254a826da74609926daf59b08d6c72e619ea
 
-PODFILE CHECKSUM: cd4f8c17b816bc696d18675e1c3aeb9ad376f47a
+PODFILE CHECKSUM: e5f7e5c274aa9003f4e4a4ccd69e092a851710e5
 
 COCOAPODS: 1.8.4

@@ -39,7 +39,11 @@ class PlayersScreen: UIViewController {
     @IBOutlet weak var player12Name: UILabel!
     @IBOutlet weak var playersBarButton: UIBarButtonItem!
     
+    @IBOutlet weak var stackView: UIStackView!
     @IBOutlet weak var labelAndGradient: UIView!
+    
+    private var bottomView: UIView!
+    
     private let pageLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
@@ -52,7 +56,6 @@ class PlayersScreen: UIViewController {
     
     private let addButton: UIButton = {
         let button = UIButton()
-        button.addTarget(self, action: #selector(addButtonPressed(_:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -70,13 +73,14 @@ class PlayersScreen: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         playersBarButton.title = names.players
+        //change nextButton style
+        setUpBottomView()
         //Adds label and Gradient
         setUpLabelViewAndGradient()
         addButtonSetup()
         //pop to root functionality
         customizedButton()
-        //change nextButton style
-        setUpBottomView()
+        
         
     }
     
@@ -105,38 +109,43 @@ class PlayersScreen: UIViewController {
     
     
     private func getDeviceHeight() -> CGFloat{
-           //statusBar height for iPhone 10 +
-           var statusBarHeight: CGFloat {
-               if #available(iOS 13.0, *) {
-                   var heightToReturn: CGFloat = 0.0
-                   for window in UIApplication.shared.windows {
-                       if let height = window.windowScene?.statusBarManager?.statusBarFrame.height, height > heightToReturn {
-                           heightToReturn = height
-                       }
-                   }
-                   return heightToReturn
-               } else {
-                   return UIApplication.shared.statusBarFrame.height
-               }}
-           //NavBar height + statusBar
-           let height = (navigationController?.navigationBar.frame.size.height)! + statusBarHeight
-           return height
-       }
+        //statusBar height for iPhone 10 +
+        var statusBarHeight: CGFloat {
+            if #available(iOS 13.0, *) {
+                var heightToReturn: CGFloat = 0.0
+                for window in UIApplication.shared.windows {
+                    if let height = window.windowScene?.statusBarManager?.statusBarFrame.height, height > heightToReturn {
+                        heightToReturn = height
+                    }
+                }
+                return heightToReturn
+            } else {
+                return UIApplication.shared.statusBarFrame.height
+            }}
+        //NavBar height + statusBar
+        let height = (navigationController?.navigationBar.frame.size.height)! + statusBarHeight
+        return height
+    }
     
     private func setUpLabelViewAndGradient() {
-           view.backgroundColor = UIColor(displayP3Red: 254/255, green: 239/255, blue: 221/255, alpha: 1)
-          
-           //Label and Gradient View
-           setupLabelAndGradientView()
-           
-           //Gradient Settings
-           setupGradient()
-           
-            //Label settings
-           setupPageLabel()
-          
-           setupAddButton()
-       }
+        view.backgroundColor = UIColor(displayP3Red: 254/255, green: 239/255, blue: 221/255, alpha: 1)
+        
+        
+        
+        
+        //Label and Gradient View
+        setupLabelAndGradientView()
+        
+        //Gradient Settings
+        setupGradient()
+        
+        //Label settings
+        setupPageLabel()
+        
+        setupAddButton()
+    }
+    
+    
     
     fileprivate func setupGradient() {
         //Gradient Settings
@@ -152,7 +161,8 @@ class PlayersScreen: UIViewController {
         
         //Label and Gradient View
         labelAndGradient.frame = CGRect(x: 0, y: height, width: self.view.frame.width, height: self.view.frame.height/11)
-        view.insertSubview(labelAndGradient, at: 0)
+        view.addSubview(labelAndGradient)
+        // view.insertSubview(labelAndGradient, at: 0)
         
         labelAndGradient.translatesAutoresizingMaskIntoConstraints = false
         
@@ -186,17 +196,21 @@ class PlayersScreen: UIViewController {
         //AddButton setup
         let size = self.view.frame.width / 8
         
+        
+        
         labelAndGradient.insertSubview(addButton, at: 1)
         addButton.heightAnchor.constraint(equalToConstant: size).isActive = true
         addButton.widthAnchor.constraint(equalToConstant: size).isActive = true
         addButton.centerYAnchor.constraint(equalTo: labelAndGradient.bottomAnchor).isActive = true
         addButton.trailingAnchor.constraint(equalTo: labelAndGradient.trailingAnchor, constant: -40).isActive = true
+        
+        addButton.addTarget(self, action: #selector(addButtonPressed(_:)), for: .touchUpInside)
     }
     
-   
+    
     
     fileprivate func setUpBottomView() {
-        let bottomView = UIView(frame: CGRect(x: 0, y: view.frame.height/1.2, width: view.frame.width, height: view.frame.height/9))
+        bottomView = UIView(frame: CGRect(x: 0, y: view.frame.height/1.2, width: view.frame.width, height: view.frame.height/9))
         bottomView.backgroundColor = UIColor(displayP3Red: 254/255, green: 239/255, blue: 221/255, alpha: 1)
         let bottomButton = UIButton()
         bottomView.addSubview(bottomButton)

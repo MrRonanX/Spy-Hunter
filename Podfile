@@ -7,6 +7,5 @@ target 'Spy Hunter' do
 
   pod 'RealmSwift'
   pod 'SwipeCellKit'
-  pod 'LanguageManager-iOS'
 
 end
