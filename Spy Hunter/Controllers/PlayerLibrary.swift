@@ -17,6 +17,13 @@ class PlayerLibrary: UIViewController {
     private var players: Results<PlayerModel>?
     private let realm = try! Realm()
     var oldPlayers = Int()
+    private var headerView = UIView()
+    
+    private let addButton: UIButton = {
+           let button = UIButton()
+           button.translatesAutoresizingMaskIntoConstraints = false
+           return button
+       }()
     
     private let names = StringFiles()
     override func viewDidLoad() {
@@ -47,6 +54,27 @@ class PlayerLibrary: UIViewController {
         ])
         
         setupHeaderView()
+        setupAddButton()
+    }
+    
+    @objc private func addButtonPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: "LibraryToAddNewPlayer", sender: self)
+    }
+    
+   fileprivate func setupAddButton() {
+        //AddButton setup
+        let size = self.view.frame.width / 8
+        let buttonImage = UIImage(named: "addPlayerButton.png")?.circleMask(borderWidth: 10)
+        addButton.setImage(buttonImage, for: .normal)
+        
+        
+        view.addSubview(addButton)
+        addButton.heightAnchor.constraint(equalToConstant: size).isActive = true
+        addButton.widthAnchor.constraint(equalToConstant: size).isActive = true
+        addButton.centerYAnchor.constraint(equalTo: headerView.bottomAnchor).isActive = true
+        addButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40).isActive = true
+        
+        addButton.addTarget(self, action: #selector(addButtonPressed(_:)), for: .touchUpInside)
     }
     
     private func customizedButton() {
@@ -132,7 +160,7 @@ extension PlayerLibrary: UITableViewDelegate, UITableViewDataSource {
     }
     
     private func setupHeaderView() {
-        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height/11))
+        headerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height/11))
         let headerLabel = UILabel()
         headerView.addSubview(headerLabel)
         

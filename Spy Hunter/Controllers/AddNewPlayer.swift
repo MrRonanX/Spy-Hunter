@@ -52,6 +52,9 @@ class AddNewPlayer: UIViewController, UIImagePickerControllerDelegate, UINavigat
         playerEnteredName.returnKeyType = .continue
         playerEnteredName.borderStyle = .roundedRect
         playerEnteredName.placeholder = names.textPlaceholder
+        playerEnteredName.textAlignment = .center
+        playerEnteredName.contentVerticalAlignment = .center
+        
         
         NSLayoutConstraint.activate([
             playerTookPic.heightAnchor.constraint(equalToConstant: picSize),

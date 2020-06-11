@@ -94,7 +94,7 @@
             <objects>
                 <viewController id="I5z-46-xHi" customClass="PlayersScreen" customModule="Detect_a_Spy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LPe-xU-gWP">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="fillEqually" spacing="41" translatesAutoresizingMaskIntoConstraints="NO" id="v6T-VK-oog">
@@ -504,6 +504,7 @@
                         <outlet property="playersView" destination="ky8-a1-Sf0" id="h9i-l5-1ma"/>
                         <outlet property="viewBackground" destination="UNp-Sh-has" id="Z6M-bq-49u"/>
                         <segue destination="I5z-46-xHi" kind="show" identifier="LibraryToPlayers" id="UUK-ea-eAx"/>
+                        <segue destination="N9U-19-bOB" kind="show" identifier="LibraryToAddNewPlayer" id="54T-g8-FnU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x7V-dM-PGN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -608,9 +609,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="S6O-DV-4lH"/>
         <segue reference="Pn6-dB-GfR"/>
-        <segue reference="yD0-Lo-iWC"/>
+        <segue reference="54T-g8-FnU"/>
+        <segue reference="UUK-ea-eAx"/>
         <segue reference="YU4-Fz-jpd"/>
     </inferredMetricsTieBreakers>
     <resources>

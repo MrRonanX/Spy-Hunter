@@ -72,12 +72,12 @@ class PlayersScreen: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = UIColor(displayP3Red: 254/255, green: 239/255, blue: 221/255, alpha: 1)
         playersBarButton.title = names.players
         //change nextButton style
         setUpBottomView()
         //Adds label and Gradient
         setUpLabelViewAndGradient()
-        addButtonSetup()
         //pop to root functionality
         customizedButton()
         
@@ -128,11 +128,7 @@ class PlayersScreen: UIViewController {
     }
     
     private func setUpLabelViewAndGradient() {
-        view.backgroundColor = UIColor(displayP3Red: 254/255, green: 239/255, blue: 221/255, alpha: 1)
-        
-        
-        
-        
+
         //Label and Gradient View
         setupLabelAndGradientView()
         
@@ -192,55 +188,8 @@ class PlayersScreen: UIViewController {
         ])
     }
     
-    fileprivate func setupAddButton() {
-        //AddButton setup
-        let size = self.view.frame.width / 8
-        
-        
-        
-        labelAndGradient.insertSubview(addButton, at: 1)
-        addButton.heightAnchor.constraint(equalToConstant: size).isActive = true
-        addButton.widthAnchor.constraint(equalToConstant: size).isActive = true
-        addButton.centerYAnchor.constraint(equalTo: labelAndGradient.bottomAnchor).isActive = true
-        addButton.trailingAnchor.constraint(equalTo: labelAndGradient.trailingAnchor, constant: -40).isActive = true
-        
-        addButton.addTarget(self, action: #selector(addButtonPressed(_:)), for: .touchUpInside)
-    }
-    
-    
-    
-    fileprivate func setUpBottomView() {
-        bottomView = UIView(frame: CGRect(x: 0, y: view.frame.height/1.2, width: view.frame.width, height: view.frame.height/9))
-        bottomView.backgroundColor = UIColor(displayP3Red: 254/255, green: 239/255, blue: 221/255, alpha: 1)
-        let bottomButton = UIButton()
-        bottomView.addSubview(bottomButton)
-        bottomButton.setTitle(names.next, for: .normal)
-        bottomButton.setTitleColor(.black, for: .normal)
-        bottomButton.titleLabel?.font = .systemFont(ofSize: 20)
-        bottomButton.backgroundColor = UIColor.init(displayP3Red: 227/255, green: 66/255, blue: 52/255, alpha: 1)
-        bottomButton.layer.cornerRadius = 5
-        bottomButton.addTarget(self, action: #selector(bottomButtonPressed(_:)), for: .touchDown)
-        
-        let margin = CGFloat(50)
-        bottomButton.translatesAutoresizingMaskIntoConstraints = false
-        bottomButton.topAnchor.constraint(equalTo: bottomView.topAnchor, constant: 5).isActive = true
-        bottomButton.bottomAnchor.constraint(equalTo: bottomView.bottomAnchor, constant: -30).isActive = true
-        bottomButton.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor, constant: 5).isActive = true
-        bottomButton.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor, constant: -5).isActive = true
-        view.addSubview(bottomView)
-        
-        bottomView.center = CGPoint(x: view.frame.width / 2,
-                                    y: view.frame.height - bottomButton.frame.height / 2 - margin)
-        
-        
-    }
     //MARK: - Add Players on the screen
     
-    
-    private func addButtonSetup() {
-        let buttonImage = UIImage(named: "addPlayerButton.png")?.circleMask(borderWidth: 10)
-        addButton.setImage(buttonImage, for: .normal)
-    }
     
     private func loadPlayers() {
         players = realm.objects(PlayerModel.self).filter("isPlaying == true")
@@ -289,8 +238,6 @@ class PlayersScreen: UIViewController {
     
     //MARK: - Segues
     
-    
-    
     @IBAction func libraryButtonPressed(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: "PlayerScreenToLibrary", sender: self)
     }
@@ -298,18 +245,6 @@ class PlayersScreen: UIViewController {
     @objc private func addButtonPressed(_ sender: UIButton) {
         performSegue(withIdentifier: "PlayerScreenToNewPlayer", sender: self)
     }
-    
-    private func customizedButton() {
-        navigationController!.setNavigationBarHidden(false, animated: true)
-        let myBackButton:UIButton = UIButton(type: UIButton.ButtonType.custom) as UIButton
-        myBackButton.addTarget(self, action: #selector(popToRoot), for: UIControl.Event.touchUpInside)
-        myBackButton.setTitle(names.back, for: UIControl.State.normal)
-        myBackButton.setTitleColor(UIColor.white, for: UIControl.State.normal)
-        myBackButton.sizeToFit()
-        let myCustomBackButtonItem:UIBarButtonItem = UIBarButtonItem(customView: myBackButton)
-        self.navigationItem.leftBarButtonItem  = myCustomBackButtonItem
-    }
-    
     
     @objc func popToRoot() {
         //Make smooth segue
@@ -320,10 +255,6 @@ class PlayersScreen: UIViewController {
         labelAndGradient.layer.removeFromSuperlayer()
         performSegue(withIdentifier: "PlayerScreenToMain", sender: self)
     }
-    
-    
-    //MARK: - Button Settings
-    
     
     @objc private func bottomButtonPressed(_ sender: UIButton) {
         if players?.count != 0 {
@@ -342,6 +273,61 @@ class PlayersScreen: UIViewController {
         }
     }
     
+    
+    //MARK: - Button Settings
+    
+    fileprivate func setUpBottomView() {
+        bottomView = UIView(frame: CGRect(x: 0, y: view.frame.height/1.2, width: view.frame.width, height: view.frame.height/9))
+        bottomView.backgroundColor = UIColor(displayP3Red: 254/255, green: 239/255, blue: 221/255, alpha: 1)
+        let bottomButton = UIButton()
+        bottomView.addSubview(bottomButton)
+        bottomButton.setTitle(names.next, for: .normal)
+        bottomButton.setTitleColor(.black, for: .normal)
+        bottomButton.titleLabel?.font = .systemFont(ofSize: 20)
+        bottomButton.backgroundColor = UIColor.init(displayP3Red: 227/255, green: 66/255, blue: 52/255, alpha: 1)
+        bottomButton.layer.cornerRadius = 5
+        bottomButton.addTarget(self, action: #selector(bottomButtonPressed(_:)), for: .touchDown)
+        
+        let margin = CGFloat(50)
+        bottomButton.translatesAutoresizingMaskIntoConstraints = false
+        bottomButton.topAnchor.constraint(equalTo: bottomView.topAnchor, constant: 5).isActive = true
+        bottomButton.bottomAnchor.constraint(equalTo: bottomView.bottomAnchor, constant: -30).isActive = true
+        bottomButton.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor, constant: 5).isActive = true
+        bottomButton.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor, constant: -5).isActive = true
+        view.addSubview(bottomView)
+        
+        bottomView.center = CGPoint(x: view.frame.width / 2,
+                                    y: view.frame.height - bottomButton.frame.height / 2 - margin)
+        
+        
+    }
+    
+    private func customizedButton() {
+        navigationController!.setNavigationBarHidden(false, animated: true)
+        let myBackButton:UIButton = UIButton(type: UIButton.ButtonType.custom) as UIButton
+        myBackButton.addTarget(self, action: #selector(popToRoot), for: UIControl.Event.touchUpInside)
+        myBackButton.setTitle(names.back, for: UIControl.State.normal)
+        myBackButton.setTitleColor(UIColor.white, for: UIControl.State.normal)
+        myBackButton.sizeToFit()
+        let myCustomBackButtonItem:UIBarButtonItem = UIBarButtonItem(customView: myBackButton)
+        self.navigationItem.leftBarButtonItem  = myCustomBackButtonItem
+    }
+    
+    fileprivate func setupAddButton() {
+        //AddButton setup
+        let size = self.view.frame.width / 8
+        let buttonImage = UIImage(named: "addPlayerButton.png")?.circleMask(borderWidth: 10)
+        addButton.setImage(buttonImage, for: .normal)
+        
+        
+        view.addSubview(addButton)
+        addButton.heightAnchor.constraint(equalToConstant: size).isActive = true
+        addButton.widthAnchor.constraint(equalToConstant: size).isActive = true
+        addButton.centerYAnchor.constraint(equalTo: labelAndGradient.bottomAnchor).isActive = true
+        addButton.trailingAnchor.constraint(equalTo: labelAndGradient.trailingAnchor, constant: -40).isActive = true
+        
+        addButton.addTarget(self, action: #selector(addButtonPressed(_:)), for: .touchUpInside)
+    }
     
 }
 

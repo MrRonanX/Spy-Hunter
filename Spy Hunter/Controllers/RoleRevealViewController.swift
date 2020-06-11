@@ -112,7 +112,22 @@ class RoleRevealViewController: UIViewController {
         activateConstraints()
         deleteSpies()
         gameStarts()
+        setupNotificationObservers()
         
+    }
+    
+    private func setupNotificationObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(handleEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+    }
+    
+    @objc private func handleEnterForeground() {
+        animatePulsatingLayer(pulsatingLayer)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+            super.viewWillDisappear(animated)
+        
+            NotificationCenter.default.removeObserver(self)
     }
     
     
