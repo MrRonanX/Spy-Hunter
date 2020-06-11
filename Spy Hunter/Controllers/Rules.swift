@@ -23,7 +23,6 @@ class Rules: UIViewController {
         let label = UILabel()
         label.numberOfLines = 0
         label.textAlignment = .natural
-        label.textColor = UIColor(displayP3Red: 2/255, green: 31/255, blue: 59/255, alpha: 1)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -32,7 +31,6 @@ class Rules: UIViewController {
         let label = UILabel()
         label.numberOfLines = 0
         label.textAlignment = .natural
-        label.textColor = UIColor(displayP3Red: 2/255, green: 31/255, blue: 59/255, alpha: 1)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -40,7 +38,6 @@ class Rules: UIViewController {
     private let discussionLabelTitle: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
-        label.textColor = UIColor(displayP3Red: 2/255, green: 31/255, blue: 59/255, alpha: 1)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -48,7 +45,6 @@ class Rules: UIViewController {
     private let voteLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
-        label.textColor = UIColor(displayP3Red: 2/255, green: 31/255, blue: 59/255, alpha: 1)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -57,7 +53,6 @@ class Rules: UIViewController {
         let label = UILabel()
         label.numberOfLines = 0
         label.textAlignment = .left
-        label.textColor = UIColor(displayP3Red: 2/255, green: 31/255, blue: 59/255, alpha: 1)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -154,11 +149,15 @@ class Rules: UIViewController {
     }
     
     private func rulesLabelSettings() {
-        topLabel.text = names.rules.uppercased()
-        //Label settings
-        
         let relativeFontConstant:CGFloat = 0.03  // dynamic font
+        let attributes: [NSAttributedString.Key : Any] = [
+            .font: UIFont.systemFont(ofSize: view.bounds.height * relativeFontConstant, weight: .medium),
+            .foregroundColor: UIColor.white
+        ]
+        let rules = NSAttributedString(string: names.rules.uppercased(), attributes: attributes)
+        topLabel.attributedText = rules
         
+        //Label settings
         topLabel.bounds = rulesAndGradientView.bounds
         topLabel.font = topLabel.font.withSize(view.bounds.height * relativeFontConstant)
         rulesAndGradientView.addSubview(topLabel)
@@ -199,8 +198,12 @@ class Rules: UIViewController {
     
     private func setupGeneralLabel() {
         let relativeFontConstant:CGFloat = 0.019  // dynamic font
-        generalLabel.text = names.generalLabelText
-        generalLabel.font = generalLabel.font.withSize(view.bounds.height * relativeFontConstant)
+        let attributes: [NSAttributedString.Key : Any] = [
+            .font: UIFont.systemFont(ofSize: view.bounds.height * relativeFontConstant, weight: .medium),
+            .foregroundColor: UIColor(displayP3Red: 2/255, green: 31/255, blue: 59/255, alpha: 1)
+        ]
+        let generalLabelText = NSAttributedString(string: names.generalLabelText, attributes: attributes)
+        generalLabel.attributedText = generalLabelText
         contentView.addSubview(generalLabel)
         
         let height = calculateLabelHeight(text: generalLabel.text!, font: generalLabel.font)
@@ -217,8 +220,12 @@ class Rules: UIViewController {
     
     private func setupDiscussionLabelTitle() {
         let relativeFontConstant:CGFloat = 0.021  // dynamic font
-        discussionLabelTitle.text = names.discussionTitle
-        discussionLabelTitle.font = discussionLabelTitle.font.withSize(view.bounds.height * relativeFontConstant)
+        let attributes: [NSAttributedString.Key : Any] = [
+            .font: UIFont.systemFont(ofSize: view.bounds.height * relativeFontConstant, weight: .heavy),
+            .foregroundColor: UIColor(displayP3Red: 2/255, green: 31/255, blue: 59/255, alpha: 1)
+        ]
+        let discussionTitle = NSAttributedString(string: names.discussionTitle, attributes: attributes)
+        discussionLabelTitle.attributedText = discussionTitle
         contentView.addSubview(discussionLabelTitle)
         
         let height = calculateLabelHeight(text: discussionLabelTitle.text!, font: discussionLabelTitle.font)
@@ -234,7 +241,12 @@ class Rules: UIViewController {
     
     private func setupDiscussionLabel() {
         let relativeFontConstant:CGFloat = 0.019  // dynamic font
-        discussionLabel.text = names.discussion
+        let attributes: [NSAttributedString.Key : Any] = [
+            .font: UIFont.systemFont(ofSize: view.bounds.height * relativeFontConstant, weight: .medium),
+            .foregroundColor: UIColor(displayP3Red: 2/255, green: 31/255, blue: 59/255, alpha: 1)
+        ]
+        let discussion = NSAttributedString(string: names.discussion, attributes: attributes)
+        discussionLabel.attributedText = discussion
         discussionLabel.font = discussionLabel.font.withSize(view.bounds.height * relativeFontConstant)
         contentView.addSubview(discussionLabel)
         
@@ -251,7 +263,12 @@ class Rules: UIViewController {
     
     private func setupVoteLabel() {
         let relativeFontConstant:CGFloat = 0.021  // dynamic font
-        voteLabel.text = names.votingTitle
+        let attributes: [NSAttributedString.Key : Any] = [
+            .font: UIFont.systemFont(ofSize: view.bounds.height * relativeFontConstant, weight: .heavy),
+            .foregroundColor: UIColor(displayP3Red: 2/255, green: 31/255, blue: 59/255, alpha: 1)
+        ]
+        let votingTitle = NSAttributedString(string: names.votingTitle, attributes: attributes)
+        voteLabel.attributedText = votingTitle
         voteLabel.font = voteLabel.font.withSize(view.bounds.height * relativeFontConstant)
         contentView.addSubview(voteLabel)
         
@@ -268,7 +285,12 @@ class Rules: UIViewController {
     
     private func setupVote() {
         let relativeFontConstant:CGFloat = 0.019  // dynamic font
-        vote.text = names.votingText
+        let attributes: [NSAttributedString.Key : Any] = [
+            .font: UIFont.systemFont(ofSize: view.bounds.height * relativeFontConstant, weight: .medium),
+            .foregroundColor: UIColor(displayP3Red: 2/255, green: 31/255, blue: 59/255, alpha: 1)
+        ]
+        let votingText = NSAttributedString(string: names.votingText, attributes: attributes)
+        vote.attributedText = votingText
         vote.font = vote.font.withSize(view.bounds.height * relativeFontConstant)
         contentView.addSubview(vote)
         

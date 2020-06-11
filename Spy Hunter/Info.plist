@@ -24,6 +24,8 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>This lets take pictures. Picture will be used to create you game profile.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This lets take pictures. Picture will be used to create you game profile.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
