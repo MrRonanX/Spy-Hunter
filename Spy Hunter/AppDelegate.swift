@@ -8,17 +8,35 @@
 
 import UIKit
 import RealmSwift
+import UserNotifications
 
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-    //var window: UIWindow?
+    
+    let notificationCenter = UNUserNotificationCenter.current()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         UINavigationBar.appearance().tintColor = UIColor.white
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
+        
+        //notification Authorization
+        let options: UNAuthorizationOptions = [.alert, .sound]
+        
+        notificationCenter.requestAuthorization(options: options) {
+            (didAllow, error) in
+            if !didAllow {
+                print("User has declined notifications")
+            }
+        }
+        
+        //checks if Notifications are allowed
+        notificationCenter.getNotificationSettings { (settings) in
+          if settings.authorizationStatus != .authorized {
+            // Notifications not allowed
+          }
+        }
         
         do {
                _ = try Realm()
@@ -41,6 +59,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.initRootView()
         return true
     }
+    
+    
+    
+ 
     
   
     // MARK: UISceneSession Lifecycle

@@ -32,6 +32,7 @@
 		F952ACB62473CE40001FC66B /* UINavigationBarGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F952ACB52473CE40001FC66B /* UINavigationBarGradientView.swift */; };
 		F952ACB824768750001FC66B /* RoleRevealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F952ACB724768750001FC66B /* RoleRevealViewController.swift */; };
 		F952ACBA2477D209001FC66B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F952ACB92477D209001FC66B /* Extensions.swift */; };
+		F983F8E32494FF32001FDD1F /* ScheduleNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = F983F8E22494FF32001FDD1F /* ScheduleNotification.swift */; };
 		F99E4C6B247E434E004A42CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F99E4C6A247E434E004A42CF /* Assets.xcassets */; };
 		F99E4C6D247E6E03004A42CF /* ShowSpies.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99E4C6C247E6E03004A42CF /* ShowSpies.swift */; };
 		F99E4C6F247E86E6004A42CF /* SpyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99E4C6E247E86E6004A42CF /* SpyCell.swift */; };
@@ -77,6 +78,7 @@
 		F952ACB52473CE40001FC66B /* UINavigationBarGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationBarGradientView.swift; sourceTree = "<group>"; };
 		F952ACB724768750001FC66B /* RoleRevealViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleRevealViewController.swift; sourceTree = "<group>"; };
 		F952ACB92477D209001FC66B /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		F983F8E22494FF32001FDD1F /* ScheduleNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleNotification.swift; sourceTree = "<group>"; };
 		F99E4C6A247E434E004A42CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F99E4C6C247E6E03004A42CF /* ShowSpies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowSpies.swift; sourceTree = "<group>"; };
 		F99E4C6E247E86E6004A42CF /* SpyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpyCell.swift; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 				F952ACB92477D209001FC66B /* Extensions.swift */,
 				F99E4C6C247E6E03004A42CF /* ShowSpies.swift */,
 				F99E4C7424801228004A42CF /* FirstLaunchScreen.swift */,
+				F983F8E22494FF32001FDD1F /* ScheduleNotification.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -353,6 +356,7 @@
 				F99E4C7524801228004A42CF /* FirstLaunchScreen.swift in Sources */,
 				F952ACB62473CE40001FC66B /* UINavigationBarGradientView.swift in Sources */,
 				F952ACBA2477D209001FC66B /* Extensions.swift in Sources */,
+				F983F8E32494FF32001FDD1F /* ScheduleNotification.swift in Sources */,
 				F90E2F6424544D2B0095961C /* PlayersScreen.swift in Sources */,
 				F90E2F6624544EC80095961C /* AddNewPlayer.swift in Sources */,
 				F90E2F6A24544F0A0095961C /* Rules.swift in Sources */,

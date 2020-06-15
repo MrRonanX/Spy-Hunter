@@ -11,6 +11,7 @@ import RealmSwift
 
 class RoleRevealViewController: UIViewController {
     
+    
     private let names = StringFiles()
     private let realm = try! Realm()
     private let userSeeThisView: UIView = {
@@ -104,7 +105,7 @@ class RoleRevealViewController: UIViewController {
     private var pulsatingLayer = CAShapeLayer()
     var discussionTime = Int()
     private var time = Int()  // is set in startDiscussion method
-    private var labelTimePassed = 0
+    private var enteredBackgroundTime = 0.0
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -112,16 +113,8 @@ class RoleRevealViewController: UIViewController {
         activateConstraints()
         deleteSpies()
         gameStarts()
-        setupNotificationObservers()
+       
         
-    }
-    
-    private func setupNotificationObservers() {
-        NotificationCenter.default.addObserver(self, selector: #selector(handleEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
-    }
-    
-    @objc private func handleEnterForeground() {
-        animatePulsatingLayer(pulsatingLayer)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -130,6 +123,32 @@ class RoleRevealViewController: UIViewController {
             NotificationCenter.default.removeObserver(self)
     }
     
+    
+    //MARK: - Background and Foreground observers
+    
+    
+
+    private func setupNotificationObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(handleEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(timeEnteredBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
+    }
+    
+    @objc private func timeEnteredBackground() {
+        enteredBackgroundTime = Date().timeIntervalSince1970
+        
+        print(time)
+        
+        if time > 0 { ScheduleNotification().scheduledNotification(notificationType: "Time's up!", time: Double(time)) }
+    }
+    
+    @objc private func handleEnterForeground() {
+        animatePulsatingLayer(pulsatingLayer)
+        if time > 0 { time -= Int(Date().timeIntervalSince1970 - enteredBackgroundTime) }
+       
+    }
+    
+    
+    //MARK: - CONSTRAINTS
     
     private func activateConstraints() {
         view.addSubview(userSeeThisView)
@@ -178,6 +197,9 @@ class RoleRevealViewController: UIViewController {
         
     }
     
+    //MARK: - GAME FUNCTIONALITY
+
+
     //BEGINNING OF THE GAME
     private func gameStarts() {
         
@@ -416,6 +438,7 @@ class RoleRevealViewController: UIViewController {
         animatePulsatingLayer(pulsatingLayer)
         createCircleAnimation()
         
+        setupNotificationObservers()
     }
     
     fileprivate func prepareForCircleAnimation() {
@@ -432,7 +455,7 @@ class RoleRevealViewController: UIViewController {
     @objc private func updateLabelTimer() {
         time -= 1
         setTimeLabel()
-        if time == 0 {
+        if time <= 0 {
             timer.invalidate()
             timeLabel.removeFromSuperview()
             let alert = UIAlertController(title: names.outOfTime, message: names.decideWhoSpy, preferredStyle: .alert)
@@ -451,7 +474,7 @@ class RoleRevealViewController: UIViewController {
         timeLabel.text = String(format:"%02i:%02i", minutes, seconds)
     }
     
-    //MARK: - Animations
+    //MARK: - Circle Animations
     
     
     private func setupAnimationLayers() {
