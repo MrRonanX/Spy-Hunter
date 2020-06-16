@@ -33,6 +33,9 @@
 		F952ACB824768750001FC66B /* RoleRevealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F952ACB724768750001FC66B /* RoleRevealViewController.swift */; };
 		F952ACBA2477D209001FC66B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F952ACB92477D209001FC66B /* Extensions.swift */; };
 		F983F8E32494FF32001FDD1F /* ScheduleNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = F983F8E22494FF32001FDD1F /* ScheduleNotification.swift */; };
+		F983F8E5249779FE001FDD1F /* PlayerScreen-PlayerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F983F8E4249779FE001FDD1F /* PlayerScreen-PlayerCell.swift */; };
+		F983F8E724978527001FDD1F /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F983F8E624978527001FDD1F /* UIHelper.swift */; };
+		F983F8E924989C05001FDD1F /* Players.swift in Sources */ = {isa = PBXBuildFile; fileRef = F983F8E824989C05001FDD1F /* Players.swift */; };
 		F99E4C6B247E434E004A42CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F99E4C6A247E434E004A42CF /* Assets.xcassets */; };
 		F99E4C6D247E6E03004A42CF /* ShowSpies.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99E4C6C247E6E03004A42CF /* ShowSpies.swift */; };
 		F99E4C6F247E86E6004A42CF /* SpyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99E4C6E247E86E6004A42CF /* SpyCell.swift */; };
@@ -79,6 +82,9 @@
 		F952ACB724768750001FC66B /* RoleRevealViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleRevealViewController.swift; sourceTree = "<group>"; };
 		F952ACB92477D209001FC66B /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		F983F8E22494FF32001FDD1F /* ScheduleNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleNotification.swift; sourceTree = "<group>"; };
+		F983F8E4249779FE001FDD1F /* PlayerScreen-PlayerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayerScreen-PlayerCell.swift"; sourceTree = "<group>"; };
+		F983F8E624978527001FDD1F /* UIHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
+		F983F8E824989C05001FDD1F /* Players.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Players.swift; sourceTree = "<group>"; };
 		F99E4C6A247E434E004A42CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F99E4C6C247E6E03004A42CF /* ShowSpies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowSpies.swift; sourceTree = "<group>"; };
 		F99E4C6E247E86E6004A42CF /* SpyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpyCell.swift; sourceTree = "<group>"; };
@@ -155,6 +161,7 @@
 			children = (
 				F90E2F4B245440C50095961C /* AppDelegate.swift */,
 				F90E2F4D245440C50095961C /* SceneDelegate.swift */,
+				F983F8E624978527001FDD1F /* UIHelper.swift */,
 				F90E2F6F2456F2500095961C /* Model */,
 				F90E2F6B24544F550095961C /* View */,
 				F90E2F6C24544F6A0095961C /* Controllers */,
@@ -181,6 +188,7 @@
 				F952ACAF24721B06001FC66B /* SectionCell.swift */,
 				F952ACB12472BDA3001FC66B /* FinalCell.swift */,
 				F99E4C6E247E86E6004A42CF /* SpyCell.swift */,
+				F983F8E4249779FE001FDD1F /* PlayerScreen-PlayerCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -214,6 +222,7 @@
 				F9D5FA85248E064700E60A42 /* Language.swift */,
 				F9D5FA87248E068A00E60A42 /* Languages.swift */,
 				F9D5FA89248E06E700E60A42 /* RKLocalization.swift */,
+				F983F8E824989C05001FDD1F /* Players.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -341,12 +350,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				F90E2F6824544EDF0095961C /* PlayerLibrary.swift in Sources */,
+				F983F8E724978527001FDD1F /* UIHelper.swift in Sources */,
 				F952ACB024721B06001FC66B /* SectionCell.swift in Sources */,
 				F952ACA4246FA4BA001FC66B /* buttonExtension.swift in Sources */,
 				F952ACAC246FC9A5001FC66B /* GameSettings.swift in Sources */,
 				F952ACA0246FA477001FC66B /* AHugeCell.swift in Sources */,
 				F90E2F4C245440C50095961C /* AppDelegate.swift in Sources */,
 				F99E4C6F247E86E6004A42CF /* SpyCell.swift in Sources */,
+				F983F8E924989C05001FDD1F /* Players.swift in Sources */,
 				F90186CC24657211001EB03A /* LocationModel.swift in Sources */,
 				F90E2F6E2456F24C0095961C /* PlayerModel.swift in Sources */,
 				F952ACB22472BDA3001FC66B /* FinalCell.swift in Sources */,
@@ -369,6 +380,7 @@
 				F9D5FA8A248E06E700E60A42 /* RKLocalization.swift in Sources */,
 				F99E4C6D247E6E03004A42CF /* ShowSpies.swift in Sources */,
 				F9D5FA88248E068A00E60A42 /* Languages.swift in Sources */,
+				F983F8E5249779FE001FDD1F /* PlayerScreen-PlayerCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

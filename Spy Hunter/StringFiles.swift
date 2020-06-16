@@ -102,6 +102,8 @@ struct StringFiles {
     let votingText = RKLocalizedString(key: "After the discussion all players should debate who they think is a spy. The decision is made by the player's majority. If player who has been chosen is not a spy - real spy wins. The spy can name the location during this time. If spy is correct he wins if not he looses.", comment: "self")
     let playersTitle = RKLocalizedString(key: "All players", comment: "Players in the database")
     let becomeProTitle = RKLocalizedString(key: "Become Pro", comment: "Buy premium")
+    let discussionIsOver = RKLocalizedString(key: "Discussion time is over! Who's the SPY?", comment: "self")
+    let timeIsUp = RKLocalizedString(key: "Time's up!", comment: "Time finished")
 }
 
 

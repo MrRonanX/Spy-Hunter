@@ -106,7 +106,7 @@ extension ShowSpies: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SpyCell", for: indexPath) as! SpyCell
         if let player = players {
-            cell.spyPic.image = loadImageFromDocumentDirectory(path: player[indexPath.row].picture)?.resizeImage(150, opaque: false).rotate(radians: .pi/2)?.circleMask()
+            cell.spyPic.image = loadImageFromDocumentDirectory(path: player[indexPath.row].picture)?.resizeImage(150, opaque: false).circleMask()
             cell.spyName.text = player[indexPath.row].name
         
         }

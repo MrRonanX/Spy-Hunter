@@ -8,6 +8,8 @@
 
 import UIKit
 class ScheduleNotification {
+    let names = StringFiles()
+    
     let notificationCenter = UNUserNotificationCenter.current()
 
     func scheduledNotification(notificationType: String, time: Double) {
@@ -16,7 +18,7 @@ class ScheduleNotification {
          let content = UNMutableNotificationContent() // notification content
          
          content.title = notificationType
-         content.body = "Discussion time is over! Who's the SPY?"
+        content.body = names.discussionIsOver
          content.sound = UNNotificationSound.default
         
         let identifier = "Local Notification"

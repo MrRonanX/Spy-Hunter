@@ -138,7 +138,7 @@ class RoleRevealViewController: UIViewController {
         
         print(time)
         
-        if time > 0 { ScheduleNotification().scheduledNotification(notificationType: "Time's up!", time: Double(time)) }
+        if time > 0 { ScheduleNotification().scheduledNotification(notificationType: names.timeIsUp, time: Double(time)) }
     }
     
     @objc private func handleEnterForeground() {
@@ -211,7 +211,7 @@ class RoleRevealViewController: UIViewController {
                 
                 //method to put 2 pictures into 1
                 let topImage = UIImage(named: "crown.png")?.resizeImage(155, opaque: false, contentMode: .scaleAspectFit)
-                let bottomImage = hostImage.resizeImage(220, opaque: false, contentMode: .scaleAspectFit).rotate(radians: .pi/2)?.circleMask()
+                let bottomImage = hostImage.resizeImage(220, opaque: false, contentMode: .scaleAspectFit).circleMask()
                 let size = CGSize(width: bottomImage!.size.width, height: topImage!.size.height + bottomImage!.size.height)
                 UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
                 
@@ -251,8 +251,8 @@ class RoleRevealViewController: UIViewController {
             if buttonSwitcher == true {
                 if let players = players {
                     
-                    // load image from docs, make it smaller, rotate it and make a circle
-                    let playerPicture = loadImageFromDocumentDirectory(path: players[playerNumber].picture)!.resizeImage(200, opaque: false).rotate(radians: .pi/2)!.circleMask()
+                    // load image from docs, make it smaller and make a circle
+                    let playerPicture = loadImageFromDocumentDirectory(path: players[playerNumber].picture)!.resizeImage(200, opaque: false).circleMask()
                     pictureToShow.image = playerPicture
                     pictureToShow.isOpaque = true
                     updateLabel(playerName: players[playerNumber].name)
@@ -294,7 +294,7 @@ class RoleRevealViewController: UIViewController {
         pictureToShow.layer.sublayers?.forEach { $0.removeFromSuperlayer() }
         
         //shows picture with red circle around it
-        pictureToShow.image = loadImageFromDocumentDirectory(path: players![playerNumber].picture)!.resizeImage(200, opaque: false).rotate(radians: .pi/2)?.redCircleMask
+        pictureToShow.image = loadImageFromDocumentDirectory(path: players![playerNumber].picture)!.resizeImage(200, opaque: false).redCircleMask
         
         
         nextButton.alpha = 1

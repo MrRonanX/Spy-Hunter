@@ -117,7 +117,7 @@ class AddNewPlayer: UIViewController, UIImagePickerControllerDelegate, UINavigat
     private func saveImageDocumentDirectory(image: UIImage, fileName: String) -> URL? {
         let documentsUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!;
         let fileURL = documentsUrl.appendingPathComponent(fileName)
-        if let imageData = image.pngData() {
+        if let imageData = image.resized(toWidth: 150)?.pngData() {
             try? imageData.write(to: fileURL, options: .atomic)
             return fileURL
         }

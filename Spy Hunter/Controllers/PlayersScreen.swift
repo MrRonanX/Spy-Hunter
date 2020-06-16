@@ -12,36 +12,19 @@ import RealmSwift
 
 
 class PlayersScreen: UIViewController {
-    @IBOutlet var viewBackground: UIView!
-    @IBOutlet weak var player1Picture: UIImageView!
-    @IBOutlet weak var player1Name: UILabel!
-    @IBOutlet weak var player2Picture: UIImageView!
-    @IBOutlet weak var player2Name: UILabel!
-    @IBOutlet weak var player3Picture: UIImageView!
-    @IBOutlet weak var player3Name: UILabel!
-    @IBOutlet weak var player4Picture: UIImageView!
-    @IBOutlet weak var player4Name: UILabel!
-    @IBOutlet weak var player5Picture: UIImageView!
-    @IBOutlet weak var player5Name: UILabel!
-    @IBOutlet weak var player6Picture: UIImageView!
-    @IBOutlet weak var player6Name: UILabel!
-    @IBOutlet weak var player7Picture: UIImageView!
-    @IBOutlet weak var player7Name: UILabel!
-    @IBOutlet weak var player8Picture: UIImageView!
-    @IBOutlet weak var player8Name: UILabel!
-    @IBOutlet weak var player9Picture: UIImageView!
-    @IBOutlet weak var player9Name: UILabel!
-    @IBOutlet weak var player10Picture: UIImageView!
-    @IBOutlet weak var player10Name: UILabel!
-    @IBOutlet weak var player11Picture: UIImageView!
-    @IBOutlet weak var player11Name: UILabel!
-    @IBOutlet weak var player12Picture: UIImageView!
-    @IBOutlet weak var player12Name: UILabel!
+    
+    enum Section {
+          case main
+      }
+    
+   typealias DataSource = UICollectionViewDiffableDataSource<Section, PlayerModel>
+   typealias DataSourceSnapshot = NSDiffableDataSourceSnapshot<Section, PlayerModel>
+    
+    private var collectionView: UICollectionView!
+    private var viewForCollection: UIView!
+    
     @IBOutlet weak var playersBarButton: UIBarButtonItem!
-    
-    @IBOutlet weak var stackView: UIStackView!
-    @IBOutlet weak var labelAndGradient: UIView!
-    
+    private var labelAndGradient: UIView!
     private var bottomView: UIView!
     
     private let pageLabel: UILabel = {
@@ -59,14 +42,18 @@ class PlayersScreen: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
+    
     var numberOfPlayersBefore = Int()
     var numberOfPlayersNow = Int()
-    
-    var picturesArray = [UIImageView]()
-    var namesArray = [UILabel]()
-    
+  
     private let realm = try! Realm()
     private var players: Results<PlayerModel>?
+    private var dataSource: DataSource!
+    private var snapshot = DataSourceSnapshot()
+    
+    
+    
+     
     
     private let names = StringFiles()
     
@@ -74,34 +61,21 @@ class PlayersScreen: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor(displayP3Red: 254/255, green: 239/255, blue: 221/255, alpha: 1)
         playersBarButton.title = names.players
+        loadPlayers()
+
         //change nextButton style
         setUpBottomView()
         //Adds label and Gradient
         setUpLabelViewAndGradient()
+        //setupCollectionView
+        setupCollectionView()
         //pop to root functionality
         customizedButton()
         
+        configure()
         
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        loadPlayers()
+        setupAddButton()
         
-        //this code will delete redundant players
-        if players?.count != 0 {
-            numberOfPlayersNow = players!.count
-            //checks if there are redundant players and deletes them
-            if numberOfPlayersBefore > numberOfPlayersNow {
-                deleteRedundandPics()
-            }
-        }
-        
-        //put new players
-        populateViewsWithPlayers()
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        picturesArray = [player1Picture, player2Picture, player3Picture, player4Picture, player5Picture, player6Picture, player7Picture, player8Picture, player9Picture, player10Picture, player11Picture, player12Picture]
-        namesArray = [player1Name, player2Name, player3Name, player4Name, player5Name, player6Name, player7Name, player8Name, player9Name, player10Name, player11Name, player12Name ]
         
     }
     
@@ -138,7 +112,7 @@ class PlayersScreen: UIViewController {
         //Label settings
         setupPageLabel()
         
-        setupAddButton()
+        
     }
     
     
@@ -152,21 +126,23 @@ class PlayersScreen: UIViewController {
     }
     
     fileprivate func setupLabelAndGradientView() {
+        labelAndGradient = UIView()
+        
         //NavBar height + statusBar
+    
         let height = getDeviceHeight()
         
         //Label and Gradient View
         labelAndGradient.frame = CGRect(x: 0, y: height, width: self.view.frame.width, height: self.view.frame.height/11)
         view.addSubview(labelAndGradient)
-        // view.insertSubview(labelAndGradient, at: 0)
-        
+ 
         labelAndGradient.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             labelAndGradient.topAnchor.constraint(equalTo: view.topAnchor, constant: height),
             labelAndGradient.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
             labelAndGradient.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-            labelAndGradient.heightAnchor.constraint(equalToConstant: view.frame.height/11)
+            labelAndGradient.bottomAnchor.constraint(equalTo: labelAndGradient.topAnchor, constant: view.frame.height/11)
         ])
     }
     
@@ -188,31 +164,74 @@ class PlayersScreen: UIViewController {
         ])
     }
     
-    //MARK: - Add Players on the screen
+    //MARK: - Collection View Setup
     
+    fileprivate func configure() {
+        print("configure")
+        collectionView = UICollectionView(frame: viewForCollection.bounds, collectionViewLayout: UIHelper.createThreeColFlowLayout(in: viewForCollection))
+        collectionView.bounds = viewForCollection.bounds
+        collectionView.delegate = self
+
+        collectionView.register(PlayerScreen_PlayerCell.self, forCellWithReuseIdentifier: PlayerScreen_PlayerCell.reuseIdentifier)
+        viewForCollection.addSubview(collectionView)
+        collectionView.backgroundColor = UIColor(displayP3Red: 254/255, green: 239/255, blue: 221/255, alpha: 1)
+        configureCollectionViewDataSource()
+        createDummyData()
+    }
+    
+    private func setupCollectionView() {
+        
+        let x: CGFloat = 0
+        let y = getDeviceHeight() + view.bounds.height / 11
+        let width = view.bounds.width
+        let height = view.bounds.height - getDeviceHeight() - view.bounds.height / 11 - view.bounds.height / 9
+        viewForCollection = UIView(frame: CGRect(x: x, y: y, width: width, height: height))
+        view.addSubview(viewForCollection)
+        viewForCollection.translatesAutoresizingMaskIntoConstraints = false
+        
+//        NSLayoutConstraint.activate([
+//            viewForCollection.topAnchor.constraint(equalTo: labelAndGradient.bottomAnchor),
+//            viewForCollection.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+//            viewForCollection.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+//            viewForCollection.bottomAnchor.constraint(equalTo: bottomView.topAnchor)
+//        ])
+          
+    }
+        func configureCollectionViewDataSource() {
+            
+            dataSource = DataSource(collectionView: collectionView, cellProvider: { (collectionView, indexPath, player) -> PlayerScreen_PlayerCell? in
+                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PlayerScreen_PlayerCell.reuseIdentifier, for: indexPath) as! PlayerScreen_PlayerCell
+                cell.setCell(with: player)
+                return cell
+            })
+            
+    }
+    
+    
+
+    
+    //MARK: - Load Players
+    
+    
+    fileprivate func createDummyData() {
+        var dummyPlayers: [PlayerModel] = []
+        
+        dummyPlayers = Array(players!)
+        applySnapshot(players: dummyPlayers)
+    }
     
     private func loadPlayers() {
         players = realm.objects(PlayerModel.self).filter("isPlaying == true")
         
+        
     }
     
-    private func populateViewsWithPlayers() {
-        
-        if let unwrappedPlayers = players {
-            for (i, player) in unwrappedPlayers.enumerated() {
-                if let picture = loadImageFromDocumentDirectory(path: player.picture) {
-                    picturesArray[i].image = picture.rotate(radians: .pi/2)?.circleMask()
-                    namesArray[i].minimumScaleFactor = 9
-                    namesArray[i].font = UIFont.systemFont(ofSize: 14)
-                    namesArray[i].numberOfLines = 0
-                    namesArray[i].lineBreakMode = .byWordWrapping
-                    namesArray[i].text = player.name
-                }
-            }
-        }
-        
+    private func applySnapshot(players: [PlayerModel]) {
+        snapshot = DataSourceSnapshot()
+        snapshot.appendSections([Section.main])
+        snapshot.appendItems(players)
+        dataSource.apply(snapshot, animatingDifferences: false)
     }
-    //MARK: - Data Managment: Load and Delete
     
     private func loadImageFromDocumentDirectory(path: String) -> UIImage? {
         do {
@@ -222,17 +241,6 @@ class PlayersScreen: UIViewController {
         return nil
     }
     
-    private func deleteRedundandPics() {
-        var predicate = players!.count
-        if picturesArray[predicate].image != nil {
-            repeat{
-                picturesArray[predicate].image = nil
-                namesArray[predicate].text = nil
-                predicate += 1
-            }
-                while predicate != numberOfPlayersBefore
-        }
-    }
     
     
     
@@ -331,4 +339,19 @@ class PlayersScreen: UIViewController {
     
 }
 
+extension PlayersScreen: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: false)
+    }
+}
+
+
+
+extension PlayersScreen: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        print("UICollectionViewDelegateFlowLayout Called")
+        let width = view.bounds.width / 4
+        return CGSize(width: width, height: width)
+    }
+}
 
