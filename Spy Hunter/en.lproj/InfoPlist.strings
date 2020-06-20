@@ -1,0 +1,10 @@
+/* 
+  InfoPlist.strings
+  Spy Hunter
+
+  Created by Roman Kavinskyi on 20.06.2020.
+  Copyright © 2020 Roman Kavinskyi. All rights reserved.
+*/
+
+NSCameraUsageDescription = "This lets take pictures. Picture will be used to create you game profile";
+

@@ -131,7 +131,7 @@ class LaunchScreen: UIViewController {
         for (i, button) in buttons.enumerated() {
             button.setTitle(buttonTitles[i].uppercased(), for: .normal)
             button.titleLabel?.font =  button.titleLabel?.font.withSize(view.bounds.height * relativeFontConstant)
-            button.contentEdgeInsets = UIEdgeInsets(top: 10, left: 15, bottom: 10, right: 15)
+            button.contentEdgeInsets = UIEdgeInsets(top: 5, left: 15, bottom: 5, right: 15)
             button.backgroundColor = .clear
             button.layer.cornerRadius = 5
             button.layer.borderWidth = 1

@@ -36,6 +36,7 @@
 		F983F8E5249779FE001FDD1F /* PlayerScreen-PlayerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F983F8E4249779FE001FDD1F /* PlayerScreen-PlayerCell.swift */; };
 		F983F8E724978527001FDD1F /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F983F8E624978527001FDD1F /* UIHelper.swift */; };
 		F983F8E924989C05001FDD1F /* Players.swift in Sources */ = {isa = PBXBuildFile; fileRef = F983F8E824989C05001FDD1F /* Players.swift */; };
+		F99463B7249DCA1500CC4106 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F99463B9249DCA1500CC4106 /* InfoPlist.strings */; };
 		F99E4C6B247E434E004A42CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F99E4C6A247E434E004A42CF /* Assets.xcassets */; };
 		F99E4C6D247E6E03004A42CF /* ShowSpies.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99E4C6C247E6E03004A42CF /* ShowSpies.swift */; };
 		F99E4C6F247E86E6004A42CF /* SpyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99E4C6E247E86E6004A42CF /* SpyCell.swift */; };
@@ -60,7 +61,6 @@
 		F90E2F4D245440C50095961C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		F90E2F52245440C50095961C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F90E2F57245440C70095961C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		F90E2F59245440C70095961C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F90E2F6124544D0E0095961C /* LaunchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreen.swift; sourceTree = "<group>"; };
 		F90E2F6324544D2B0095961C /* PlayersScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersScreen.swift; sourceTree = "<group>"; };
 		F90E2F6524544EC80095961C /* AddNewPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewPlayer.swift; sourceTree = "<group>"; };
@@ -85,6 +85,11 @@
 		F983F8E4249779FE001FDD1F /* PlayerScreen-PlayerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayerScreen-PlayerCell.swift"; sourceTree = "<group>"; };
 		F983F8E624978527001FDD1F /* UIHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
 		F983F8E824989C05001FDD1F /* Players.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Players.swift; sourceTree = "<group>"; };
+		F99463B8249DCA1500CC4106 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F99463BA249DCA1900CC4106 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F99463BB249DCA1A00CC4106 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F99463BC249DCA1B00CC4106 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F99463C3249DD6B700CC4106 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F99E4C6A247E434E004A42CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F99E4C6C247E6E03004A42CF /* ShowSpies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowSpies.swift; sourceTree = "<group>"; };
 		F99E4C6E247E86E6004A42CF /* SpyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpyCell.swift; sourceTree = "<group>"; };
@@ -94,14 +99,8 @@
 		F9D5FA85248E064700E60A42 /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 		F9D5FA87248E068A00E60A42 /* Languages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Languages.swift; sourceTree = "<group>"; };
 		F9D5FA89248E06E700E60A42 /* RKLocalization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RKLocalization.swift; sourceTree = "<group>"; };
-		F9D5FA8B248E58E000E60A42 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
-		F9D5FA8C248E58E000E60A42 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		F9D5FA8D248E58E000E60A42 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
-		F9D5FA8E248E58EB00E60A42 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Main.strings; sourceTree = "<group>"; };
-		F9D5FA8F248E58EB00E60A42 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		F9D5FA90248E58EC00E60A42 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Localizable.strings; sourceTree = "<group>"; };
-		F9D80C662486463000C967E5 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Main.strings; sourceTree = "<group>"; };
-		F9D80C672486463100C967E5 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		F9D80C6B2486470600C967E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F9D80C6D2486473900C967E5 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F9D80C6E24865CCD00C967E5 /* StringFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringFiles.swift; sourceTree = "<group>"; };
@@ -166,13 +165,14 @@
 				F90E2F6B24544F550095961C /* View */,
 				F90E2F6C24544F6A0095961C /* Controllers */,
 				F90E2F56245440C70095961C /* LaunchScreen.storyboard */,
-				F90E2F59245440C70095961C /* Info.plist */,
 				F99E4C6A247E434E004A42CF /* Assets.xcassets */,
 				F99E4C7024800DE5004A42CF /* appstore.png */,
 				F952ACA2246FA4BA001FC66B /* buttonExtension.swift */,
 				F952ACA1246FA4B9001FC66B /* Constants.swift */,
+				F99463C3249DD6B700CC4106 /* Info.plist */,
 				F9D80C6C2486470600C967E5 /* Localizable.strings */,
 				F9D80C6E24865CCD00C967E5 /* StringFiles.swift */,
+				F99463B9249DCA1500CC4106 /* InfoPlist.strings */,
 			);
 			path = "Spy Hunter";
 			sourceTree = "<group>";
@@ -291,6 +291,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F90E2F58245440C70095961C /* LaunchScreen.storyboard in Resources */,
+				F99463B7249DCA1500CC4106 /* InfoPlist.strings in Resources */,
 				F99E4C7224800DE7004A42CF /* appstore.png in Resources */,
 				F952AC9E246FA477001FC66B /* AHugeCell.xib in Resources */,
 				F9D80C6A2486470600C967E5 /* Localizable.strings in Resources */,
@@ -391,9 +392,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				F90E2F52245440C50095961C /* Base */,
-				F9D80C662486463000C967E5 /* uk */,
-				F9D5FA8B248E58E000E60A42 /* ru */,
-				F9D5FA8E248E58EB00E60A42 /* vi */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -402,11 +400,19 @@
 			isa = PBXVariantGroup;
 			children = (
 				F90E2F57245440C70095961C /* Base */,
-				F9D80C672486463100C967E5 /* uk */,
-				F9D5FA8C248E58E000E60A42 /* ru */,
-				F9D5FA8F248E58EB00E60A42 /* vi */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		F99463B9249DCA1500CC4106 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F99463B8249DCA1500CC4106 /* en */,
+				F99463BA249DCA1900CC4106 /* ru */,
+				F99463BB249DCA1A00CC4106 /* uk */,
+				F99463BC249DCA1B00CC4106 /* vi */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 		F9D80C6C2486470600C967E5 /* Localizable.strings */ = {
@@ -545,14 +551,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_TEAM = 34W5S52327;
 				INFOPLIST_FILE = "Spy Hunter/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.2;
+				MARKETING_VERSION = 1.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.romankavinskyi.Detect-a-Spy";
 				PRODUCT_NAME = "Detect a Spy";
 				SWIFT_VERSION = 5.0;
@@ -566,14 +572,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_TEAM = 34W5S52327;
 				INFOPLIST_FILE = "Spy Hunter/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.2;
+				MARKETING_VERSION = 1.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.romankavinskyi.Detect-a-Spy";
 				PRODUCT_NAME = "Detect a Spy";
 				SWIFT_VERSION = 5.0;

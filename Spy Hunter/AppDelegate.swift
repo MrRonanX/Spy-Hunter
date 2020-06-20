@@ -45,11 +45,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                }
         
         // Get selected language if already there, otherwise check preferred languages on basis of locale if available then set to default language else english
-        
+		// Also I needed to add CFBundleAllowMixedLocalizations = TRUE to Info.plist to make it work
+
+		print(NSLocale.current.languageCode)
         if let selectedLanguage = RKLocalization.sharedInstance.getLanguage(){
             RKLocalization.sharedInstance.setLanguage(language: selectedLanguage)
         }else{
-            let languageCode = Locale.preferredLanguages[0]
+            let languageCode = NSLocale.current.languageCode!
             if Languages.isLanguageAvailable(languageCode){
                 RKLocalization.sharedInstance.setLanguage(language: languageCode)
             }else{

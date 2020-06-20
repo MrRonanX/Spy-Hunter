@@ -34,7 +34,6 @@ class PlayerScreen_PlayerCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        print("PlayerScreen-PlayerCell initialized")
         configure()
     }
     
