@@ -8,6 +8,7 @@
 
 import UIKit
 struct SectionModel {
+    
     var name: String
     var open: Bool
     var data: [CellData]

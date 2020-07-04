@@ -9,6 +9,7 @@
 import Foundation
 
 struct Players: Hashable {
+    
     var name: String
     var picturePath: String
 }

@@ -14,7 +14,18 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Evening Sunshine" translatesAutoresizingMaskIntoConstraints="NO" id="KfX-mr-3j7">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="KfX-mr-3j7" secondAttribute="bottom" id="5xG-0V-fmt"/>
+                            <constraint firstItem="KfX-mr-3j7" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Eub-p0-lLS"/>
+                            <constraint firstItem="KfX-mr-3j7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="RSW-Ra-6y2"/>
+                            <constraint firstItem="KfX-mr-3j7" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="Ydb-tc-JKi"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
@@ -23,4 +34,7 @@
             <point key="canvasLocation" x="52.173913043478265" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Evening Sunshine" width="480" height="300"/>
+    </resources>
 </document>

@@ -9,6 +9,7 @@
 import Foundation
 import RealmSwift
 class PlayerModel: Object {
+    
     @objc dynamic var name : String = ""
     @objc dynamic var picture: String = ""
     @objc dynamic var isPlaying: Bool = true

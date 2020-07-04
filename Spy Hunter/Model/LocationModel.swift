@@ -8,6 +8,7 @@
 
 import Foundation
 struct LocationModel {
+    
     var locationName = ""
     var isChosen = true
 }

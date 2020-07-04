@@ -31,16 +31,15 @@ class PlayerScreen_PlayerCell: UICollectionViewCell {
     }()
     
     
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
     }
     
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     
     
     private func configure() {
@@ -64,10 +63,12 @@ class PlayerScreen_PlayerCell: UICollectionViewCell {
         ])
     }
     
+    
     func setCell(with player: PlayerModel) {
         playerName.text = player.name
         playerPic.image = loadImageFromDocumentDirectory(path: player.picture)?.circleMask()
     }
+    
     
     private func loadImageFromDocumentDirectory(path: String) -> UIImage? {
         do {
@@ -76,6 +77,5 @@ class PlayerScreen_PlayerCell: UICollectionViewCell {
         } catch {}
         return nil
     }
-    
 }
 

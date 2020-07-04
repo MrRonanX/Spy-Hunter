@@ -13,6 +13,7 @@ protocol CellDelegate {
 }
 
 class AHugeCell: UITableViewCell {
+    
     @IBOutlet var locationsCollection: [UIButton]!
     var delegate: CellDelegate?
     @IBOutlet weak var stackView: UIStackView!
@@ -43,8 +44,6 @@ class AHugeCell: UITableViewCell {
                     location.isHidden = true
                 }
             }
-            
-           
         }
     }
     
