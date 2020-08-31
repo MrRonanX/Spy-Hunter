@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E451255B24E2CA250005C435 /* BecomeProVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E451255A24E2CA250005C435 /* BecomeProVC.swift */; };
+		E451255D24E2CD950005C435 /* SHContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E451255C24E2CD950005C435 /* SHContainerView.swift */; };
+		E451255F24E2E6760005C435 /* SHAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E451255E24E2E6760005C435 /* SHAlertVC.swift */; };
+		E451256124E2E8DA0005C435 /* ViewController + ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = E451256024E2E8DA0005C435 /* ViewController + ext.swift */; };
+		E451256324E54A2F0005C435 /* CreateNewSectionAndLocVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E451256224E54A2F0005C435 /* CreateNewSectionAndLocVC.swift */; };
 		E457A65A24AC7CE0002ADFC5 /* SHPageLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E457A65924AC7CE0002ADFC5 /* SHPageLabel.swift */; };
 		E457A65E24ADD075002ADFC5 /* NextButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E457A65D24ADD075002ADFC5 /* NextButtonView.swift */; };
 		E457A66124ADE970002ADFC5 /* SHTextFiled.swift in Sources */ = {isa = PBXBuildFile; fileRef = E457A66024ADE970002ADFC5 /* SHTextFiled.swift */; };
@@ -14,7 +19,11 @@
 		E457A66524AEF869002ADFC5 /* SHHeaderViewWithImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E457A66424AEF869002ADFC5 /* SHHeaderViewWithImage.swift */; };
 		E457A66724AF31A0002ADFC5 /* CALayer + ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = E457A66624AF31A0002ADFC5 /* CALayer + ext.swift */; };
 		E478D1D524AB7248005AAA6D /* String + ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = E478D1D424AB7248005AAA6D /* String + ext.swift */; };
-		F90186CC24657211001EB03A /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90186CB24657211001EB03A /* LocationModel.swift */; };
+		E481C48F24B3511600C8AFC9 /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E481C48E24B3511500C8AFC9 /* LocationCell.swift */; };
+		E481C49124B376D100C8AFC9 /* CLLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E481C49024B376D100C8AFC9 /* CLLocationCell.swift */; };
+		E481C49324B45D1F00C8AFC9 /* Locations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E481C49224B45D1F00C8AFC9 /* Locations.swift */; };
+		E481C49724B6F92E00C8AFC9 /* SHCircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E481C49624B6F92E00C8AFC9 /* SHCircleButton.swift */; };
+		E4E6114924DA7F69008B7101 /* RealmSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E6114824DA7F69008B7101 /* RealmSectionModel.swift */; };
 		F90E2F4E245440C50095961C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90E2F4D245440C50095961C /* SceneDelegate.swift */; };
 		F90E2F58245440C70095961C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F90E2F56245440C70095961C /* LaunchScreen.storyboard */; };
 		F90E2F6224544D0E0095961C /* LaunchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90E2F6124544D0E0095961C /* LaunchScreen.swift */; };
@@ -29,13 +38,10 @@
 		F91A902D24AA026F009CFF04 /* UIImage + ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91A902C24AA026F009CFF04 /* UIImage + ext.swift */; };
 		F91A902F24AA0340009CFF04 /* UIColor + ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91A902E24AA0340009CFF04 /* UIColor + ext.swift */; };
 		F91A903124AA0389009CFF04 /* UIView + ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91A903024AA0389009CFF04 /* UIView + ext.swift */; };
-		F952AC9E246FA477001FC66B /* AHugeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F952AC9B246FA477001FC66B /* AHugeCell.xib */; };
 		F952AC9F246FA477001FC66B /* SectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F952AC9C246FA477001FC66B /* SectionModel.swift */; };
-		F952ACA0246FA477001FC66B /* AHugeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F952AC9D246FA477001FC66B /* AHugeCell.swift */; };
 		F952ACA3246FA4BA001FC66B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F952ACA1246FA4B9001FC66B /* Constants.swift */; };
 		F952ACA4246FA4BA001FC66B /* UIButton + ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F952ACA2246FA4BA001FC66B /* UIButton + ext.swift */; };
 		F952ACA7246FA636001FC66B /* PlayerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F952ACA5246FA635001FC66B /* PlayerCell.swift */; };
-		F952ACA8246FA636001FC66B /* PlayerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F952ACA6246FA636001FC66B /* PlayerCell.xib */; };
 		F952ACAC246FC9A5001FC66B /* GameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F952ACAB246FC9A5001FC66B /* GameSettings.swift */; };
 		F952ACAE246FDA20001FC66B /* FinalGameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F952ACAD246FDA20001FC66B /* FinalGameSettings.swift */; };
 		F952ACB024721B06001FC66B /* SectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F952ACAF24721B06001FC66B /* SectionCell.swift */; };
@@ -57,7 +63,7 @@
 		F9D5FA88248E068A00E60A42 /* Languages.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D5FA87248E068A00E60A42 /* Languages.swift */; };
 		F9D5FA8A248E06E700E60A42 /* RKLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D5FA89248E06E700E60A42 /* RKLocalization.swift */; };
 		F9D80C6A2486470600C967E5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F9D80C6C2486470600C967E5 /* Localizable.strings */; };
-		F9D80C6F24865CCD00C967E5 /* StringFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D80C6E24865CCD00C967E5 /* StringFiles.swift */; };
+		F9D80C6F24865CCD00C967E5 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D80C6E24865CCD00C967E5 /* Strings.swift */; };
 		F9DDAF2F24AA446500AE1EE5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DDAF2E24AA446400AE1EE5 /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +71,11 @@
 		7CA221986255747E73E4A317 /* Pods-Spy Hunter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spy Hunter.release.xcconfig"; path = "Target Support Files/Pods-Spy Hunter/Pods-Spy Hunter.release.xcconfig"; sourceTree = "<group>"; };
 		D486832FCF56C2C74CA2FEED /* Pods-Spy Hunter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spy Hunter.debug.xcconfig"; path = "Target Support Files/Pods-Spy Hunter/Pods-Spy Hunter.debug.xcconfig"; sourceTree = "<group>"; };
 		D67D33280F9CA6B7224D7959 /* Pods_Spy_Hunter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Spy_Hunter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E451255A24E2CA250005C435 /* BecomeProVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BecomeProVC.swift; sourceTree = "<group>"; };
+		E451255C24E2CD950005C435 /* SHContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SHContainerView.swift; sourceTree = "<group>"; };
+		E451255E24E2E6760005C435 /* SHAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SHAlertVC.swift; sourceTree = "<group>"; };
+		E451256024E2E8DA0005C435 /* ViewController + ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController + ext.swift"; sourceTree = "<group>"; };
+		E451256224E54A2F0005C435 /* CreateNewSectionAndLocVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewSectionAndLocVC.swift; sourceTree = "<group>"; };
 		E457A65924AC7CE0002ADFC5 /* SHPageLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SHPageLabel.swift; sourceTree = "<group>"; };
 		E457A65D24ADD075002ADFC5 /* NextButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextButtonView.swift; sourceTree = "<group>"; };
 		E457A66024ADE970002ADFC5 /* SHTextFiled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SHTextFiled.swift; sourceTree = "<group>"; };
@@ -72,7 +83,11 @@
 		E457A66424AEF869002ADFC5 /* SHHeaderViewWithImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SHHeaderViewWithImage.swift; sourceTree = "<group>"; };
 		E457A66624AF31A0002ADFC5 /* CALayer + ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer + ext.swift"; sourceTree = "<group>"; };
 		E478D1D424AB7248005AAA6D /* String + ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + ext.swift"; sourceTree = "<group>"; };
-		F90186CB24657211001EB03A /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
+		E481C48E24B3511500C8AFC9 /* LocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
+		E481C49024B376D100C8AFC9 /* CLLocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLLocationCell.swift; sourceTree = "<group>"; };
+		E481C49224B45D1F00C8AFC9 /* Locations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Locations.swift; sourceTree = "<group>"; };
+		E481C49624B6F92E00C8AFC9 /* SHCircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SHCircleButton.swift; sourceTree = "<group>"; };
+		E4E6114824DA7F69008B7101 /* RealmSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmSectionModel.swift; sourceTree = "<group>"; };
 		F90E2F48245440C50095961C /* Detect a Spy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Detect a Spy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F90E2F4D245440C50095961C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		F90E2F57245440C70095961C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -88,13 +103,10 @@
 		F91A902C24AA026F009CFF04 /* UIImage + ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + ext.swift"; sourceTree = "<group>"; };
 		F91A902E24AA0340009CFF04 /* UIColor + ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + ext.swift"; sourceTree = "<group>"; };
 		F91A903024AA0389009CFF04 /* UIView + ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + ext.swift"; sourceTree = "<group>"; };
-		F952AC9B246FA477001FC66B /* AHugeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AHugeCell.xib; sourceTree = "<group>"; };
 		F952AC9C246FA477001FC66B /* SectionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionModel.swift; sourceTree = "<group>"; };
-		F952AC9D246FA477001FC66B /* AHugeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AHugeCell.swift; sourceTree = "<group>"; };
 		F952ACA1246FA4B9001FC66B /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F952ACA2246FA4BA001FC66B /* UIButton + ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton + ext.swift"; sourceTree = "<group>"; };
 		F952ACA5246FA635001FC66B /* PlayerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerCell.swift; sourceTree = "<group>"; };
-		F952ACA6246FA636001FC66B /* PlayerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerCell.xib; sourceTree = "<group>"; };
 		F952ACAB246FC9A5001FC66B /* GameSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSettings.swift; sourceTree = "<group>"; };
 		F952ACAD246FDA20001FC66B /* FinalGameSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalGameSettings.swift; sourceTree = "<group>"; };
 		F952ACAF24721B06001FC66B /* SectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionCell.swift; sourceTree = "<group>"; };
@@ -122,7 +134,7 @@
 		F9D5FA90248E58EC00E60A42 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F9D80C6B2486470600C967E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F9D80C6D2486473900C967E5 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
-		F9D80C6E24865CCD00C967E5 /* StringFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringFiles.swift; sourceTree = "<group>"; };
+		F9D80C6E24865CCD00C967E5 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		F9DDAF2E24AA446400AE1EE5 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -157,6 +169,16 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		E451255924E2C9E40005C435 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				E451255A24E2CA250005C435 /* BecomeProVC.swift */,
+				E451255E24E2E6760005C435 /* SHAlertVC.swift */,
+				E451256224E54A2F0005C435 /* CreateNewSectionAndLocVC.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
 		E457A65B24ADCF95002ADFC5 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
@@ -180,6 +202,7 @@
 				E457A65D24ADD075002ADFC5 /* NextButtonView.swift */,
 				E457A66224AE2C22002ADFC5 /* SHHederView.swift */,
 				E457A66424AEF869002ADFC5 /* SHHeaderViewWithImage.swift */,
+				E451255C24E2CD950005C435 /* SHContainerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -190,6 +213,20 @@
 				E457A66024ADE970002ADFC5 /* SHTextFiled.swift */,
 			);
 			path = TextFields;
+			sourceTree = "<group>";
+		};
+		E481C48D24B350E500C8AFC9 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				F983F8E4249779FE001FDD1F /* PlayerScreen-PlayerCell.swift */,
+				E481C48E24B3511500C8AFC9 /* LocationCell.swift */,
+				E481C49024B376D100C8AFC9 /* CLLocationCell.swift */,
+				F952ACA5246FA635001FC66B /* PlayerCell.swift */,
+				F952ACAF24721B06001FC66B /* SectionCell.swift */,
+				F952ACB12472BDA3001FC66B /* FinalCell.swift */,
+				F99E4C6E247E86E6004A42CF /* SpyCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		F90E2F3F245440C40095961C = {
@@ -223,7 +260,7 @@
 				F90E2F56245440C70095961C /* LaunchScreen.storyboard */,
 				F99463C3249DD6B700CC4106 /* Info.plist */,
 				F9D80C6C2486470600C967E5 /* Localizable.strings */,
-				F9D80C6E24865CCD00C967E5 /* StringFiles.swift */,
+				F9D80C6E24865CCD00C967E5 /* Strings.swift */,
 				F99463B9249DCA1500CC4106 /* InfoPlist.strings */,
 			);
 			path = "Spy Hunter";
@@ -232,14 +269,6 @@
 		F90E2F6B24544F550095961C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				F952AC9B246FA477001FC66B /* AHugeCell.xib */,
-				F952AC9D246FA477001FC66B /* AHugeCell.swift */,
-				F952ACA5246FA635001FC66B /* PlayerCell.swift */,
-				F952ACA6246FA636001FC66B /* PlayerCell.xib */,
-				F952ACAF24721B06001FC66B /* SectionCell.swift */,
-				F952ACB12472BDA3001FC66B /* FinalCell.swift */,
-				F99E4C6E247E86E6004A42CF /* SpyCell.swift */,
-				F983F8E4249779FE001FDD1F /* PlayerScreen-PlayerCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -247,6 +276,8 @@
 		F90E2F6C24544F6A0095961C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E451255924E2C9E40005C435 /* ViewControllers */,
+				E481C48D24B350E500C8AFC9 /* Cells */,
 				E457A65B24ADCF95002ADFC5 /* Screens */,
 			);
 			path = Controllers;
@@ -256,8 +287,8 @@
 			isa = PBXGroup;
 			children = (
 				F90E2F6D2456F24C0095961C /* PlayerModel.swift */,
-				F90186CB24657211001EB03A /* LocationModel.swift */,
 				F952AC9C246FA477001FC66B /* SectionModel.swift */,
+				E4E6114824DA7F69008B7101 /* RealmSectionModel.swift */,
 				F9D5FA85248E064700E60A42 /* Language.swift */,
 				F9D5FA87248E068A00E60A42 /* Languages.swift */,
 				F9D5FA89248E06E700E60A42 /* RKLocalization.swift */,
@@ -291,6 +322,7 @@
 			isa = PBXGroup;
 			children = (
 				F91A902924A9FA22009CFF04 /* SHButton.swift */,
+				E481C49624B6F92E00C8AFC9 /* SHCircleButton.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -304,6 +336,7 @@
 				F91A903024AA0389009CFF04 /* UIView + ext.swift */,
 				E478D1D424AB7248005AAA6D /* String + ext.swift */,
 				E457A66624AF31A0002ADFC5 /* CALayer + ext.swift */,
+				E451256024E2E8DA0005C435 /* ViewController + ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -325,6 +358,7 @@
 			children = (
 				F952ACA1246FA4B9001FC66B /* Constants.swift */,
 				F983F8E624978527001FDD1F /* UIHelper.swift */,
+				E481C49224B45D1F00C8AFC9 /* Locations.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -395,9 +429,7 @@
 				F90E2F58245440C70095961C /* LaunchScreen.storyboard in Resources */,
 				F99463B7249DCA1500CC4106 /* InfoPlist.strings in Resources */,
 				F99E4C7224800DE7004A42CF /* appstore.png in Resources */,
-				F952AC9E246FA477001FC66B /* AHugeCell.xib in Resources */,
 				F9D80C6A2486470600C967E5 /* Localizable.strings in Resources */,
-				F952ACA8246FA636001FC66B /* PlayerCell.xib in Resources */,
 				F99E4C6B247E434E004A42CF /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -456,33 +488,41 @@
 				F9DDAF2F24AA446500AE1EE5 /* AppDelegate.swift in Sources */,
 				F952ACB024721B06001FC66B /* SectionCell.swift in Sources */,
 				F91A903124AA0389009CFF04 /* UIView + ext.swift in Sources */,
+				E451256324E54A2F0005C435 /* CreateNewSectionAndLocVC.swift in Sources */,
 				F952ACA4246FA4BA001FC66B /* UIButton + ext.swift in Sources */,
+				E481C48F24B3511600C8AFC9 /* LocationCell.swift in Sources */,
 				F952ACAC246FC9A5001FC66B /* GameSettings.swift in Sources */,
+				E481C49324B45D1F00C8AFC9 /* Locations.swift in Sources */,
+				E481C49124B376D100C8AFC9 /* CLLocationCell.swift in Sources */,
+				E451255B24E2CA250005C435 /* BecomeProVC.swift in Sources */,
 				E457A65A24AC7CE0002ADFC5 /* SHPageLabel.swift in Sources */,
 				E457A66324AE2C22002ADFC5 /* SHHederView.swift in Sources */,
-				F952ACA0246FA477001FC66B /* AHugeCell.swift in Sources */,
 				F99E4C6F247E86E6004A42CF /* SpyCell.swift in Sources */,
 				F983F8E924989C05001FDD1F /* Players.swift in Sources */,
-				F90186CC24657211001EB03A /* LocationModel.swift in Sources */,
 				F90E2F6E2456F24C0095961C /* PlayerModel.swift in Sources */,
 				F91A902A24A9FA22009CFF04 /* SHButton.swift in Sources */,
 				F952ACB22472BDA3001FC66B /* FinalCell.swift in Sources */,
+				E451256124E2E8DA0005C435 /* ViewController + ext.swift in Sources */,
 				F952ACAE246FDA20001FC66B /* FinalGameSettings.swift in Sources */,
 				F90E2F4E245440C50095961C /* SceneDelegate.swift in Sources */,
 				F91A902F24AA0340009CFF04 /* UIColor + ext.swift in Sources */,
 				F91A902D24AA026F009CFF04 /* UIImage + ext.swift in Sources */,
+				E4E6114924DA7F69008B7101 /* RealmSectionModel.swift in Sources */,
 				F952ACA3246FA4BA001FC66B /* Constants.swift in Sources */,
 				F952ACB62473CE40001FC66B /* UINavigationBarGradientView.swift in Sources */,
+				E451255D24E2CD950005C435 /* SHContainerView.swift in Sources */,
 				E457A66124ADE970002ADFC5 /* SHTextFiled.swift in Sources */,
 				F983F8E32494FF32001FDD1F /* ScheduleNotification.swift in Sources */,
+				E481C49724B6F92E00C8AFC9 /* SHCircleButton.swift in Sources */,
 				F90E2F6424544D2B0095961C /* PlayersScreen.swift in Sources */,
 				F90E2F6624544EC80095961C /* AddNewPlayer.swift in Sources */,
 				F90E2F6A24544F0A0095961C /* Rules.swift in Sources */,
-				F9D80C6F24865CCD00C967E5 /* StringFiles.swift in Sources */,
+				F9D80C6F24865CCD00C967E5 /* Strings.swift in Sources */,
 				F90E2F6224544D0E0095961C /* LaunchScreen.swift in Sources */,
 				F9D5FA86248E064700E60A42 /* Language.swift in Sources */,
 				E457A66524AEF869002ADFC5 /* SHHeaderViewWithImage.swift in Sources */,
 				E457A65E24ADD075002ADFC5 /* NextButtonView.swift in Sources */,
+				E451255F24E2E6760005C435 /* SHAlertVC.swift in Sources */,
 				F952ACB824768750001FC66B /* RoleRevealViewController.swift in Sources */,
 				F952ACA7246FA636001FC66B /* PlayerCell.swift in Sources */,
 				E457A66724AF31A0002ADFC5 /* CALayer + ext.swift in Sources */,
@@ -655,14 +695,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_TEAM = 34W5S52327;
 				INFOPLIST_FILE = "Spy Hunter/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 1.3.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.romankavinskyi.Detect-a-Spy";
 				PRODUCT_NAME = "Detect a Spy";
 				SWIFT_VERSION = 5.0;
@@ -676,14 +716,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_TEAM = 34W5S52327;
 				INFOPLIST_FILE = "Spy Hunter/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 1.3.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.romankavinskyi.Detect-a-Spy";
 				PRODUCT_NAME = "Detect a Spy";
 				SWIFT_VERSION = 5.0;

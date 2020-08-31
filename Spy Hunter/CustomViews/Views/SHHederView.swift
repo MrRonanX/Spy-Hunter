@@ -24,13 +24,19 @@ class SHHeaderView: UIView {
        
     private func configure() {
         addSubview(label)
-        label.frame = self.bounds
-        label.pinToEdges(of: self)
+        label.numberOfLines = 0
         
         let labelGradient = CAGradientLayer()
         labelGradient.frame = self.bounds
         labelGradient.colors = [Colors.gradientBlue, Colors.gradientLightBlue].map {$0.cgColor}
         layer.insertSublayer(labelGradient, at: 0)
         
+        
+        NSLayoutConstraint.activate([
+            label.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 30),
+            label.topAnchor.constraint(equalTo: self.topAnchor, constant: 10),
+            label.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -30),
+            label.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10)
+        ])
     }
 }

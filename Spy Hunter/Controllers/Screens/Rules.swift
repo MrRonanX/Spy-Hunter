@@ -10,19 +10,19 @@ import UIKit
 
 class Rules: UIViewController {
     
-    private let names = StringFiles()
+    private let names                   = Strings()
     
-    private let generalLabel = SHBodyLabel(textAlignment: .natural, fontSize: .body)
-    private let discussionLabel = SHBodyLabel(textAlignment: .natural, fontSize: .body)
-    private let discussionLabelTitle = SHBodyLabel(textAlignment: .left, fontSize: .headline)
-    private let voteLabel = SHBodyLabel(textAlignment: .left, fontSize: .headline)
-    private let vote = SHBodyLabel(textAlignment: .left, fontSize: .body)
+    private let generalLabel            = SHBodyLabel(textAlignment: .natural, fontSize: .body)
+    private let discussionLabel         = SHBodyLabel(textAlignment: .natural, fontSize: .body)
+    private let discussionLabelTitle    = SHBodyLabel(textAlignment: .left, fontSize: .headline)
+    private let voteLabel               = SHBodyLabel(textAlignment: .left, fontSize: .headline)
+    private let vote                    = SHBodyLabel(textAlignment: .left, fontSize: .body)
     
-    private var rulesAndGradientView = SHHeaderView()
-    private var playButton: SHButton!
+    private var rulesAndGradientView    = SHHeaderView()
+    private var playButton              : SHButton!
     
-    private var scrollView = UIScrollView()
-    private var contentView = UIView()
+    private var scrollView              = UIScrollView()
+    private var contentView             = UIView()
     
     
     override func viewDidLoad() {

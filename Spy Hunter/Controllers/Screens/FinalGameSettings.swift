@@ -11,13 +11,13 @@ import RealmSwift
 
 class FinalGameSettings: UIViewController {
     
+    private let names = Strings()
+    
     var chosenLocations             = [String]()
     var players                     : Results<PlayerModel>?
     private var numberOfSpies: Int  = 1
     private var discusionTime: Int  = 5
     private var bottomView          = NextButtonView()
-    
-    private let names = StringFiles()
     
     
     override func viewDidLoad() {

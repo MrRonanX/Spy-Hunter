@@ -10,17 +10,17 @@ import UIKit
 import RealmSwift
 import SwipeCellKit
 
+
 class PlayerLibrary: UIViewController, UINavigationControllerDelegate {
+    private let names = Strings()
     
     private let realm       = try! Realm()
-    private let names       = StringFiles()
     
     private let playersView = UITableView()
     private var headerView  = SHHeaderView()
     private let addButton   = UIButton()
     
-    private var players: Results<PlayerModel>?
-    
+    private var players : Results<PlayerModel>?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +51,7 @@ class PlayerLibrary: UIViewController, UINavigationControllerDelegate {
         playersView.separatorStyle = .none
         playersView.delegate = self
         playersView.dataSource = self
-        playersView.register(UINib(nibName: "PlayerCell", bundle: nil), forCellReuseIdentifier: "PlayerCell")
+        playersView.register(PlayerCell.self, forCellReuseIdentifier: PlayerCell.reuseID)
         playersView.translatesAutoresizingMaskIntoConstraints = false
         playersView.pinToEdges(of: view)
         
@@ -62,7 +62,9 @@ class PlayerLibrary: UIViewController, UINavigationControllerDelegate {
     
     @objc private func addButtonPressed(_ sender: UIButton) {
         let destVC = AddNewPlayer()
-        navigationController?.pushViewController(destVC, animated: true)
+        destVC.delegate = self
+        let navController = UINavigationController(rootViewController: destVC)
+        present(navController, animated: true)
     }
     
     
@@ -99,15 +101,11 @@ extension PlayerLibrary: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PlayerCell", for: indexPath) as! PlayerCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: PlayerCell.reuseID, for: indexPath) as! PlayerCell
         cell.backgroundColor = Colors.backgroundColor
         cell.delegate = self
         if let player = players?[indexPath.row] {
-            cell.playerName.text = player.name
-            cell.accessoryType = player.isPlaying ? .checkmark : .none
-            if let playerPhoto = loadImageFromDocumentDirectory(path: (player.picture)) {
-                cell.playerPicture.image = playerPhoto.circleMask()
-            }
+            cell.set(player: player)
         }
         return cell
     }
@@ -122,7 +120,7 @@ extension PlayerLibrary: UITableViewDelegate, UITableViewDataSource {
                     playersView.reloadData()
                 }
             } catch {
-                present(UIHelper.presentAlert(title: names.error, message: error.localizedDescription), animated: true)
+                presentAlert(title: names.error, message: error.localizedDescription)
             }
         }
     }
@@ -133,15 +131,6 @@ extension PlayerLibrary: UITableViewDelegate, UITableViewDataSource {
         headerView.label.text = names.deletePlayer
     
         playersView.tableHeaderView = headerView
-    }
-    
-    
-    private func loadImageFromDocumentDirectory(path: String) -> UIImage? {
-        do {
-            let imageData = try Data(contentsOf: URL(string: path)!)
-            return UIImage(data: imageData)
-        } catch {}
-        return nil
     }
 }
 
@@ -184,4 +173,12 @@ extension PlayerLibrary: SwipeTableViewCellDelegate {
             }
         }
     }
+}
+
+extension PlayerLibrary: AddNewPlayerDelegate {
+    func updateData() {
+        loadPlayers()
+    }
+    
+    
 }

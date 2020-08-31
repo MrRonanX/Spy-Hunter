@@ -9,10 +9,10 @@
 import UIKit
 import RealmSwift
 
+fileprivate let names = Strings()
+
 class RoleRevealViewController: UIViewController {
     
-    
-    private let names           = StringFiles()
     private let realm           = try! Realm()
     private let userSeeThisView = UIView()
     
@@ -25,7 +25,7 @@ class RoleRevealViewController: UIViewController {
     
     private let timeLabel       = SHBodyLabel(textAlignment: .center, fontSize: .title1)
     
-    private let showSpiesButton = SHButton(backgroundColor: .clear, title: StringFiles().showSpy)
+    private let showSpiesButton = SHButton(backgroundColor: .clear, title: names.showSpy)
     
     private let labelFont       = UIFont.systemFont(ofSize: 20)
     var numberOfSpies           = Int()
@@ -95,10 +95,10 @@ class RoleRevealViewController: UIViewController {
     //BEGINNING OF THE GAME
     private func gameStarts() {
         
-        if let firstPlayer = players?.first {
+        if let firstPlayer = players?.randomElement() {
             let hostName = firstPlayer.name
             //get userName and userPicture
-            if let hostImage = loadImageFromDocumentDirectory(path: firstPlayer.picture) {
+            if let hostImage = UIHelper.loadImageFromDocumentDirectory(path: firstPlayer.picture) {
                 
                 //method to put 2 pictures into 1
                 let topImage = Images.crownImage?.resizeImage(155, opaque: false, contentMode: .scaleAspectFit)
@@ -122,15 +122,6 @@ class RoleRevealViewController: UIViewController {
         }
     }
     
-    // load pictures from Documents Folder. Path is from the Player's DB
-    private func loadImageFromDocumentDirectory(path: String) -> UIImage? {
-        do {
-            let imageData = try Data(contentsOf: URL(string: path)!)
-            return UIImage(data: imageData)
-        } catch {}
-        return nil
-    }
-    
 
     //pressing on button first time should show the current player's picture, second tap will show his role
     //buttonSwitch helped to implement this functionality
@@ -142,7 +133,7 @@ class RoleRevealViewController: UIViewController {
                 if let players = players {
                     
                     // load image from docs, make it smaller and make a circle
-                    let playerPicture = loadImageFromDocumentDirectory(path: players[playerNumber].picture)!.resizeImage(200, opaque: false).circleMask()
+                    let playerPicture = UIHelper.loadImageFromDocumentDirectory(path: players[playerNumber].picture)!.resizeImage(200, opaque: false).circleMask()
                     pictureToShow.image = playerPicture
                     pictureToShow.isOpaque = true
                     updateLabel(playerName: players[playerNumber].name)
@@ -150,10 +141,8 @@ class RoleRevealViewController: UIViewController {
                     pictureToShow.isUserInteractionEnabled = true
                     let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
                     pictureToShow.addGestureRecognizer(tapGestureRecognizer)
-                    
-                    
                 }
-                //Button is pressed. User picture is revealed. In order for user to press on picture i need to hide the button
+                //Button is pressed. User picture is revealed. In order for user to press on picture I need to hide the button
                 nextButton.alpha = 0
                 
                 //animation on Player Picture
@@ -165,12 +154,7 @@ class RoleRevealViewController: UIViewController {
                 timer.invalidate()
                 timePassed = 0
                 nextButton.setTitle("OK", for: .normal)
-                if players![playerNumber].isSpy == true {
-                    youAreTheSpy()
-                } else {
-                    youAreCivilian()
-                }
-                
+                players![playerNumber].isSpy == true ? youAreTheSpy() : youAreCivilian()
             }
             // the player number is equal player's count. The discussion should start
         } else {
@@ -185,8 +169,7 @@ class RoleRevealViewController: UIViewController {
         pictureToShow.layer.sublayers?.forEach { $0.removeFromSuperlayer() }
         
         //shows picture with red circle around it
-        pictureToShow.image = loadImageFromDocumentDirectory(path: players![playerNumber].picture)!.resizeImage(200, opaque: false).redCircleMask
-        
+        pictureToShow.image = UIHelper.loadImageFromDocumentDirectory(path: players![playerNumber].picture)!.resizeImage(200, opaque: false).redCircleMask
         
         nextButton.alpha = 1
         
@@ -217,7 +200,7 @@ class RoleRevealViewController: UIViewController {
     
     
     private func addAnimation() {
-        let buttonPressedAnimation  = Images.buttonPressedAnim!.resizeImage(200, opaque: false).circleMask()?.cgImage
+        let buttonPressedAnimation  = Images.buttonPressedAnim!.resizeImage(150, opaque: false).circleMask()?.cgImage
         let animationLayer          = CALayer()
         animationLayer.isOpaque     = true
         animationLayer.frame        = pictureToShow.bounds
@@ -276,20 +259,20 @@ class RoleRevealViewController: UIViewController {
     
     private func playerGetsTheRole() {
         var counter = 0
-        var player = players?.randomElement()
+        guard var number = (1...players!.count).randomElement() else { return }
         while (counter < numberOfSpies) {
-            if player?.isSpy == false {
+            
+            if players?[number - 1].isSpy == false {
                 do {
                     try realm.write {
-                        players?.randomElement()?.isSpy = true
+                        players?[number - 1].isSpy = true
                     }
-                    
                 } catch {
                     print(error)
                 }
                 counter += 1
             } else {
-                player = players?.randomElement()
+                number = (0...players!.count).randomElement()!
             }
         }
         //choose the location to play
@@ -431,12 +414,14 @@ class RoleRevealViewController: UIViewController {
     
     private func presentWhoIsTheSpyButton() {
         showSpiesButton.alpha = 1
-        showSpiesButton.frame = CGRect(x: 0, y: 0, width: view.frame.width / 2, height: view.frame.height / 12)
+        
         view.addSubview(showSpiesButton)
         
         NSLayoutConstraint.activate([
             showSpiesButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            showSpiesButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            showSpiesButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            showSpiesButton.widthAnchor.constraint(equalToConstant: view.bounds.width / 2.3),
+            showSpiesButton.heightAnchor.constraint(equalToConstant: view.bounds.height / 12)
         ])
     }
     

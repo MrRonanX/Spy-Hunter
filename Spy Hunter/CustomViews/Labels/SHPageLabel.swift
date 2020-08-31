@@ -19,6 +19,12 @@ class SHPageLabel: UILabel {
         fatalError("init(coder:) has not been implemented")
     }
     
+    convenience init(textColor: UIColor, textAlignment: NSTextAlignment) {
+        self.init(frame: .zero)
+        self.textColor      = textColor
+        self.textAlignment  = textAlignment
+    }
+    
     
     private func configure() {
         textColor                                    = .white

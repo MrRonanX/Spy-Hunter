@@ -98,9 +98,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         // init root controller of application and setting it to window
-        let rootController = UINavigationController.init(rootViewController: LaunchScreen())
+        let rootController = UINavigationController(rootViewController: LaunchScreen())
         let window = UIApplication.shared.windows.first
+    
         window?.rootViewController = rootController
+        
     }
 
 

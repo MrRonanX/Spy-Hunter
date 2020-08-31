@@ -10,7 +10,7 @@ import UIKit
 
 class NextButtonView: UIView {
     
-    let button = SHButton(backgroundColor: Colors.buttonColor, title: StringFiles().next)
+    let button = SHButton(backgroundColor: Colors.buttonColor, title: Strings().next)
     
     override init(frame: CGRect) {
         super.init(frame: frame)

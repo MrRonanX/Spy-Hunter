@@ -9,12 +9,24 @@
 import UIKit
 struct SectionModel {
     
-    var name: String
-    var open: Bool
-    var data: [CellData]
+    var name        : String
+    var open        : Bool
+    var purchased   : Bool
+    var data        : [CellData]
 }
 
 struct CellData {
+    
     var locationName: String
-    var isChosen: Bool
+    var isChosen    : Bool
 }
+
+extension CellData: Hashable {
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(locationName)
+        hasher.combine(isChosen)
+    }
+}
+
+

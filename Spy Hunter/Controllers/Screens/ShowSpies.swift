@@ -11,13 +11,14 @@ import RealmSwift
 
 class ShowSpies: UIViewController {
     
-    private let names           = StringFiles()
+    private let names           = Strings()
+    
     private let tableView       = UITableView()
     private var bottomView      = NextButtonView()
-
+    
     
     var players: Results<PlayerModel>?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initialSetup()
@@ -27,9 +28,13 @@ class ShowSpies: UIViewController {
         
     }
     
+    
     private func initialSetup() {
-        view.backgroundColor = Colors.backgroundColor
+        view.backgroundColor            = Colors.backgroundColor
+        navigationItem.hidesBackButton  = true
     }
+    
+    
     private func setupTableView() {
         tableView.separatorStyle    = .none
         tableView.allowsSelection   = false
@@ -49,9 +54,10 @@ class ShowSpies: UIViewController {
         ])
     }
     
+    
     private func setupBottomView() {
-            bottomView = NextButtonView(frame: CGRect(x: 0, y: view.frame.height/1.2, width: view.frame.width, height: view.frame.height/9))
-            view.addSubview(bottomView)
+        bottomView = NextButtonView(frame: CGRect(x: 0, y: view.frame.height/1.2, width: view.frame.width, height: view.frame.height/9))
+        view.addSubview(bottomView)
         bottomView.button.addTarget(self, action: #selector(bottomButtonPressed(_:)), for: .touchUpInside)
         bottomView.button.setTitle(names.playAgain, for: .normal)
         
@@ -65,23 +71,14 @@ class ShowSpies: UIViewController {
     
     @objc private func bottomButtonPressed(_ sender: UIButton) {
         view.subviews.forEach { $0.removeFromSuperview() }
-               
-               let gradientLayer = CAGradientLayer()
-               gradientLayer.frame = self.view.bounds
-               gradientLayer.colors = [Colors.gradientRed, Colors.gradientBlue].map {$0.cgColor}
-               self.view.layer.insertSublayer(gradientLayer, at: 0)
-               
-               navigationController?.popToRootViewController(animated: true)
+        
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = self.view.bounds
+        gradientLayer.colors = [Colors.gradientRed, Colors.gradientBlue].map {$0.cgColor}
+        self.view.layer.insertSublayer(gradientLayer, at: 0)
+        
+        navigationController?.popToRootViewController(animated: true)
     }
-    
-    
-    private func loadImageFromDocumentDirectory(path: String) -> UIImage? {
-           do {
-               let imageData = try Data(contentsOf: URL(string: path)!)
-               return UIImage(data: imageData)
-           } catch {}
-           return nil
-       }
 }
 
 
@@ -94,7 +91,7 @@ extension ShowSpies: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SpyCell", for: indexPath) as! SpyCell
         if let player = players {
-            cell.spyPic.image = loadImageFromDocumentDirectory(path: player[indexPath.row].picture)?.resizeImage(150, opaque: false).circleMask()
+            cell.spyPic.image = UIHelper.loadImageFromDocumentDirectory(path: player[indexPath.row].picture)?.resizeImage(150, opaque: false).circleMask()
             cell.spyName.text = player[indexPath.row].name
         }
         return cell
@@ -109,7 +106,7 @@ extension ShowSpies: UITableViewDelegate, UITableViewDataSource {
     func setupHeader() {
         let headerView = SHHeaderView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height/11))
         headerView.label.font = UIFont.preferredFont(forTextStyle: .title1)
-
+        
         if players!.count > 1 {
             headerView.label.text = names.spiesAre
         } else {

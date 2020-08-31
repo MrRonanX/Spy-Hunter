@@ -17,25 +17,25 @@ class PlayersScreen: UIViewController {
         case main
     }
     
-    private let names                   = StringFiles()
+    private let names               = Strings()
     
-    typealias DataSource                = UICollectionViewDiffableDataSource<Section, PlayerModel>
-    typealias DataSourceSnapshot        = NSDiffableDataSourceSnapshot<Section, PlayerModel>
-    private var dataSource              : DataSource!
-    private var snapshot                = DataSourceSnapshot()
+    typealias DataSource            = UICollectionViewDiffableDataSource<Section, PlayerModel>
+    typealias DataSourceSnapshot    = NSDiffableDataSourceSnapshot<Section, PlayerModel>
+    private var dataSource          : DataSource!
+    private var snapshot            = DataSourceSnapshot()
     
-    private var collectionView          : UICollectionView!
-    private var viewForCollection       : UIView!
+    private var collectionView      : UICollectionView!
+    private var viewForCollection   : UIView!
     
-    private var playersBarButton        : UIBarButtonItem!
-    private var labelAndGradient        = SHHeaderView()
-    private var bottomView              = NextButtonView()
+    private var playersBarButton    : UIBarButtonItem!
+    private var labelAndGradient    = SHHeaderView()
+    private var bottomView          = NextButtonView()
     
-    private let pageLabel               = SHPageLabel()
-    private let addButton               = UIButton()
+    private let pageLabel           = SHPageLabel()
+    private let addButton           = UIButton()
     
-    private let realm                   = try! Realm()
-    private var players                 : Results<PlayerModel>?
+    private let realm               = try! Realm()
+    private var players             : Results<PlayerModel>?
     
     
     override func viewDidLoad() {
@@ -48,7 +48,6 @@ class PlayersScreen: UIViewController {
         setupCollectionView()
         configure()
         setupAddButton()
-        setBackButton()
         setupRightBarButton()
     }
     
@@ -60,22 +59,17 @@ class PlayersScreen: UIViewController {
         
     }
     
-    private func setBackButton() {
-        navigationItem.hidesBackButton = true
-        let item = UIBarButtonItem(title: names.back, style: .plain, target: self, action: #selector(backButtonPressed))
-        navigationItem.leftBarButtonItem = item
-    }
     
-    
-    @objc private func backButtonPressed() {
-        view.subviews.forEach { $0.removeFromSuperview() }
-        
-        let gradientLayer       = CAGradientLayer()
-        gradientLayer.frame     = self.view.bounds
-        gradientLayer.colors    = [Colors.gradientRed, Colors.gradientBlue].map {$0.cgColor}
-        self.view.layer.insertSublayer(gradientLayer, at: 0)
-        
-        navigationController?.popToRootViewController(animated: true)
+    override func willMove(toParent parent: UIViewController?) {
+        super.willMove(toParent: parent)
+        if parent == nil {
+            view.subviews.forEach { $0.removeFromSuperview() }
+            
+            let gradientLayer = CAGradientLayer()
+            gradientLayer.frame = self.view.bounds
+            gradientLayer.colors = [Colors.gradientRed, Colors.gradientBlue].map {$0.cgColor}
+            self.view.layer.insertSublayer(gradientLayer, at: 0)
+        }
     }
     
     
@@ -163,16 +157,14 @@ class PlayersScreen: UIViewController {
         dataSource = DataSource(collectionView: collectionView, cellProvider: { (collectionView, indexPath, player) -> PlayerScreen_PlayerCell? in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PlayerScreen_PlayerCell.reuseIdentifier, for: indexPath) as! PlayerScreen_PlayerCell
             cell.setCell(with: player)
+            
             return cell
         })
         
     }
     
     
-    
-    
     //MARK: - Load Players
-    
     
     fileprivate func createDummyData() {
         var dummyPlayers: [PlayerModel] = []
@@ -185,7 +177,7 @@ class PlayersScreen: UIViewController {
     private func loadPlayers() {
         players = realm.objects(PlayerModel.self).filter("isPlaying == true")
     }
-    
+
     
     private func applySnapshot(players: [PlayerModel]) {
         snapshot = DataSourceSnapshot()
@@ -198,22 +190,13 @@ class PlayersScreen: UIViewController {
     }
     
     
-    private func loadImageFromDocumentDirectory(path: String) -> UIImage? {
-        do {
-            let imageData = try Data(contentsOf: URL(string: path)!)
-            return UIImage(data: imageData)
-        } catch {}
-        return nil
-    }
-    
-    
-    
-    
     //MARK: - Segues
     
     @objc private func addButtonPressed(_ sender: UIButton) {
         let destVC = AddNewPlayer()
-        navigationController?.pushViewController(destVC, animated: true)
+        destVC.delegate = self
+        let navController = UINavigationController(rootViewController: destVC)
+        present(navController, animated: true)
     }
     
     
@@ -223,10 +206,7 @@ class PlayersScreen: UIViewController {
             destVC.players = players
             navigationController?.pushViewController(destVC, animated: true)
         } else {
-            let alert = UIAlertController(title: names.error, message: names.addOnePlayer, preferredStyle: .alert)
-            let action = UIAlertAction(title: "OK", style: .default, handler: nil)
-            alert.addAction(action)
-            present(alert, animated: true, completion: nil)
+            presentAlert(title: names.error, message: names.addOnePlayer)
         }
     }
     
@@ -247,7 +227,6 @@ class PlayersScreen: UIViewController {
     
     
     fileprivate func setupAddButton() {
-        //AddButton setup
         let size = self.view.frame.width / 8
         let buttonImage = Images.addPlayerButton?.circleMask(borderWidth: 10)
         addButton.setImage(buttonImage, for: .normal)
@@ -265,6 +244,7 @@ class PlayersScreen: UIViewController {
     
 }
 
+
 extension PlayersScreen: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: false)
@@ -272,12 +252,12 @@ extension PlayersScreen: UICollectionViewDelegate {
 }
 
 
-
-extension PlayersScreen: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        print("UICollectionViewDelegateFlowLayout Called")
-        let width = view.bounds.width / 4
-        return CGSize(width: width, height: width)
+extension PlayersScreen: AddNewPlayerDelegate {
+    func updateData() {
+        loadPlayers()
+        applySnapshot(players: Array(players!))
     }
+    
+    
 }
 

@@ -36,6 +36,7 @@ class SHButton: UIButton {
     
 		translatesAutoresizingMaskIntoConstraints		= false
 		titleLabel!.adjustsFontForContentSizeCategory 	= true
+        titleLabel!.adjustsFontSizeToFitWidth           = true
 		setTitleColor(.white, for: .normal)
 	}
     
@@ -49,6 +50,7 @@ class SHButton: UIButton {
         contentEdgeInsets   = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     }
     
+    
     func setShowSpiesButton() {
         titleLabel?.numberOfLines   = 0
         titleLabel?.font            = UIFont.preferredFont(forTextStyle: .title1)
@@ -58,18 +60,18 @@ class SHButton: UIButton {
         layer.borderWidth           = 1
         
         alpha                       = 0
-        contentEdgeInsets           = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
+        //contentEdgeInsets           = UIEdgeInsets(top: 20, left: 30, bottom: 20, right: 30)
         setTitleColor(Colors.flamingRed, for: .normal)
     }
     
     
     func setShadow() {
-        layer.shadowColor = UIColor.black.cgColor
-        layer.shadowOpacity = 0.5
-        layer.shadowOffset = .zero
-        layer.shadowRadius = 10
+        layer.shadowColor           = UIColor.black.cgColor
+        layer.shadowOpacity         = 0.5
+        layer.shadowOffset          = .zero
+        layer.shadowRadius          = 10
         
-        layer.shouldRasterize = true
-        layer.rasterizationScale = UIScreen.main.scale
+        layer.shouldRasterize       = true
+        layer.rasterizationScale    = UIScreen.main.scale
     }
 }

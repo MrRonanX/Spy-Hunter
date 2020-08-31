@@ -9,25 +9,25 @@
 import UIKit
 class ScheduleNotification {
     
-    let names = StringFiles()
+    fileprivate let names   = Strings()
     
-    let notificationCenter = UNUserNotificationCenter.current()
-
+    let notificationCenter  = UNUserNotificationCenter.current()
+    
     func scheduledNotification(notificationType: String, time: Double) {
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: time, repeats: false)
+        let trigger     = UNTimeIntervalNotificationTrigger(timeInterval: time, repeats: false)
         
-         let content = UNMutableNotificationContent() // notification content
-         
-         content.title = notificationType
-        content.body = names.discussionIsOver
-         content.sound = UNNotificationSound.default
+        let content     = UNMutableNotificationContent() // notification content
         
-        let identifier = "Local Notification"
-        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+        content.title   = notificationType
+        content.body    = names.discussionIsOver
+        content.sound   = UNNotificationSound.default
+        
+        let identifier  = "Local Notification"
+        let request     = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
         notificationCenter.add(request) { (error) in
             if let error = error {
                 print(error)
             }
         }
-     }
+    }
 }

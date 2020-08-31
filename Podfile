@@ -7,5 +7,6 @@ target 'Spy Hunter' do
 
   pod 'RealmSwift'
   pod 'SwipeCellKit'
+  pod 'SwiftKeychainWrapper'
 
 end

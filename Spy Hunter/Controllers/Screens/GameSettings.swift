@@ -8,94 +8,72 @@
 
 import UIKit
 import RealmSwift
+import StoreKit
+import SwiftKeychainWrapper
+import RealmSwift
 
-class GameSettings: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class GameSettings: UIViewController, UITableViewDelegate, UITableViewDataSource, SKPaymentTransactionObserver, SKProductsRequestDelegate {
     
-    private let names       = StringFiles()
-    private var topView     = SHHeaderViewWithImage()
-    private var bottomView  = NextButtonView()
-    private var tableView   = UITableView()
+    private let realm               = try! Realm()
+    private let names               = Strings()
+    private var locations           = Locations()
     
-    fileprivate let cellID = "Cell_ID"
-    lazy var sections: [SectionModel] = [
-        SectionModel(
-            name: names.standardLocations,
-            open: false,
-            data: [
-                CellData(locationName: names.hospital , isChosen: true),
-                CellData(locationName: names.church, isChosen: true),
-                CellData(locationName: names.embassy, isChosen: true),
-                CellData(locationName: names.restaurant, isChosen: true),
-                CellData(locationName: names.house, isChosen: true),
-                CellData(locationName: names.cafe, isChosen: true),
-                CellData(locationName: names.factory, isChosen: true),
-                CellData(locationName: names.shop, isChosen: true),
-                CellData(locationName: names.flowersMarker, isChosen: true),
-                CellData(locationName: names.bikeFixer, isChosen: true),
-                CellData(locationName: names.gym, isChosen: true),
-                CellData(locationName: names.bar, isChosen: true),
-                CellData(locationName: names.park, isChosen: true),
-                CellData(locationName: names.garden, isChosen: true),
-                CellData(locationName: names.nightClub, isChosen: true),
-                CellData(locationName: names.castle, isChosen: true),
-                CellData(locationName: names.basement, isChosen: true),
-                CellData(locationName: names.bank, isChosen: true),
-                CellData(locationName: names.policeOffice, isChosen: true),
-                CellData(locationName: names.school, isChosen: true),
-                CellData(locationName: names.bakery, isChosen: true),
-                CellData(locationName: names.market, isChosen: true),
-                CellData(locationName: names.appleStore, isChosen: true),
-                CellData(locationName: names.mainSquare, isChosen: true)
-        ]),
-        SectionModel(
-            name: names.unusualLocations,
-            open: false,
-            data: [
-                CellData(locationName: names.architectureBureau, isChosen: true),
-                CellData(locationName: names.artStudio, isChosen: true),
-                CellData(locationName: names.marineBase, isChosen: true),
-                CellData(locationName: names.museum, isChosen: true),
-                CellData(locationName: names.port, isChosen: true),
-                CellData(locationName: names.prison, isChosen: true),
-                CellData(locationName: names.spaceStation, isChosen: true),
-                CellData(locationName: names.spaSalon, isChosen: true),
-                CellData(locationName: names.orphanage, isChosen: true),
-                CellData(locationName: names.parliament, isChosen: true),
-                CellData(locationName: names.metro, isChosen: true),
-                CellData(locationName: names.skyScrapper, isChosen: true),
-                CellData(locationName: names.polarStation, isChosen: true),
-                CellData(locationName: names.gameCenter, isChosen: true),
-                CellData(locationName: names.university, isChosen: true),
-                CellData(locationName: names.plane, isChosen: true),
-                CellData(locationName: names.mine, isChosen: true),
-                CellData(locationName: names.island, isChosen: true),
-                CellData(locationName: names.zoo, isChosen: true),
-                CellData(locationName: names.submarine, isChosen: true),
-                CellData(locationName: names.observationDeck, isChosen: true),
-                CellData(locationName: names.cave, isChosen: true),
-                CellData(locationName: names.beach, isChosen: true),
-                CellData(locationName: names.festival, isChosen: true)
-        ])]
+    private var topView             = SHHeaderViewWithImage()
+    private var bottomView          = NextButtonView()
+    private var tableView           = UITableView()
     
-    var players: Results<PlayerModel>?
+    private var myProduct           : SKProduct?
+    private var productIdentifiers  = [String]()
+    var players                     : Results<PlayerModel>?
+    
+    private var realmSections       : Results<RealmSectionModel>?
+    private var canMakeCustomLocs   = false
+    private var arrowIsDown         = true
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title                = names.locations
-        navigationItem.backBarButtonItem    = UIHelper.setupBackButton()
         
-        view.backgroundColor                = Colors.backgroundColor
+        basicSetup()
+        checkIfPurchased()
         setUpBottomView()
         setupTableView()
         setUpTopView()
+        setupProductArray()
+        fetchData()
     }
     
-    //Set up top view
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadSections()
+    }
+    
+    
+    private func setupProductArray() {
+        productIdentifiers.append("section 1")
+        productIdentifiers.append(Products.unusualLocs)
+        productIdentifiers.append(Products.hpLocs)
+        productIdentifiers.append(Products.lotrLocs)
+        productIdentifiers.append(Products.gotLocs)
+        productIdentifiers.append(Products.customLocs)
+        productIdentifiers.append(Products.proVersion)
+    }
+    
+    
+    //MARK: - VIEW SETUP
+    
+    private func basicSetup() {
+        navigationItem.title                = names.locations
+        navigationItem.backBarButtonItem    = UIHelper.setupBackButton()
+        navigationItem.rightBarButtonItem   = .init(title: names.restore, style: .plain, target: self, action: #selector(restoreButtonTapped))
+        view.backgroundColor                = Colors.backgroundColor
+    }
+    
+    
     fileprivate func setUpTopView() {
         topView = SHHeaderViewWithImage(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height/11))
         
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.topViewTapper(_:)))
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(topViewTapped))
         topView.addGestureRecognizer(tapGestureRecognizer)
         
         topView.label.text  = names.becomePro
@@ -105,13 +83,6 @@ class GameSettings: UIViewController, UITableViewDelegate, UITableViewDataSource
     }
     
     
-    @objc func topViewTapper(_ sender: UITapGestureRecognizer) {
-        let feedbackGenerator = UIImpactFeedbackGenerator(style: .heavy)
-        feedbackGenerator.impactOccurred()
-        present(UIHelper.presentAlert(title: names.unavailable), animated: true)
-    }
-    
-    //Set up bottom view
     fileprivate func setUpBottomView() {
         bottomView.button.addTarget(self, action: #selector(bottomButtonPressed(_:)), for: .touchDown)
         view.addSubview(bottomView)
@@ -129,17 +100,20 @@ class GameSettings: UIViewController, UITableViewDelegate, UITableViewDataSource
         // Map goes through the sections
         // CompactMap takes only chosen locations
         // FlatMap sets them into one array
-        let chosenLocations = sections.map {$0.data.compactMap {$0.isChosen ? $0.locationName : nil}}.flatMap {$0}
+        let chosenLocations = locations.sections.map {$0.data.compactMap {$0.isChosen ? $0.locationName : nil}}.flatMap {$0}
         
         guard chosenLocations != [] else {
-            present(UIHelper.presentAlert(title: names.error, message: names.chooseOneLocation), animated: true)
+            presentAlert(title: names.error, message: names.chooseOneLocation)
             return
         }
+        
         destVC.chosenLocations  = chosenLocations
         destVC.players          = players
         navigationController?.pushViewController(destVC, animated: true)
         
     }
+    
+    //MARK: - TABLEVIEW SETUP
     
     
     fileprivate func setupTableView() {
@@ -147,31 +121,49 @@ class GameSettings: UIViewController, UITableViewDelegate, UITableViewDataSource
         tableView.delegate = self
         view.insertSubview(tableView, aboveSubview: bottomView)
         tableView.backgroundColor = Colors.backgroundColor
-        tableView.register(UINib(nibName: "AHugeCell", bundle: nil), forCellReuseIdentifier: cellID)
-        tableView.register(SectionCell.self, forHeaderFooterViewReuseIdentifier: "SectionCell")
+        tableView.register(LocationCell.self, forCellReuseIdentifier: LocationCell.reuseID)
+        tableView.register(SectionCell.self, forHeaderFooterViewReuseIdentifier: SectionCell.reuseIdentifier)
         tableView.allowsSelection = false
         tableView.separatorStyle = .none
+        tableView.reloadData()
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
-            tableView.bottomAnchor.constraint(equalTo: bottomView.topAnchor, constant: 0),
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: bottomView.topAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor)
         ])      
     }
     
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let section = indexPath.section
+        var height = ceilf(Float(locations.sections[indexPath.section].data.count) / 3)
+        if section > 4 {
+            height += 1.2
+        }
+        return CGFloat(height * 77)
+    }
+    
     //CELL SET UP
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! AHugeCell
-        cell.backgroundColor = Colors.backgroundColor
+        var numberOfItems = ceilf(Float(locations.sections[indexPath.section].data.count) / 3)
+        let section = indexPath.section
+        if section > 4 {
+            numberOfItems += 1.2
+        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: LocationCell.reuseID, for: indexPath) as! LocationCell
+        
+        let height = CGFloat(numberOfItems * 77)
+        let size = CGRect(x: 0, y: 0, width: view.bounds.width, height: height)
+        
+        
+        cell.configure(frame: size, layout: UIHelper.createThreeColFlowLayoutForLocation(in: view))
+        cell.section = section
         cell.delegate = self
-        let section = sections[indexPath.section]
-        cell.cellData = section.data
-        
-        //set TAG to the cell. It should be zero because we always have only 1 cell in the section
-        cell.tag = indexPath.section
-        
+        cell.updateData(on: locations.sections[section].data, section: section)
+        cell.setCell(purchased: locations.sections[section].purchased)
         
         return cell
     }
@@ -179,7 +171,8 @@ class GameSettings: UIViewController, UITableViewDelegate, UITableViewDataSource
     //MARK: - SECTIONS AND ROWS
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if !sections[section].open {
+        guard section < locations.sections.count else { return 0 }
+        if !locations.sections[section].open {
             return 0
         }
         return 1
@@ -187,7 +180,7 @@ class GameSettings: UIViewController, UITableViewDelegate, UITableViewDataSource
     
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return sections.count
+        return locations.sections.count + 1
     }
     
     
@@ -199,165 +192,410 @@ class GameSettings: UIViewController, UITableViewDelegate, UITableViewDataSource
     
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
-        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "SectionCell") as! SectionCell
+        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: SectionCell.reuseIdentifier) as! SectionCell
         header.tag = section
-        header.isUserInteractionEnabled = true
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(viewTapped(_:)))
-        header.addGestureRecognizer(tapGestureRecognizer)
-        header.i = sections[section].data.count
-        //button settings
-        header.button.setTitle("\(sections[section].name)  (\(checkHowManyLocationsAreChosen(section: section)) / \(sections[section].data.count))", for: .normal)
-        header.button.addTarget(self, action: #selector(sectionAction), for: .touchUpInside)
-        header.button.tag = section
+        header.delegate = self
         
-        //switch settings
-        header.switchControl.tag = section
-        header.switchControl.addTarget(self, action: #selector(switchTapped(_:)), for: .valueChanged)
-        header.switchControl.sectionNumber = section
-        
+        guard section < locations.sections.count else {
+            header.setCustomLocs(with: section)
+            return header 
+        }
+        header.setSectionCell(with: locations.sections[section], section: section, and: locations.sections.count)
+
         return header
     }
     
     //MARK: -  SET BUTTON'S TITLE
     
     func setButtonTitle(sectionTag: Int) {
-        let sectionCell = tableView.headerView(forSection: sectionTag) as! SectionCell
+        let sectionCell         = tableView.headerView(forSection: sectionTag) as! SectionCell
+        let chosenLocation      = checkHowManyLocationsAreChosen(section: sectionTag)
+        sectionCell.label.text  = ("\(locations.sections[sectionTag].name)  (\(chosenLocation) / \(locations.sections[sectionTag].data.count))")
         
-        sectionCell.button.setTitle("\(sections[sectionTag].name)  (\(checkHowManyLocationsAreChosen(section: sectionTag)) / \(sections[sectionTag].data.count))", for: .normal)
+        guard sectionCell.switchControl?.isOn == checkIfSwitchIsOn(section: sectionTag) else {
+            sectionCell.switchControl?.isOn = checkIfSwitchIsOn(section: sectionTag)
+            return
+        }
     }
     
     
     func checkHowManyLocationsAreChosen(section: Int) -> Int {
         // If location is chosen adds 1, if not - adds zero.
-        return sections[section].data.map { $0.isChosen ? 1 : 0}.reduce(0, +)
+        return locations.sections[section].data.map { $0.isChosen ? 1 : 0}.reduce(0, +)
     }
+    
+    
+    func checkIfSwitchIsOn(section: Int) -> Bool {
+        let chosenLocation = checkHowManyLocationsAreChosen(section: section)
+        
+        return chosenLocation < locations.sections[section].data.count ? false : true
+    }
+    
     
     //MARK: - OPEN AND CLOSE SECTION
     
-    @objc func sectionAction(button: UIButton) {
-        let section = button.tag
-        sections[section].open.toggle()
-        let indexPaths = IndexPath(row: 0, section: section)
-        !sections[section].open ? tableView.deleteRows(at: [indexPaths], with: .fade) : tableView.insertRows(at: [indexPaths], with: .fade)
-        
-    }
-    
-    
     @objc func viewTapped(_ sender: UITapGestureRecognizer) {
         if let section = sender.view?.tag {
-            sections[section].open.toggle()
+            locations.sections[section].open.toggle()
             let indexPaths = IndexPath(row: 0, section: section)
-            !sections[section].open ? tableView.deleteRows(at: [indexPaths], with: .fade) : tableView.insertRows(at: [indexPaths], with: .fade)
+            !locations.sections[section].open ? sectionIsClosed(indexPaths: indexPaths) : sectionIsOpened(indexPaths: indexPaths)
         }
+    }
+    
+    
+    private func sectionIsOpened(indexPaths: IndexPath) {
+        tableView.insertRows(at: [indexPaths], with: .fade)
+        flipArrow(in: indexPaths.section)
+        tableView.scrollToRow(at: indexPaths, at: .top, animated: true)
         
     }
+    
+    
+    private func sectionIsClosed(indexPaths: IndexPath) {
+        tableView.deleteRows(at: [indexPaths], with: .fade)
+        tableView.reloadSections([indexPaths.section], with: .automatic)
+        flipArrow(in: indexPaths.section)
+    }
+    
+    
+    private func flipArrow(in sectionNumber: Int) {
+        guard let section = tableView.headerView(forSection: sectionNumber) as? SectionCell else { return }
+        section.sectionWasTapped = locations.sections[sectionNumber].open
+    }
+    
     //MARK: - SWITCH VALUE CHANGED
-    
-    
-    private func chooseAllLocations(cell: AHugeCell, section: Int) {
-        for (i, location) in cell.locationsCollection.enumerated() {
-            if i < sections[section].data.count{
-                location.layer.borderWidth = 1.5
-                sections[section].data[i].isChosen = true
-            }
-        }
-    }
-    
-    private func deselectAllLocations(cell: AHugeCell, section: Int) {
-        for (i, location) in cell.locationsCollection.enumerated(){
-            if i < sections[section].data.count{
-                location.layer.borderWidth = 0.5
-                sections[section].data[i].isChosen = false
-            }
-        }
-    }
     
     @objc  func switchTapped(_ sender: CustomSwitch) {
         let feedbackGenerator = UIImpactFeedbackGenerator(style: .heavy)
         feedbackGenerator.impactOccurred()
         
         //initilize number (section index) from the custom cell
-        let section: Int = sender.sectionNumber!
-        if sections[section].open {
-            let indexPath = IndexPath(row: 0, section: section)
-            let sectionCell = tableView.headerView(forSection: section) as! SectionCell
-            if let cell = tableView.cellForRow(at: indexPath) as? AHugeCell {
-                //if switch is ON all locations are chosen
-                if sender.isOn {
-                    chooseAllLocations(cell: cell, section: section)
-                    setButtonTitle(sectionTag: section)
-                    //All locations are chosen, so i is equal to number of locations
-                    sectionCell.i = sections[section].data.count
-                } else {
-                    deselectAllLocations(cell: cell, section: section)
-                    setButtonTitle(sectionTag: section)
-                    //none is chosen, so i is equal to zero
-                    sectionCell.i = 0
+        let section: Int    = sender.sectionNumber!
+        let indexPath       = IndexPath(row: 0, section: section)
+        
+        sender.isOn ? setValueToAllLocations(section: section, value: true) : setValueToAllLocations(section: section, value: false)
+        
+        guard let cell = tableView.cellForRow(at: indexPath) as? LocationCell else { return }
+        cell.updateData(on: locations.sections[section].data, section: indexPath.section)
+    }
+    
+    
+    private func setValueToAllLocations(section: Int, value: Bool) {
+        for (i, _) in locations.sections[section].data.enumerated() {
+            locations.sections[section].data[i].isChosen = value
+        }
+        setButtonTitle(sectionTag: section)
+    }
+    
+    
+    //MARK: - PROCEED PAYMENT
+    
+    
+    @objc private func lockPicTapped(_ sender: UITapGestureRecognizer) {
+
+        guard let section   = sender.view?.tag else { return }
+        
+        let createSectionVC = CreateNewSectionAndLocVC(title: "Name Your Locations", buttonTitle: "Save", sectionName: nil, placeholder: "Locations are ...", delegate: self, sectionNumber: section)
+        createSectionVC.modalPresentationStyle = .overFullScreen
+        createSectionVC.modalTransitionStyle = .crossDissolve
+        present(createSectionVC, animated: true)
+//                let request         = SKProductsRequest(productIdentifiers: [productIdentifiers[section]])
+//                request.delegate    = self
+//                request.start()
+    }
+    
+    
+    @objc func topViewTapped() {
+        //        let feedbackGenerator = UIImpactFeedbackGenerator(style: .heavy)
+        //        feedbackGenerator.impactOccurred()
+        //
+        //        let request           = SKProductsRequest(productIdentifiers: [productIdentifiers.last!])
+        //        request.delegate      = self
+        //        request.start()
+        let alertVC = BecomeProVC(title: "Become Pro", message: "Get Access to all the locations and make multiple sections", buttonTitle: "Get It", delegate: self)
+        alertVC.modalPresentationStyle = .overFullScreen
+        alertVC.modalTransitionStyle = .crossDissolve
+        present(alertVC, animated: true)
+    }
+    
+    
+    func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
+        guard let product   = response.products.first else { return }
+        myProduct           = product
+        doPayment()
+    }
+    
+    
+    private func doPayment() {
+        guard SKPaymentQueue.canMakePayments(), let myProduct = myProduct else { return }
+        
+        let payment = SKPayment(product: myProduct)
+        SKPaymentQueue.default().add(self)
+        SKPaymentQueue.default().add(payment)
+    }
+    
+    
+    
+    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+        for transaction in transactions {
+            let productIdentifier   = transaction.payment.productIdentifier
+            let section             = productIdentifiers.firstIndex(of: productIdentifier)!
+            
+            switch transaction.transactionState {
+            case .purchasing:
+                // nothing
+                break
+            case .purchased:
+                switch section {
+                case 1...4:
+                    paymentSuccessful(in: section)
+                    SKPaymentQueue.default().finishTransaction(transaction)
+                    SKPaymentQueue.default().remove(self)
+                case 5:
+                    createCustomSection(in: section)
+                    SKPaymentQueue.default().finishTransaction(transaction)
+                    SKPaymentQueue.default().remove(self)
+                case 6:
+                    becomePro()
+                    SKPaymentQueue.default().finishTransaction(transaction)
+                    SKPaymentQueue.default().remove(self)
+                default:
+                    print("error")
                 }
-            }
-                // section is OPEN but cell is out of the screen
-            else {
-                if sender.isOn {
-                    for (index, _) in sections[section].data.enumerated() {
-                        sections[section].data[index].isChosen = true
-                        setButtonTitle(sectionTag: section)
-                    }
-                } else {
-                    for (index, _) in sections[section].data.enumerated() {
-                        sections[section].data[index].isChosen = false
-                        setButtonTitle(sectionTag: section)
-                    }
+            case .restored:
+                switch section {
+                case 1...4:
+                    presentAlert(title: names.done, message: names.restore, delegate: self, section: section)
+                    SKPaymentQueue.default().finishTransaction(transaction)
+                    SKPaymentQueue.default().remove(self)
+                case 5:
+                    presentAlert(title: names.done, message: names.restore, delegate: self, section: section)
+                    SKPaymentQueue.default().finishTransaction(transaction)
+                    SKPaymentQueue.default().remove(self)
+                case 6:
+                    becomePro()
+                    SKPaymentQueue.default().finishTransaction(transaction)
+                    SKPaymentQueue.default().remove(self)
+                    presentAlert(title: names.done, message: names.restoted)
+                default:
+                    print("error")
                 }
-            }
-            //change if location is chosen, when section isn't open
-        } else {
-            if !sender.isOn {
-                for (index, _) in sections[section].data.enumerated() {
-                    sections[section].data[index].isChosen = false
-                    setButtonTitle(sectionTag: section)
+            case .failed, .deferred:
+                if (transaction.error as? SKError)?.code != .paymentCancelled {
+                    presentAlert(title: names.error, message: transaction.error?.localizedDescription)
                 }
-            } else {
-                for (index, _) in sections[section].data.enumerated() {
-                    sections[section].data[index].isChosen = true
-                    setButtonTitle(sectionTag: section)
-                }
+                SKPaymentQueue.default().finishTransaction(transaction)
+                SKPaymentQueue.default().remove(self)
+            default:
+                print("something's wrong")
             }
         }
+    }
+    
+    
+    private func paymentSuccessful(in section: Int) {
+        locations.sections[section].purchased = true
+        
+        KeychainWrapper.standard.set(true, forKey: "Section \(section) purchased")
+        tableView.reloadSections([section], with: .automatic)
+    }
+    
+    
+    @objc private func restoreButtonTapped() {
+        SKPaymentQueue.default().add(self)
+        SKPaymentQueue.default().restoreCompletedTransactions()
+    }
+    
+    
+    private func checkIfPurchased() {
+        print(locations.sections.count)
+        for section in 1..<(locations.sections.count) {
+            let purchased   = KeychainWrapper.standard.bool(forKey: "Section \(section) purchased")
+            if purchased == true {
+                locations.sections[section].purchased = true
+                //KeychainWrapper.standard.set(false, forKey: "Section \(section) purchased")
+            }
+        }
+        tableView.reloadData()
+    }
+    
+    
+    private func becomePro() {
+        for section in 1..<(locations.sections.count) {
+            locations.sections[section].purchased = true
+            
+            KeychainWrapper.standard.set(true, forKey: "Section \(section) purchased")
+            print("Section is \(section)")
+            tableView.reloadSections([section], with: .automatic)
+        }
+        createCustomSection(in: locations.sections.count)
+    }
+    //MARK: - CREATE CUSTOM SECTION
+    
+    
+    private func createCustomSection(in section: Int) {
+        let createSectionVC = CreateNewSectionAndLocVC(title: "Name Your Locations", buttonTitle: "Save", sectionName: nil, placeholder: "Locations are ...", delegate: self, sectionNumber: section)
+        createSectionVC.modalPresentationStyle = .overFullScreen
+        createSectionVC.modalTransitionStyle = .crossDissolve
+        present(createSectionVC, animated: true)
+    }
+    
+    
+    private func fetchData() {
+        for section in realm.objects(RealmSectionModel.self) {
+            var customLocations     = [CellData]()
+            
+            for location in section.data {
+                let newLocation = CellData(locationName: location.locationName!, isChosen: location.isChosen)
+                customLocations.append(newLocation)
+            }
+            
+            let newSection  = SectionModel(name: section.name!, open: section.open, purchased: section.purchased, data: customLocations)
+            
+            
+            locations.sections.append(newSection)
+            canMakeCustomLocs = true
+            print(locations.sections.count)
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
+    
+    private func loadSections() {
+        realmSections = realm.objects(RealmSectionModel.self)
     }
 }
 //MARK: - Cell Delegate
 
-extension GameSettings: CellDelegate {
+
+extension GameSettings: LocationCellDelegate {
     
-    //DELEGATE THAT CHANGES MODEL VALUE AND BORDER WIDTH
-    func changeBorderWidthAndModelValue(sender: UIButton, buttonTag: Int, cellTag: Int) {
+    func updateSectionName(section: Int, item: Int) {
+        locations.sections[section].data[item].isChosen.toggle()
+        setButtonTitle(sectionTag: section)
         
-        let sectionCell = tableView.headerView(forSection: cellTag) as! SectionCell
+        let indexPath  = IndexPath(row: 0, section: section)
+        guard let cell = tableView.cellForRow(at: indexPath) as? LocationCell else { return }
+        cell.updateData(on: locations.sections[section].data, section: section)
         
-        //check for borders and isChosenValue in the CellModel
-        sections[cellTag].data[buttonTag].isChosen.toggle()
-        if !sections[cellTag].data[buttonTag].isChosen {
-            sender.layer.borderWidth = 0.5
-            sectionCell.i -= 1
-            
-            //set UP counter in the title
-            setButtonTitle(sectionTag: cellTag)
-        } else {
-            sender.layer.borderWidth = 1.5
-            sectionCell.i += 1
-            
-            //set UP counter in the title
-            setButtonTitle(sectionTag: cellTag)
-            
+    }
+    
+    
+    func addMoreLocs(to section: Int) {
+        let realmSectionIndex = section - 5
+        guard let section = realmSections else { return }
+        
+        let createLocationVC = CreateNewSectionAndLocVC(title: "Name The Location", buttonTitle: "SAVE", sectionName: nil, placeholder: "Location is ...", delegate: self, sectionCreated: true, section: section[realmSectionIndex], sectionNumber: realmSectionIndex + 5)
+        
+        createLocationVC.modalPresentationStyle = .overFullScreen
+        createLocationVC.modalTransitionStyle = .crossDissolve
+        
+        present(createLocationVC, animated: true)
+    }
+    
+    
+    func updateSectionData(in section: Int) -> SectionModel? {
+        loadSections()
+        
+        guard let dummySection = realmSections else { return nil }
+        let realmSection = dummySection[section - 5]
+        
+        var customLocations     = [CellData]()
+        
+        realmSection.data.forEach {
+            let newLocation = CellData(locationName: $0.locationName!, isChosen: $0.isChosen)
+            customLocations.append(newLocation)
         }
         
-        // make sure that if switch is ON all locations are chosen and if OFF at least 1 isn't chosen
-        if sectionCell.i == sections[cellTag].data.count {
-            sectionCell.switchControl.isOn = true
-        } else {
-            sectionCell.switchControl.isOn = false
+        let newSection  = SectionModel(name: realmSection.name!, open: true, purchased: realmSection.purchased, data: customLocations)
+        return newSection
+    }
+}
+
+
+extension GameSettings: BecomeProDelegate {
+    func buyButtonPressed() {
+        print("delegate called")
+    }
+}
+
+
+extension GameSettings: CreateSectionDelegate {
+    func createLocation(sectionName: String, in section: RealmSectionModel, sectionNumber: Int) {
+        let createLocationVC = CreateNewSectionAndLocVC(title: "Enter The Locations", buttonTitle: "Save", sectionName: sectionName, placeholder: "Location is ...", delegate: self, section: section, sectionNumber: sectionNumber)
+        createLocationVC.modalPresentationStyle = .overFullScreen
+        createLocationVC.modalTransitionStyle   = .crossDissolve
+        
+        present(createLocationVC, animated: true)
+    }
+    
+    
+    func updateData(in section: Int) {
+        loadSections()
+        
+        guard let newSection = updateSectionData(in: section) else { return }
+        
+        locations.sections.remove(at: section)
+        locations.sections.insert(newSection, at: section)
+        
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
+    
+    func addSection(with number: Int) {
+        loadSections()
+        
+        guard let newSection = updateSectionData(in: number) else { return }
+        
+        locations.sections.append(newSection)
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
         }
     }
 }
+
+
+extension GameSettings: SectionDelegate {
+    func lockedPicTapped(section: Int) {
+        let createSectionVC = CreateNewSectionAndLocVC(title: "Name Your Locations", buttonTitle: "Save", sectionName: nil, placeholder: "Locations are ...", delegate: self, sectionNumber: section)
+        createSectionVC.modalPresentationStyle = .overFullScreen
+        createSectionVC.modalTransitionStyle = .crossDissolve
+        present(createSectionVC, animated: true)
+    }
+    
+    
+    func viewTapped(section: Int) {
+        locations.sections[section].open.toggle()
+        let indexPaths = IndexPath(row: 0, section: section)
+        !locations.sections[section].open ? sectionIsClosed(indexPaths: indexPaths) : sectionIsOpened(indexPaths: indexPaths)
+    }
+    
+    
+    func switchTapped(section: Int, switchIsOn: Bool) {
+        let feedbackGenerator = UIImpactFeedbackGenerator(style: .heavy)
+        feedbackGenerator.impactOccurred()
+
+        //initilize number (section index) from the custom cell
+        
+        let indexPath       = IndexPath(row: 0, section: section)
+        
+        switchIsOn ? setValueToAllLocations(section: section, value: true) : setValueToAllLocations(section: section, value: false)
+        
+        guard let cell = tableView.cellForRow(at: indexPath) as? LocationCell else { return }
+        cell.updateData(on: locations.sections[section].data, section: indexPath.section)
+    }
+}
+
+
+extension GameSettings: SHAlertPaymentSuccessfulDelegate {
+    func passPaymentToSection(section: Int) {
+        paymentSuccessful(in: section)
+    }
+}
+
 

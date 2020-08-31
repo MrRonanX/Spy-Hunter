@@ -10,10 +10,10 @@ import UIKit
 
 class Language: NSObject {
     
-    open var languageCode    : String
-    open var language : String
+    open var languageCode           : String
+    open var language               : String
     
-    public static var emptyLanguage    : Language { return Language(languageCode: "", language: "") }
+    public static var emptyLanguage : Language { return Language(languageCode: "", language: "") }
     
     
     
@@ -23,8 +23,8 @@ class Language: NSObject {
 //     - countryCode: the country code
     public init(languageCode: String, language: String) {
         
-        self.languageCode = languageCode
-        self.language = language
+        self.languageCode   = languageCode
+        self.language       = language
         
     }
     

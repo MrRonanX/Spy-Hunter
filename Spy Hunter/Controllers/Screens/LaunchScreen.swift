@@ -12,6 +12,8 @@ import UIKit
 
 class LaunchScreen: UIViewController {
     
+    private let names               = Strings()
+    
     private let startButton         = SHButton()
     private let rulesButton         = SHButton()
     private let libraryButton       = SHButton()
@@ -20,12 +22,9 @@ class LaunchScreen: UIViewController {
     
     private let spyPic              = UIImageView()
     
-    private let names               = StringFiles()
     private var timer               = Timer()
     
-    lazy private var buttonTitles   = [names.start, names.rules, names.playersTitle, names.becomeProTitle]
     
-
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupNavBar()
@@ -34,6 +33,7 @@ class LaunchScreen: UIViewController {
         setButtonsStyle()
         setPicture()
         setSpyAnimation()
+        becomeProButton.alpha = 0
     }
     
     
@@ -55,7 +55,7 @@ class LaunchScreen: UIViewController {
         //        print("pressed")
         
         let languages = Languages.languages
-      
+        
         let alert = UIAlertController(title: nil, message: "Switch Language", preferredStyle: .actionSheet)
         for language in languages {
             let languageAction = UIAlertAction(title: language.language, style: .default, handler: {
@@ -72,49 +72,49 @@ class LaunchScreen: UIViewController {
         
         //lets open popover in iPad
         if let popoverPresentationController = alert.popoverPresentationController {
-                  popoverPresentationController.sourceView = self.view
+            popoverPresentationController.sourceView = self.view
             popoverPresentationController.sourceRect = CGRect(x: self.view.bounds.size.width * 0.925, y: self.view.bounds.size.height * 0.075, width: 1.0, height: 1.0)
             
-           
-              }
-     
+            
+        }
+        
         self.present(alert, animated: true, completion: nil)
         
     }
     
     private func setLanguage(didSelectLanguage language: Language) {
-
-    //  Set selected language to application language
-            RKLocalization.sharedInstance.setLanguage(language: language.languageCode)
-            
-    //  Reload application bundle as new selected language
+        
+        //  Set selected language to application language
+        RKLocalization.sharedInstance.setLanguage(language: language.languageCode)
+        
+        //  Reload application bundle as new selected language
         changeLanguageAnimation()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.35, execute: {
-                let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                appDelegate.initRootView()
-            })
-        }
-
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.35, execute: {
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.initRootView()
+        })
+    }
+    
     
     private func changeLanguageAnimation() {
         //initilize current window and take it's Snapshot
-        let window = UIApplication.shared.windows.first
-        guard let snapshot = window?.snapshotView(afterScreenUpdates: false) else {
-          return
+        let window          = UIApplication.shared.windows.first
+        guard let snapshot  = window?.snapshotView(afterScreenUpdates: false) else {
+            return
         }
         
         view.addSubview(snapshot);
         
         //animation
         UIView.animate(withDuration: 0.5, animations: {
-          snapshot.transform = CGAffineTransform(scaleX: 2, y: 2)
-          snapshot.alpha = 0
+            snapshot.transform = CGAffineTransform(scaleX: 2, y: 2)
+            snapshot.alpha = 0
         }) { _ in
-          snapshot.removeFromSuperview()
+            snapshot.removeFromSuperview()
             
         }
-      
-       
+        
+        
     }
     
     private func setupSettingButton() {
@@ -131,13 +131,14 @@ class LaunchScreen: UIViewController {
     
     
     private func setButtonsStyle() {
-        let buttons = [startButton, rulesButton, libraryButton, becomeProButton]
-
+        let buttonTitles    = [names.start, names.rules, names.playersTitle, names.becomeProTitle]
+        let buttons         = [startButton, rulesButton, libraryButton, becomeProButton]
+        
         for (i, button) in buttons.enumerated() {
             view.addSubview(button)
             button.set(backgroundColor: .clear, title: buttonTitles[i].uppercased(), cornerRadius: 5, borderWidth: 1)
             button.addTarget(self, action: #selector(menuButtonPressed(_ :)), for: .touchUpInside)
-
+            
             NSLayoutConstraint.activate([
                 button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
                 button.widthAnchor.constraint(equalToConstant: 200),
@@ -154,7 +155,6 @@ class LaunchScreen: UIViewController {
         navigationItem.backBarButtonItem = UIHelper.setupBackButton()
         switch sender.currentTitle! {
         case names.start.uppercased():
-            print("123")
             let destVC = PlayersScreen()
             navigationController?.pushViewController(destVC, animated: true)
             
@@ -163,15 +163,15 @@ class LaunchScreen: UIViewController {
             navigationController?.pushViewController(destVC, animated: true)
             
         case names.playersTitle.uppercased():
-             let destVC = PlayerLibrary()
-             navigationController?.pushViewController(destVC, animated: true)
+            let destVC = PlayerLibrary()
+            navigationController?.pushViewController(destVC, animated: true)
             
         case names.becomeProTitle.uppercased():
-             let destVC = Rules()
-             navigationController?.pushViewController(destVC, animated: true)
+            let destVC = Rules()
+            navigationController?.pushViewController(destVC, animated: true)
             
         default:
-            "There is an error"
+            fatalError()
         }
     }
     
@@ -185,11 +185,11 @@ class LaunchScreen: UIViewController {
         ])
     }
     
-
+    
     func setPicture() {
         view.addSubview(spyPic)
         spyPic.translatesAutoresizingMaskIntoConstraints = false
-        spyPic.image = UIImage(named: "SpyForMainScreen")
+        spyPic.image = Images.spyForMainScreen
         spyPic.alpha = 0
         spyPic.contentMode = .scaleAspectFit
         

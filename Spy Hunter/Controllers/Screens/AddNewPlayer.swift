@@ -10,10 +10,15 @@ import UIKit
 import Vision
 import RealmSwift
 
+protocol AddNewPlayerDelegate {
+    func updateData()
+}
+
 class AddNewPlayer: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    private let names               = Strings()
+    
     private let realm               = try! Realm()
-    private let names               = StringFiles()
     
     private var playerTookPic       = UIImageView()
     private var playerEnteredName   = SHTextField()
@@ -24,16 +29,20 @@ class AddNewPlayer: UIViewController, UIImagePickerControllerDelegate, UINavigat
     private var filePath: URL?      = nil
     private var playerName: String? = nil
     
+    var delegate                    :AddNewPlayerDelegate!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad() 
         viewSetup()
         initialSetup()
         saveBarButtonSetup()
+        addAnimation()
     }
     
     
     private func saveBarButtonSetup() {
+        navigationController?.navigationBar.setGradientBackground(colors: [Colors.gradientRed, Colors.gradientBlue], startPoint: .topLeft, endPoint: .bottomLeft)
         let saveBarButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonPressed))
         saveBarButton.title = names.save
         navigationItem.rightBarButtonItem = saveBarButton
@@ -77,6 +86,19 @@ class AddNewPlayer: UIViewController, UIImagePickerControllerDelegate, UINavigat
         playerTookPic.isUserInteractionEnabled = true
         playerTookPic.image = Images.cameraIcon!.circleMask()
         playerTookPic.addGestureRecognizer(tapGestureRecognizer)
+        playerTookPic.isOpaque = false
+    }
+    
+    
+    private func addAnimation() {
+        let buttonPressedAnimation  = Images.buttonPressedAnim!.resizeImage(200, opaque: false).circleMask()?.cgImage
+        let animationLayer          = CALayer()
+        animationLayer.isOpaque     = true
+        animationLayer.frame        = playerTookPic.bounds
+        animationLayer.contents     = buttonPressedAnimation
+        animationLayer.opacity      = 0
+        animationLayer.flash(duration: 3)
+        playerTookPic.layer.insertSublayer(animationLayer, at: 0)
     }
     
     
@@ -97,6 +119,7 @@ class AddNewPlayer: UIViewController, UIImagePickerControllerDelegate, UINavigat
     
     
     @objc func imageTapped() {
+        playerTookPic.layer.removeAllAnimations()
         present(imagePicker, animated: true, completion: nil)
     }
     
@@ -126,7 +149,7 @@ class AddNewPlayer: UIViewController, UIImagePickerControllerDelegate, UINavigat
         playerName = playerEnteredName.text
         
         guard playerName != "", filePath != nil else {
-            present(UIHelper.presentAlert(title: names.addNewPlayer, message: nil), animated: true, completion: nil)
+            presentAlert(title: names.error, message: names.addNewPlayer)
             return
         }
         if let theName = playerName, let theUrl = filePath {
@@ -136,11 +159,11 @@ class AddNewPlayer: UIViewController, UIImagePickerControllerDelegate, UINavigat
                     newPlayer.name = theName
                     newPlayer.picture = theUrl.absoluteString
                     realm.add(newPlayer)
-                    let destVC = PlayersScreen()
-                    navigationController?.pushViewController(destVC, animated: true)
+                    delegate.updateData()
+                    dismiss(animated: true, completion: nil)
                 }
             } catch {
-                present(UIHelper.presentAlert(title: names.error, message: error.localizedDescription), animated: true, completion: nil)
+                presentAlert(title: names.error, message: error.localizedDescription)
             }
             
         }
