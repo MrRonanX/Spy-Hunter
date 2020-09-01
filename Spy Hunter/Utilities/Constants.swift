@@ -31,7 +31,7 @@ enum Images {
     static let addPlayerButton      = UIImage(named: "addPlayerButton.png")
     static let configureImage       = UIImage(systemName: "gear")
     static let cameraIcon           = UIImage(named: "cameraIcon.png")
-    static let boltImage            = UIImage(systemName: "bolt")
+    static let boltImage            = UIImage(named: "crownTopView")
     static let crownImage           = UIImage(named: "crown.png")
     static let buttonPressedAnim    = UIImage(named: "buttonPressedAnimation.png")
     static let stylishBoy           = UIImage(named: "StylishSpy")

@@ -31,7 +31,7 @@ class SHHeaderViewWithImage: UIView {
         label.numberOfLines = 0
         label.textAlignment = .natural
         
-        image.tintColor = .systemYellow
+        image.contentMode = .scaleAspectFit
 
         addGradient()
         setupConstraints()
@@ -46,15 +46,15 @@ class SHHeaderViewWithImage: UIView {
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            image.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 30),
+            image.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 25),
             image.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            image.heightAnchor.constraint(equalToConstant: 20),
-            image.widthAnchor.constraint(equalToConstant: 20),
+            image.heightAnchor.constraint(equalToConstant: 30),
+            image.widthAnchor.constraint(equalToConstant: 30),
             
             label.topAnchor.constraint(equalTo: self.topAnchor),
             label.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             label.leadingAnchor.constraint(equalTo: image.trailingAnchor, constant: 20),
-            label.widthAnchor.constraint(equalToConstant: bounds.width - 90)
+            label.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -50)
         ])
     }
 }

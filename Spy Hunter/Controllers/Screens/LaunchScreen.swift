@@ -7,22 +7,27 @@
 //
 
 import UIKit
+import StoreKit
+import SwiftKeychainWrapper
 
 
-
-class LaunchScreen: UIViewController {
+class LaunchScreen: DataLoadingVC {
     
     private let names               = Strings()
+    private var locations           = Locations()
     
     private let startButton         = SHButton()
     private let rulesButton         = SHButton()
     private let libraryButton       = SHButton()
     private let becomeProButton     = SHButton()
     private let settingButton       = UIButton()
+    private var myProduct           : SKProduct?
     
     private let spyPic              = UIImageView()
     
     private var timer               = Timer()
+    
+    
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -31,9 +36,12 @@ class LaunchScreen: UIViewController {
         setupGradient()
         setupSettingButton()
         setButtonsStyle()
+        checkIfPro()
         setPicture()
         setSpyAnimation()
-        becomeProButton.alpha = 0
+        
+        
+        
     }
     
     
@@ -167,8 +175,10 @@ class LaunchScreen: UIViewController {
             navigationController?.pushViewController(destVC, animated: true)
             
         case names.becomeProTitle.uppercased():
-            let destVC = Rules()
-            navigationController?.pushViewController(destVC, animated: true)
+            let alertVC = BecomeProVC(title: names.becomeProTitle, message: names.becomeProExplained, buttonTitle: names.getIt, delegate: self)
+            alertVC.modalPresentationStyle  = .overFullScreen
+            alertVC.modalTransitionStyle    = .crossDissolve
+            present(alertVC, animated: true)
             
         default:
             fatalError()
@@ -227,7 +237,76 @@ class LaunchScreen: UIViewController {
         gradientLayer.colors = [Colors.gradientRed, Colors.gradientBlue].map {$0.cgColor}
         self.view.layer.insertSublayer(gradientLayer, at: 0)
     }
+    
+    private func checkIfPro() {
+        let pro = KeychainWrapper.standard.bool(forKey: "Pro User")
+        if pro == true { becomeProButton.alpha = 0 } else { return }
+        
+    }
 }
+
+
+extension LaunchScreen: BecomeProDelegate, SKProductsRequestDelegate, SKPaymentTransactionObserver {
+    
+    func buyButtonPressed() {
+        let feedbackGenerator = UIImpactFeedbackGenerator(style: .heavy)
+        feedbackGenerator.impactOccurred()
+        
+        let request           = SKProductsRequest(productIdentifiers: [Products.proVersion])
+        request.delegate      = self
+        request.start()
+        showLoadingView()
+    }
+    
+    
+    func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
+        guard let product   = response.products.first else { return }
+        myProduct           = product
+        doPayment()
+    }
+    
+    
+    private func doPayment() {
+        guard SKPaymentQueue.canMakePayments(), let myProduct = myProduct else { return }
+        
+        let payment = SKPayment(product: myProduct)
+        SKPaymentQueue.default().add(self)
+        SKPaymentQueue.default().add(payment)
+    }
+    
+    
+    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+        
+        for transaction in transactions {
+            switch transaction.transactionState {
+            case .purchasing:
+               
+                break
+            case .purchased:
+                dismissLoadingView()
+                KeychainWrapper.standard.set(true, forKey: "Pro User")
+                SKPaymentQueue.default().finishTransaction(transaction)
+                SKPaymentQueue.default().remove(self)
+            case .restored:
+                dismissLoadingView()
+                KeychainWrapper.standard.set(true, forKey: "Pro User")
+                SKPaymentQueue.default().finishTransaction(transaction)
+                SKPaymentQueue.default().remove(self)
+                presentAlert(title: names.done, message: names.restoted)
+            case .failed, .deferred:
+                dismissLoadingView()
+                if (transaction.error as? SKError)?.code != .paymentCancelled {
+                    presentAlert(title: names.error, message: transaction.error?.localizedDescription)
+                }
+                SKPaymentQueue.default().finishTransaction(transaction)
+                SKPaymentQueue.default().remove(self)
+            default:
+                print("something's wrong")
+            }
+        }
+    }
+}
+
 
 
 

@@ -188,6 +188,16 @@ struct Strings {
     let restore             = RKLocalizedString(key: "Restore", comment: "Restore purchases")
     let done                = RKLocalizedString(key: "All set", comment: "self")
     let restoted            = RKLocalizedString(key: "Your purchases has been restored", comment: "self")
+    let becomeProExplained  = RKLocalizedString(key: "Get Access to all the locations and make multiple sections", comment: "self")
+    let getIt               = RKLocalizedString(key: "Get It", comment: "Make a purchase")
+    let enjoyTheGame        = RKLocalizedString(key: "Enjoy the game!", comment: "wish")
+    let nameYourLocs        = RKLocalizedString(key: "Set a name for your locations", comment: "")
+    let locationsAre        = RKLocalizedString(key: "Locations are...", comment: "self")
+    let setNameForLocation  = RKLocalizedString(key: "Name The Location", comment: "self")
+    let locIs               = RKLocalizedString(key: "Location is ...", comment: "self")
+    let cannotContinue      = RKLocalizedString(key: "Cannot continue", comment: "self")
+    let mustNotBeEmpty      = RKLocalizedString(key: "Location must not be empty", comment: "self")
+    let notSaved            = RKLocalizedString(key: "Location was not saved", comment: "self")
 }
 
 

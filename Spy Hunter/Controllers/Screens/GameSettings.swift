@@ -12,7 +12,7 @@ import StoreKit
 import SwiftKeychainWrapper
 import RealmSwift
 
-class GameSettings: UIViewController, UITableViewDelegate, UITableViewDataSource, SKPaymentTransactionObserver, SKProductsRequestDelegate {
+class GameSettings: DataLoadingVC, UITableViewDelegate, UITableViewDataSource, SKPaymentTransactionObserver, SKProductsRequestDelegate {
     
     private let realm               = try! Realm()
     private let names               = Strings()
@@ -35,17 +35,13 @@ class GameSettings: UIViewController, UITableViewDelegate, UITableViewDataSource
         super.viewDidLoad()
         
         basicSetup()
-        checkIfPurchased()
         setUpBottomView()
         setupTableView()
         setUpTopView()
         setupProductArray()
+        checkIfPurchased()
+        checkIfPro()
         fetchData()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        loadSections()
     }
     
     
@@ -115,7 +111,6 @@ class GameSettings: UIViewController, UITableViewDelegate, UITableViewDataSource
     
     //MARK: - TABLEVIEW SETUP
     
-    
     fileprivate func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
@@ -157,7 +152,6 @@ class GameSettings: UIViewController, UITableViewDelegate, UITableViewDataSource
         
         let height = CGFloat(numberOfItems * 77)
         let size = CGRect(x: 0, y: 0, width: view.bounds.width, height: height)
-        
         
         cell.configure(frame: size, layout: UIHelper.createThreeColFlowLayoutForLocation(in: view))
         cell.section = section
@@ -201,7 +195,7 @@ class GameSettings: UIViewController, UITableViewDelegate, UITableViewDataSource
             return header 
         }
         header.setSectionCell(with: locations.sections[section], section: section, and: locations.sections.count)
-
+        
         return header
     }
     
@@ -234,15 +228,6 @@ class GameSettings: UIViewController, UITableViewDelegate, UITableViewDataSource
     
     //MARK: - OPEN AND CLOSE SECTION
     
-    @objc func viewTapped(_ sender: UITapGestureRecognizer) {
-        if let section = sender.view?.tag {
-            locations.sections[section].open.toggle()
-            let indexPaths = IndexPath(row: 0, section: section)
-            !locations.sections[section].open ? sectionIsClosed(indexPaths: indexPaths) : sectionIsOpened(indexPaths: indexPaths)
-        }
-    }
-    
-    
     private func sectionIsOpened(indexPaths: IndexPath) {
         tableView.insertRows(at: [indexPaths], with: .fade)
         flipArrow(in: indexPaths.section)
@@ -263,22 +248,8 @@ class GameSettings: UIViewController, UITableViewDelegate, UITableViewDataSource
         section.sectionWasTapped = locations.sections[sectionNumber].open
     }
     
+    
     //MARK: - SWITCH VALUE CHANGED
-    
-    @objc  func switchTapped(_ sender: CustomSwitch) {
-        let feedbackGenerator = UIImpactFeedbackGenerator(style: .heavy)
-        feedbackGenerator.impactOccurred()
-        
-        //initilize number (section index) from the custom cell
-        let section: Int    = sender.sectionNumber!
-        let indexPath       = IndexPath(row: 0, section: section)
-        
-        sender.isOn ? setValueToAllLocations(section: section, value: true) : setValueToAllLocations(section: section, value: false)
-        
-        guard let cell = tableView.cellForRow(at: indexPath) as? LocationCell else { return }
-        cell.updateData(on: locations.sections[section].data, section: indexPath.section)
-    }
-    
     
     private func setValueToAllLocations(section: Int, value: Bool) {
         for (i, _) in locations.sections[section].data.enumerated() {
@@ -290,31 +261,10 @@ class GameSettings: UIViewController, UITableViewDelegate, UITableViewDataSource
     
     //MARK: - PROCEED PAYMENT
     
-    
-    @objc private func lockPicTapped(_ sender: UITapGestureRecognizer) {
-
-        guard let section   = sender.view?.tag else { return }
-        
-        let createSectionVC = CreateNewSectionAndLocVC(title: "Name Your Locations", buttonTitle: "Save", sectionName: nil, placeholder: "Locations are ...", delegate: self, sectionNumber: section)
-        createSectionVC.modalPresentationStyle = .overFullScreen
-        createSectionVC.modalTransitionStyle = .crossDissolve
-        present(createSectionVC, animated: true)
-//                let request         = SKProductsRequest(productIdentifiers: [productIdentifiers[section]])
-//                request.delegate    = self
-//                request.start()
-    }
-    
-    
     @objc func topViewTapped() {
-        //        let feedbackGenerator = UIImpactFeedbackGenerator(style: .heavy)
-        //        feedbackGenerator.impactOccurred()
-        //
-        //        let request           = SKProductsRequest(productIdentifiers: [productIdentifiers.last!])
-        //        request.delegate      = self
-        //        request.start()
-        let alertVC = BecomeProVC(title: "Become Pro", message: "Get Access to all the locations and make multiple sections", buttonTitle: "Get It", delegate: self)
-        alertVC.modalPresentationStyle = .overFullScreen
-        alertVC.modalTransitionStyle = .crossDissolve
+        let alertVC = BecomeProVC(title: names.becomeProTitle, message: names.becomeProExplained, buttonTitle: names.getIt, delegate: self)
+        alertVC.modalPresentationStyle  = .overFullScreen
+        alertVC.modalTransitionStyle    = .crossDissolve
         present(alertVC, animated: true)
     }
     
@@ -346,6 +296,7 @@ class GameSettings: UIViewController, UITableViewDelegate, UITableViewDataSource
                 // nothing
                 break
             case .purchased:
+                dismissLoadingView()
                 switch section {
                 case 1...4:
                     paymentSuccessful(in: section)
@@ -363,6 +314,7 @@ class GameSettings: UIViewController, UITableViewDelegate, UITableViewDataSource
                     print("error")
                 }
             case .restored:
+                dismissLoadingView()
                 switch section {
                 case 1...4:
                     presentAlert(title: names.done, message: names.restore, delegate: self, section: section)
@@ -381,6 +333,7 @@ class GameSettings: UIViewController, UITableViewDelegate, UITableViewDataSource
                     print("error")
                 }
             case .failed, .deferred:
+                dismissLoadingView()
                 if (transaction.error as? SKError)?.code != .paymentCancelled {
                     presentAlert(title: names.error, message: transaction.error?.localizedDescription)
                 }
@@ -408,7 +361,6 @@ class GameSettings: UIViewController, UITableViewDelegate, UITableViewDataSource
     
     
     private func checkIfPurchased() {
-        print(locations.sections.count)
         for section in 1..<(locations.sections.count) {
             let purchased   = KeychainWrapper.standard.bool(forKey: "Section \(section) purchased")
             if purchased == true {
@@ -420,21 +372,44 @@ class GameSettings: UIViewController, UITableViewDelegate, UITableViewDataSource
     }
     
     
+    private func checkIfPro() {
+        let pro = KeychainWrapper.standard.bool(forKey: "Pro User")
+        if pro == true {
+            for section in 1..<(locations.sections.count) {
+                locations.sections[section].purchased = true
+                
+                KeychainWrapper.standard.set(true, forKey: "Section \(section) purchased")
+                KeychainWrapper.standard.set(true, forKey: "Pro User")
+            }
+            
+            topView.label.text = names.enjoyTheGame
+            topView.label.textAlignment = .center
+            topView.isUserInteractionEnabled = false
+            canMakeCustomLocs = true
+            tableView.reloadData()
+        }
+        
+    }
+    
+    
     private func becomePro() {
         for section in 1..<(locations.sections.count) {
             locations.sections[section].purchased = true
             
             KeychainWrapper.standard.set(true, forKey: "Section \(section) purchased")
+            KeychainWrapper.standard.set(true, forKey: "Pro User")
+            
             print("Section is \(section)")
             tableView.reloadSections([section], with: .automatic)
         }
+        canMakeCustomLocs = true
         createCustomSection(in: locations.sections.count)
     }
     //MARK: - CREATE CUSTOM SECTION
     
     
     private func createCustomSection(in section: Int) {
-        let createSectionVC = CreateNewSectionAndLocVC(title: "Name Your Locations", buttonTitle: "Save", sectionName: nil, placeholder: "Locations are ...", delegate: self, sectionNumber: section)
+        let createSectionVC = CreateNewSectionAndLocVC(title: names.nameYourLocs, buttonTitle: names.save, sectionName: nil, placeholder: names.locationsAre, delegate: self, sectionNumber: section)
         createSectionVC.modalPresentationStyle = .overFullScreen
         createSectionVC.modalTransitionStyle = .crossDissolve
         present(createSectionVC, animated: true)
@@ -443,7 +418,7 @@ class GameSettings: UIViewController, UITableViewDelegate, UITableViewDataSource
     
     private func fetchData() {
         for section in realm.objects(RealmSectionModel.self) {
-            var customLocations     = [CellData]()
+            var customLocations = [CellData]()
             
             for location in section.data {
                 let newLocation = CellData(locationName: location.locationName!, isChosen: location.isChosen)
@@ -455,17 +430,23 @@ class GameSettings: UIViewController, UITableViewDelegate, UITableViewDataSource
             
             locations.sections.append(newSection)
             canMakeCustomLocs = true
-            print(locations.sections.count)
-            
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
         }
+        tableView.reloadData()
     }
     
     
     private func loadSections() {
         realmSections = realm.objects(RealmSectionModel.self)
+    }
+    
+    
+    private func lastOneLocation(to section: Int) -> CellData? {
+        loadSections()
+        guard let dummySection = realmSections else { return nil }
+        
+        let lastLocation = dummySection[section - 5].data.last!
+        
+        return CellData(locationName: lastLocation.locationName!, isChosen: lastLocation.isChosen)
     }
 }
 //MARK: - Cell Delegate
@@ -488,7 +469,7 @@ extension GameSettings: LocationCellDelegate {
         let realmSectionIndex = section - 5
         guard let section = realmSections else { return }
         
-        let createLocationVC = CreateNewSectionAndLocVC(title: "Name The Location", buttonTitle: "SAVE", sectionName: nil, placeholder: "Location is ...", delegate: self, sectionCreated: true, section: section[realmSectionIndex], sectionNumber: realmSectionIndex + 5)
+        let createLocationVC = CreateNewSectionAndLocVC(title: names.setNameForLocation, buttonTitle: names.save.uppercased(), sectionName: nil, placeholder: names.locIs, delegate: self, sectionCreated: true, section: section[realmSectionIndex], sectionNumber: realmSectionIndex + 5)
         
         createLocationVC.modalPresentationStyle = .overFullScreen
         createLocationVC.modalTransitionStyle = .crossDissolve
@@ -516,16 +497,33 @@ extension GameSettings: LocationCellDelegate {
 }
 
 
+//MARK: - BECOME PRO
+
 extension GameSettings: BecomeProDelegate {
     func buyButtonPressed() {
-        print("delegate called")
+        let feedbackGenerator = UIImpactFeedbackGenerator(style: .heavy)
+        feedbackGenerator.impactOccurred()
+        
+        let request           = SKProductsRequest(productIdentifiers: [productIdentifiers.last!])
+        request.delegate      = self
+        request.start()
+        showLoadingView()
     }
 }
 
 
+extension GameSettings: SHAlertPaymentSuccessfulDelegate {
+    func passPaymentToSection(section: Int) {
+        paymentSuccessful(in: section)
+    }
+}
+
+
+//MARK: - CREATE SECTION DELEGATE
+
 extension GameSettings: CreateSectionDelegate {
     func createLocation(sectionName: String, in section: RealmSectionModel, sectionNumber: Int) {
-        let createLocationVC = CreateNewSectionAndLocVC(title: "Enter The Locations", buttonTitle: "Save", sectionName: sectionName, placeholder: "Location is ...", delegate: self, section: section, sectionNumber: sectionNumber)
+        let createLocationVC = CreateNewSectionAndLocVC(title: names.setNameForLocation, buttonTitle: names.save, sectionName: sectionName, placeholder: names.locIs, delegate: self, section: section, sectionNumber: sectionNumber)
         createLocationVC.modalPresentationStyle = .overFullScreen
         createLocationVC.modalTransitionStyle   = .crossDissolve
         
@@ -534,38 +532,52 @@ extension GameSettings: CreateSectionDelegate {
     
     
     func updateData(in section: Int) {
-        loadSections()
+        let indexPath  = IndexPath(row: 0, section: section)
+        guard let locationToUpdate = lastOneLocation(to: section), let cell = tableView.cellForRow(at: indexPath) as? LocationCell else { return }
         
-        guard let newSection = updateSectionData(in: section) else { return }
+        locations.sections[section].data.append(locationToUpdate)
         
-        locations.sections.remove(at: section)
-        locations.sections.insert(newSection, at: section)
+        cell.updateData(on: locations.sections[section].data, section: section)
+        setButtonTitle(sectionTag: section)
         
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
+        if locations.sections[section].data.count % 3 == 1 { tableView.reloadData() }
     }
     
     
     func addSection(with number: Int) {
-        loadSections()
-        
         guard let newSection = updateSectionData(in: number) else { return }
         
         locations.sections.append(newSection)
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
+        tableView.reloadData()
     }
 }
 
+//MARK: - SECTION DELEGATE
 
 extension GameSettings: SectionDelegate {
     func lockedPicTapped(section: Int) {
-        let createSectionVC = CreateNewSectionAndLocVC(title: "Name Your Locations", buttonTitle: "Save", sectionName: nil, placeholder: "Locations are ...", delegate: self, sectionNumber: section)
-        createSectionVC.modalPresentationStyle = .overFullScreen
-        createSectionVC.modalTransitionStyle = .crossDissolve
-        present(createSectionVC, animated: true)
+        print(section)
+        print(canMakeCustomLocs)
+        if section == 5, canMakeCustomLocs == true {
+            createCustomSection(in: section)
+            return
+        }
+        
+        guard section < 6 else {
+            let createSectionVC = CreateNewSectionAndLocVC(title: names.nameYourLocs, buttonTitle: names.save, sectionName: nil, placeholder: names.locationsAre, delegate: self, sectionNumber: section)
+            createSectionVC.modalPresentationStyle = .overFullScreen
+            createSectionVC.modalTransitionStyle = .crossDissolve
+            present(createSectionVC, animated: true)
+            return
+        }
+        
+        let feedbackGenerator = UIImpactFeedbackGenerator(style: .heavy)
+        feedbackGenerator.impactOccurred()
+        
+        let request         = SKProductsRequest(productIdentifiers: [productIdentifiers[section]])
+        request.delegate    = self
+        request.start()
+        showLoadingView()
     }
     
     
@@ -579,22 +591,13 @@ extension GameSettings: SectionDelegate {
     func switchTapped(section: Int, switchIsOn: Bool) {
         let feedbackGenerator = UIImpactFeedbackGenerator(style: .heavy)
         feedbackGenerator.impactOccurred()
-
-        //initilize number (section index) from the custom cell
         
-        let indexPath       = IndexPath(row: 0, section: section)
+        let indexPath = IndexPath(row: 0, section: section)
         
         switchIsOn ? setValueToAllLocations(section: section, value: true) : setValueToAllLocations(section: section, value: false)
         
         guard let cell = tableView.cellForRow(at: indexPath) as? LocationCell else { return }
         cell.updateData(on: locations.sections[section].data, section: indexPath.section)
-    }
-}
-
-
-extension GameSettings: SHAlertPaymentSuccessfulDelegate {
-    func passPaymentToSection(section: Int) {
-        paymentSuccessful(in: section)
     }
 }
 

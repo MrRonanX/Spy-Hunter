@@ -72,7 +72,7 @@ class CreateNewSectionAndLocVC: UIViewController {
         }
         
         guard let locationName      = sectionTextField.text, locationName != "" else {
-            presentAlert(title: "Cannot continue", message: "Location must not be empty")
+            presentAlert(title: names.cannotContinue, message: names.mustNotBeEmpty)
             return
         }
         
@@ -102,7 +102,7 @@ class CreateNewSectionAndLocVC: UIViewController {
     
     private func saveOnlyLocation() {
         guard let enteredName = sectionTextField.text, enteredName != "" else {
-            presentAlert(title: "Cannot proceed", message: "Locations must not be empty")
+            presentAlert(title: names.cannotContinue, message: names.mustNotBeEmpty)
             return
         }
         
@@ -114,7 +114,7 @@ class CreateNewSectionAndLocVC: UIViewController {
                 selectedSection?.data.append(newLocation)
             }
         } catch {
-            presentAlert(title: names.error, message: "Location was not saved")
+            presentAlert(title: names.error, message: names.notSaved)
         }
         
         dismiss(animated: true) {
@@ -125,7 +125,7 @@ class CreateNewSectionAndLocVC: UIViewController {
     
     private func saveSectionAndPresentLocationVC() {
         guard let enteredName = sectionTextField.text, enteredName != "" else {
-            presentAlert(title: "Cannot proceed", message: "Locations must not be empty")
+            presentAlert(title: names.cannotContinue, message: names.mustNotBeEmpty)
             return
         }
         
@@ -146,7 +146,7 @@ class CreateNewSectionAndLocVC: UIViewController {
                 realm.add(section)
             }
         } catch {
-            presentAlert(title: names.error, message: "Location was not saved")
+            presentAlert(title: names.error, message: names.notSaved)
         }
     }
     

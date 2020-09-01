@@ -18,6 +18,7 @@
 		E457A66324AE2C22002ADFC5 /* SHHederView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E457A66224AE2C22002ADFC5 /* SHHederView.swift */; };
 		E457A66524AEF869002ADFC5 /* SHHeaderViewWithImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E457A66424AEF869002ADFC5 /* SHHeaderViewWithImage.swift */; };
 		E457A66724AF31A0002ADFC5 /* CALayer + ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = E457A66624AF31A0002ADFC5 /* CALayer + ext.swift */; };
+		E45F6CCC24FE527C001DA025 /* DataLoadingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45F6CCB24FE527C001DA025 /* DataLoadingVC.swift */; };
 		E478D1D524AB7248005AAA6D /* String + ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = E478D1D424AB7248005AAA6D /* String + ext.swift */; };
 		E481C48F24B3511600C8AFC9 /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E481C48E24B3511500C8AFC9 /* LocationCell.swift */; };
 		E481C49124B376D100C8AFC9 /* CLLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E481C49024B376D100C8AFC9 /* CLLocationCell.swift */; };
@@ -82,6 +83,7 @@
 		E457A66224AE2C22002ADFC5 /* SHHederView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SHHederView.swift; sourceTree = "<group>"; };
 		E457A66424AEF869002ADFC5 /* SHHeaderViewWithImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SHHeaderViewWithImage.swift; sourceTree = "<group>"; };
 		E457A66624AF31A0002ADFC5 /* CALayer + ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer + ext.swift"; sourceTree = "<group>"; };
+		E45F6CCB24FE527C001DA025 /* DataLoadingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataLoadingVC.swift; sourceTree = "<group>"; };
 		E478D1D424AB7248005AAA6D /* String + ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + ext.swift"; sourceTree = "<group>"; };
 		E481C48E24B3511500C8AFC9 /* LocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
 		E481C49024B376D100C8AFC9 /* CLLocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLLocationCell.swift; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 		E451255924E2C9E40005C435 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				E45F6CCB24FE527C001DA025 /* DataLoadingVC.swift */,
 				E451255A24E2CA250005C435 /* BecomeProVC.swift */,
 				E451255E24E2E6760005C435 /* SHAlertVC.swift */,
 				E451256224E54A2F0005C435 /* CreateNewSectionAndLocVC.swift */,
@@ -513,6 +516,7 @@
 				E451255D24E2CD950005C435 /* SHContainerView.swift in Sources */,
 				E457A66124ADE970002ADFC5 /* SHTextFiled.swift in Sources */,
 				F983F8E32494FF32001FDD1F /* ScheduleNotification.swift in Sources */,
+				E45F6CCC24FE527C001DA025 /* DataLoadingVC.swift in Sources */,
 				E481C49724B6F92E00C8AFC9 /* SHCircleButton.swift in Sources */,
 				F90E2F6424544D2B0095961C /* PlayersScreen.swift in Sources */,
 				F90E2F6624544EC80095961C /* AddNewPlayer.swift in Sources */,

@@ -14,6 +14,7 @@ protocol BecomeProDelegate {
 
 class BecomeProVC: UIViewController {
     
+    private let names           = Strings()
     private let containerView   = SHContainerView()
     private let topLabel        = SHTitleLabel()
     private let messageLabel    = SHPageLabel(textColor: .secondaryLabel, textAlignment: .center)
@@ -51,6 +52,7 @@ class BecomeProVC: UIViewController {
     
     
     private func configure() {
+        buyButton.setTitle(names.getIt, for: .normal)
         configureContainerView()
         configureTopLabel()
         configureButton()
@@ -75,7 +77,7 @@ class BecomeProVC: UIViewController {
     
     
     private func configureTopLabel() {
-        topLabel.text       = "Become Pro"
+        topLabel.text       = names.becomeProTitle
         topLabel.textColor  = .label
         
         NSLayoutConstraint.activate([
